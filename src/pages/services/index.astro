@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServicesHero from '../../components/services/ServicesHero.astro';
+import PreInstallationSection from '../../components/services/PreInstallationSection.astro';
+import ExecutionSection from '../../components/services/ExecutionSection.astro';
+---
+
+<BaseLayout 
+  title="Our Services | Mahati Enterprises" 
+  description="Explore end-to-end solar energy services from initial consultation and pre-installation to execution and long-term maintenance."
+>
+  <main>
+    <!-- 1. Hero Section -->
+    <ServicesHero />
+
+    <!-- 2. Pre-Installation Section (Stages 1-4) -->
+    <PreInstallationSection />
+
+    <!-- 3. Execution Section (Stages 5-9) -->
+    <ExecutionSection />
+  </main>
+</BaseLayout>

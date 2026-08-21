@@ -1,0 +1,133 @@
+---
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  faqs: FaqItem[];
+  city: string;
+}
+
+const { faqs, city } = Astro.props;
+---
+
+<section class="city-faqs">
+  <div class="faqs-container">
+    <div class="faqs-header">
+      <h2 class="faqs-title">Frequently Asked Questions</h2>
+      <p class="faqs-subtitle">Everything you need to know about going solar in {city}.</p>
+    </div>
+
+    <div class="faqs-list">
+      {faqs.map((faq, index) => (
+        <details class="faq-item" name="city-faqs">
+          <summary class="faq-question">
+            {faq.question}
+            <span class="material-symbols-outlined expand-icon">expand_more</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .city-faqs {
+    background-color: var(--color-surface-container-lowest, #ffffff);
+    padding: 80px 24px;
+  }
+
+  .faqs-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faqs-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .faqs-title {
+    font-family: var(--font-heading, 'Hanken Grotesk', sans-serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+  }
+
+  .faqs-subtitle {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 18px;
+    color: #666666;
+  }
+
+  .faqs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background-color: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eaeaea;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #ffe082;
+    box-shadow: 0 4px 12px rgba(255, 171, 64, 0.05);
+  }
+
+  .faq-question {
+    font-family: var(--font-heading, 'Hanken Grotesk', sans-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    padding: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* Hide default arrow */
+  }
+
+  /* Hide default details arrow in webkit */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-icon {
+    color: #ffab40;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] .expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-item[open] {
+    background-color: #ffffff;
+    border-color: #ffab40;
+    box-shadow: 0 8px 24px rgba(255, 171, 64, 0.1);
+  }
+
+  .faq-answer {
+    padding: 0 24px 24px 24px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

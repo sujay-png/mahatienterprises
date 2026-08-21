@@ -1,0 +1,169 @@
+---
+import { clientsData } from '../../data/clients/clientsData';
+---
+
+<section class="why-choose-section">
+  <div class="why-container">
+    <div class="why-header">
+      <h2 class="why-title">{clientsData.whyChooseUs.title}</h2>
+    </div>
+
+    <div class="why-grid">
+      {clientsData.whyChooseUs.items.map((item, index) => (
+        <div class="why-card" style={`--animation-order: ${index};`}>
+          <div class="icon-wrapper">
+            <span class="material-symbols-outlined why-icon">{item.icon}</span>
+          </div>
+          <h4 class="card-subtitle">{item.subtitle}</h4>
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-choose-section {
+    padding: 100px 24px;
+    background-color: #f8f9ff; /* surface */
+  }
+
+  .why-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .why-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .why-title {
+    color: #0b1c30; /* on-background */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+  }
+
+  @media (min-width: 768px) {
+    .why-title {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .why-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px; /* Tighter gap on 4 cols to match the image layout perfectly */
+    }
+  }
+
+  .why-card {
+    background-color: #ffffff;
+    padding: 40px 32px; /* Generous padding matching the design */
+    border-radius: 16px; /* Smooth, modern radius */
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.04); /* Ultra soft, diffuse shadow */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    
+    /* Awwwards Style Entrance Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Uses the inline style variable to stagger the animation */
+    animation-delay: calc(var(--animation-order) * 0.15s + 0.2s);
+    
+    /* Smooth hover transitions */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .why-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08); /* Deeper shadow on hover */
+    border-color: #cbd5e1; /* Light grey border */
+    background-color: #f8fafc; /* Lightly shifted background color */
+  }
+
+  @keyframes fadeUpCard {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .icon-wrapper {
+    margin-bottom: 24px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: left bottom;
+  }
+  
+  /* Playful elastic icon pop on card hover */
+  .why-card:hover .icon-wrapper {
+    transform: scale(1.15) rotate(-4deg);
+  }
+
+  .why-icon {
+    color: #9d4300; /* secondary */
+    font-size: 36px;
+    font-variation-settings: 'FILL' 1;
+    display: block;
+  }
+
+  .card-subtitle {
+    color: #9d4300; /* secondary */
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  .card-title {
+    color: #0b1c30; /* on-surface */
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    transition: color 0.3s ease;
+  }
+
+  /* Subtle color shift on title hover */
+  .why-card:hover .card-title {
+    color: #9d4300;
+  }
+
+  .card-desc {
+    color: #45464d; /* on-surface-variant */
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    opacity: 0.85;
+  }
+</style>

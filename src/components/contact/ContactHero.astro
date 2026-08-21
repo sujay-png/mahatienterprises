@@ -1,0 +1,84 @@
+---
+import '../../assets/Chillax_Complete/Fonts/WEB/css/chillax.css';
+import { contactData } from '../../data/contact/contactData';
+---
+
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-subtitle">{contactData.hero.subtitle}</span>
+    <h1 class="hero-title">{contactData.hero.title}</h1>
+    <p class="hero-desc">{contactData.hero.description}</p>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 80px 24px 140px 24px; /* extra bottom padding for overlap */
+    overflow: hidden;
+    background-color: #0F172A; /* darker blue based on tailwind class bg-[#0F172A] */
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 100px 24px 180px 24px;
+    }
+  }
+
+  .hero-bg {
+  position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#ffffff1a, #ffffff14), linear-gradient(#0f172a9c, #0f172ae6), url(/src/images/Contactushero.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-subtitle {
+    display: block;
+    color: #ffdbca; /* secondary-fixed-dim */
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    font-family: 'Chillax', var(--font-heading, 'Manrope', sans-serif);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  .hero-desc {
+    color: #d3e4fe; /* surface-variant */
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    margin: 0 auto;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+</style>

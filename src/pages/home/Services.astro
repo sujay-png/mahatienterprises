@@ -1,0 +1,274 @@
+---
+import { servicesData } from '../../data/home/services';
+---
+
+<section class="services-section">
+  <div class="services-container">
+    
+    <!-- Title, Accent Underline & Navigation -->
+    <div class="services-header-wrapper">
+      <div class="services-header">
+        <h2 class="services-title">{servicesData?.title || "Our Services"}</h2>
+        <div class="accent-bar"></div>
+      </div>
+      <div class="carousel-nav">
+        <button class="nav-btn prev-btn" aria-label="Previous services">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <button class="nav-btn next-btn" aria-label="Next services">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Carousel Layout -->
+    <div class="services-carousel-wrapper">
+      <div class="services-track" id="servicesTrack">
+        {servicesData?.items?.map((service, index) => (
+          <div class="service-card" tabindex="0" data-key={`${service.id}-${index}`}>
+            <!-- Orange Solid Icon Square -->
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined service-icon">{service.icon}</span>
+            </div>
+
+            <!-- Text Details -->
+            <h3 class="service-name">{service.title}</h3>
+            <p class="service-desc">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Dark Main Background */
+  .services-section {
+    background-color: #0d1424;
+    padding: 92px 34px 80px 24px;
+    width: 100%;
+  }
+
+  .services-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Header Wrapper to hold title and arrows */
+  .services-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Better alignment for the buttons */
+    margin-bottom: 48px;
+  }
+
+  /* Header Layout */
+  .services-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .accent-bar {
+    height: 4px;
+    width: 60px;
+    background-color: #e65c00;
+    border-radius: 999px;
+  }
+
+  /* Navigation Buttons */
+  .carousel-nav {
+    display: flex;
+    gap: 16px;
+  }
+
+  .nav-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-btn .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  .nav-btn:hover, .nav-btn:focus-visible {
+    background-color: #e65c00;
+    border-color: #e65c00;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(230, 92, 0, 0.25);
+    outline: none;
+  }
+
+  .nav-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .services-header-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+    }
+  }
+
+  /* Carousel Setup */
+  .services-carousel-wrapper {
+    width: 100%;
+    position: relative;
+    /* Removed the mask-image as it was aggressively clipping the text */
+  }
+
+  .services-track {
+    display: flex;
+    gap: 24px; /* Increased gap for better breathing room */
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 24px 8px; /* Padding top/bottom for hover shadows, slight side padding */
+    margin: -24px -8px; /* Offset padding so grid aligns with title */
+    
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .services-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Exact Matched Dark Card Styling */
+  .service-card {
+    scroll-snap-align: start;
+    background-color: #151e2e;
+    border-radius: 20px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease,
+                background-color 0.4s ease;
+    cursor: pointer;
+    outline: none;
+    min-width: 320px;
+    max-width: 320px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .service-card {
+      min-width: 280px;
+      max-width: 280px;
+      padding: 32px 24px;
+    }
+  }
+
+  /* Interactive Hover Effects */
+  .service-card:hover,
+  .service-card:focus-visible {
+    transform: translateY(-8px);
+    background-color: #1a2538;
+    border-color: rgba(230, 92, 0, 0.4);
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .service-card:active {
+    transform: translateY(-2px);
+  }
+
+  /* Solid Orange Icon Box */
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #e65c00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .service-icon {
+    font-size: 24px !important;
+    color: #ffffff;
+  }
+
+  /* Hover micro-interaction for icon */
+  .service-card:hover .icon-wrapper,
+  .service-card:focus-visible .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+    background-color: #ff6600;
+  }
+
+  /* Typography matching reference image */
+  .service-name {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  .service-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 14px;
+    line-height: 22px;
+    color: #8b9bb4;
+  }
+</style>
+
+<script>
+  function setupCarousel() {
+    const track = document.getElementById('servicesTrack');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // Determine card width dynamically
+    const firstCard = track.querySelector('.service-card') as HTMLElement;
+    if (!firstCard) return;
+
+    // Recalculate dynamically on click in case of resize
+    const getScrollAmount = () => firstCard.offsetWidth + 24; // Card width + gap
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+  }
+
+  // Setup on initial load
+  setupCarousel();
+  
+  // Setup on Astro page navigation
+  document.addEventListener('astro:page-load', setupCarousel);
+</script>

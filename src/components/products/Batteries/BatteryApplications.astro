@@ -1,0 +1,163 @@
+---
+// BatteryApplications.astro
+---
+
+<section class="applications-section">
+  <div class="applications-container">
+    <div class="applications-header">
+      <h2 class="applications-title">Where Our UPS Power Backup Works Best</h2>
+      <p class="applications-desc">Designed to deliver reliable performance across a wide range of critical applications.</p>
+    </div>
+    
+    <div class="applications-grid">
+      <!-- Card 1 -->
+      <div class="app-card">
+        <div class="icon-wrapper">
+          <span class="material-symbols-outlined">home</span>
+        </div>
+        <h3 class="app-title">Homes & Residences</h3>
+        <p class="app-desc">Reliable backup for household appliances and sensitive electronics.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="app-card">
+        <div class="icon-wrapper">
+          <span class="material-symbols-outlined">domain</span>
+        </div>
+        <h3 class="app-title">Offices & Workspaces</h3>
+        <p class="app-desc">Ensure zero downtime for computers, servers, and network equipment.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="app-card">
+        <div class="icon-wrapper">
+          <span class="material-symbols-outlined">dns</span>
+        </div>
+        <h3 class="app-title">Data Centres</h3>
+        <p class="app-desc">Mission-critical power storage for servers and IT infrastructure.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="app-card">
+        <div class="icon-wrapper">
+          <span class="material-symbols-outlined">factory</span>
+        </div>
+        <h3 class="app-title">Industrial Plants</h3>
+        <p class="app-desc">Heavy-duty power for manufacturing and industrial control systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .applications-section {
+    padding: 80px 24px;
+    background-color: #eff4ff; /* surface-container-low */
+  }
+
+  @media (min-width: 1024px) {
+    .applications-section {
+      padding: 120px 24px;
+    }
+  }
+
+  .applications-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .applications-header {
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto 64px auto;
+  }
+
+  .applications-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .applications-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 18px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .applications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .applications-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .applications-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .app-card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .app-card:hover {
+    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .icon-wrapper {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px auto;
+    background-color: #eff4ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .app-card:hover .icon-wrapper {
+    background-color: rgba(244, 125, 32, 0.1); /* mahati-orange/10 */
+  }
+
+  .icon-wrapper .material-symbols-outlined {
+    font-size: 32px;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+  }
+
+  .app-card:hover .icon-wrapper .material-symbols-outlined {
+    color: var(--color-secondary-container);
+  }
+
+  .app-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+
+  .app-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.6;
+  }
+</style>

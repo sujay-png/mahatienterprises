@@ -1,0 +1,83 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  showArrow?: boolean;
+  class?: string;
+}
+
+const { 
+  href, 
+  variant = 'primary', 
+  showArrow = false,
+  class: className = '' 
+} = Astro.props;
+---
+
+<a href={href} class={`btn btn-${variant} ${className}`}>
+  <span><slot /></span>
+  {showArrow && (
+    <span class="arrow-circle">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </span>
+  )}
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-full, 9999px);
+    font-family: var(--font-heading, 'Hanken Grotesk', sans-serif);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+  }
+
+  /* Primary Button (Blue Pill) */
+  .btn-primary {
+    background-color: var(--color-primary-blue, #0c5fae);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background-color: #094a88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(12, 95, 174, 0.25);
+  }
+
+  /* Secondary Button (Outline Blue) */
+  .btn-secondary {
+    background-color: transparent;
+    border: 1.5px solid var(--color-primary-blue, #0c5fae);
+    color: var(--color-primary-blue, #0c5fae);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-primary-blue, #0c5fae);
+    color: #ffffff;
+  }
+
+  /* Arrow Circle Styling */
+  .arrow-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-primary-orange, #f47d20);
+    border-radius: 50%;
+    color: #ffffff;
+    transition: transform 0.25s ease;
+  }
+
+  .btn:hover .arrow-circle {
+    transform: translateX(3px);
+  }
+</style>

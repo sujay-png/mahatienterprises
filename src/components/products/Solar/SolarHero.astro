@@ -1,0 +1,154 @@
+---
+// src/components/Products/Solar/SolarHero.astro
+import heroImg from '../../../images/stitch-solar-1.jpeg';
+---
+
+<section class="hero-section reveal slide-up">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <span class="hero-badge reveal slide-up" style="transition-delay: 100ms;">Premium Energy Systems</span>
+      <h1 class="hero-title reveal slide-up" style="transition-delay: 200ms;">
+        Solar Solutions for <br/>
+        <span>Homes, Businesses &amp; Beyond</span>
+      </h1>
+      <p class="hero-desc reveal fade-in" style="transition-delay: 300ms;">
+        At Mahati Enterprises, we bring you reliable, efficient, and affordable solar solutions designed to power every corner of your life. Whether you are looking to cut electricity costs at home, power your business independently, or light up outdoor spaces sustainably, our range of solar energy products covers it all from generation to lighting.
+      </p>
+      <p class="hero-desc-sm reveal fade-in" style="transition-delay: 400ms;">
+        With years of experience supplying quality solar systems across Karnataka and beyond, we are your trusted partner in making the switch to clean, renewable energy.
+      </p>
+      <div class="hero-actions reveal slide-up" style="transition-delay: 500ms;">
+        <a href="/contact" class="btn-primary">Explore Products</a>
+        <a href="/contact" class="btn-outline">Contact Sales</a>
+      </div>
+    </div>
+    <div class="hero-image-wrapper reveal fade-in" style="transition-delay: 300ms;">
+      <div class="hero-image-bg"></div>
+      <img class="hero-image" alt="A modern hybrid solar inverter system with battery modules and solar panels mounted on a clean white background, showcasing high-end renewable energy technology." src={heroImg.src}/>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Local variables for reference (inherited from solar-page) */
+  
+  .hero-section {
+    position: relative;
+    padding: 80px 40px 48px;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .hero-section { padding: 80px 16px 48px; }
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+  .hero-content {
+    z-index: 10;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: var(--c-surface-high, #dce9ff);
+    color: var(--c-primary, #0f172a);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+  }
+  .hero-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 24px;
+  }
+  .hero-title span { color: var(--c-secondary, #f47d20); }
+  .hero-desc {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 32px;
+    max-width: 672px;
+  }
+  .hero-desc-sm {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 40px;
+    max-width: 672px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+  .btn-primary {
+    background-color: var(--c-secondary, #f47d20);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .btn-primary:hover { 
+    background-color: var(--c-secondary-hover, #e06c17);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--c-primary, #0f172a);
+    color: var(--c-primary, #0f172a);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .btn-outline:hover { 
+    background-color: rgba(15, 23, 42, 0.05); 
+    transform: translateY(-2px);
+  }
+
+  .hero-image-wrapper { position: relative; z-index: 0; }
+  .hero-image-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right, var(--c-surface-high, #dce9ff), var(--c-surface-low, #eff4ff));
+    border-radius: 32px;
+    transform: rotate(3deg) scale(1.05);
+    z-index: -1;
+    transition: transform 0.8s ease;
+  }
+  .hero-image-wrapper:hover .hero-image-bg {
+    transform: rotate(6deg) scale(1.08);
+  }
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 32px;
+    box-shadow: var(--shadow-2, 0px 10px 32px rgba(15,23,42,0.12));
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+  .hero-image-wrapper:hover .hero-image {
+    transform: scale(1.02);
+  }
+</style>

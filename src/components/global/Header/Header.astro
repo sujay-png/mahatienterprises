@@ -1,0 +1,2234 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../../../images/Logo.webp';
+
+// Fetch current URL path dynamically from Astro context
+const currentPath = Astro.url.pathname;
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+const navItems = [
+  {
+    label: 'Home',
+    href: '/'
+  },
+
+  {
+    label: 'About Us',
+    href: '/about'
+  },
+
+  {
+    label: 'Products',
+    href: '/products',
+
+    dropdown: [
+
+      {
+        label: 'Solar & UPS',
+        href: '#',
+
+        dropdown: [
+          {
+            label: 'Solar Solutions',
+            href: '/products/solar'
+          },
+          {
+            label: 'UPS Solutions',
+            href: '/products/ups'
+          }
+        ]
+      },
+
+      {
+        label: 'Batteries',
+        href: '/products/batteries'
+      },
+
+      {
+        label: 'Holiday and Travel',
+        href: 'https://www.bkvholidays.com/'
+      }
+
+    ]
+  },
+
+  {
+    label: 'Services',
+    href: '/services'
+  },
+
+  {
+    label: 'Clients',
+    href: '/clients'
+  },
+
+  {
+    label: 'Our Work',
+    href: '/our-work'
+  },
+
+  {
+    label: 'Blog',
+    href: '/blog'
+  },
+
+  {
+    label: 'Contact Us',
+    href: '/contact'
+  }
+];
+
+
+/* ============================================================
+   ACTIVE LINK HELPER
+============================================================ */
+
+const isActive = (href: string) => {
+
+  if (href === '#') return false;
+
+  if (href === '/') {
+    return currentPath === '/' || currentPath === '';
+  }
+
+  return currentPath.startsWith(href);
+
+};
+---
+
+
+<header class="header" transition:persist>
+
+  <div class="header-container">
+
+
+    <!-- ======================================================
+         LOGO
+    ======================================================= -->
+
+    <a
+      href="/"
+      class="logo-area"
+      aria-label="Mahati Enterprises Home"
+    >
+
+      <Image
+        src={logoImg}
+        alt="Mahati Enterprises Logo"
+        class="logo-img"
+        loading="eager"
+      />
+
+    </a>
+
+
+
+    <!-- ======================================================
+         DESKTOP NAVIGATION
+    ======================================================= -->
+
+    <nav
+      class="nav-menu desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <ul class="nav-list">
+
+        {navItems.map((item) => {
+
+          const active = isActive(item.href);
+
+          const hasDropdown =
+            !!item.dropdown;
+
+          return (
+
+            <li
+              class:list={[
+                "nav-list-item",
+                hasDropdown && "nav-item-dropdown"
+              ]}
+            >
+
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-link",
+                  active && "active"
+                ]}
+                aria-haspopup={hasDropdown ? "true" : undefined}
+              >
+
+                {item.label}
+
+                {hasDropdown && (
+
+                  <svg
+                    class="dropdown-arrow"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+
+                  </svg>
+
+                )}
+
+              </a>
+
+
+
+              <!-- ==================================================
+                   FIRST LEVEL DROPDOWN
+              =================================================== -->
+
+              {item.dropdown && (
+
+                <div class="dropdown-menu">
+
+                  <div class="dropdown-inner">
+
+                    {item.dropdown.map((subItem) => {
+
+                      const hasSubmenu =
+                        !!subItem.dropdown;
+
+                      return (
+
+                        <div
+                          class:list={[
+                            "dropdown-item-wrapper",
+                            hasSubmenu && "has-submenu"
+                          ]}
+                        >
+
+                          <a
+                            href={subItem.href}
+                            class:list={[
+                              "dropdown-item",
+                              hasSubmenu && "dropdown-item-parent"
+                            ]}
+                          >
+
+                            <span>
+                              {subItem.label}
+                            </span>
+
+
+                            {hasSubmenu && (
+
+                              <svg
+                                class="submenu-arrow"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                              >
+
+                                <path
+                                  d="M4.5 2.5L8 6L4.5 9.5"
+                                  stroke="currentColor"
+                                  stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+
+                              </svg>
+
+                            )}
+
+                          </a>
+
+
+
+                          <!-- ========================================
+                               SECOND LEVEL DROPDOWN
+                          ========================================= -->
+
+                          {subItem.dropdown && (
+
+                            <div class="submenu">
+
+                              <div class="submenu-inner">
+
+                                {subItem.dropdown.map((childItem) => (
+
+                                  <a
+                                    href={childItem.href}
+                                    class="submenu-item"
+                                  >
+
+                                    {childItem.label}
+
+                                  </a>
+
+                                ))}
+
+                              </div>
+
+                            </div>
+
+                          )}
+
+                        </div>
+
+                      );
+
+                    })}
+
+                  </div>
+
+                </div>
+
+              )}
+
+            </li>
+
+          );
+
+        })}
+
+      </ul>
+
+    </nav>
+
+
+
+    <!-- ======================================================
+         HEADER ACTIONS
+    ======================================================= -->
+
+    <div class="header-actions">
+
+      <!-- Desktop CTA -->
+
+      <a
+        href="/contact"
+        class="btn-dark desktop-cta"
+      >
+        Get In Touch
+      </a>
+
+
+      <!-- Mobile menu -->
+
+      <button
+        class="mobile-menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        id="mobile-menu-btn"
+      >
+
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       MOBILE OVERLAY
+  ========================================================= -->
+
+  <div
+    class="mobile-sidebar-overlay"
+    id="mobile-overlay"
+  ></div>
+
+
+
+  <!-- ========================================================
+       MOBILE SIDEBAR
+  ========================================================= -->
+
+  <div
+    class="mobile-sidebar"
+    id="mobile-sidebar"
+    aria-hidden="true"
+  >
+
+
+    <!-- Mobile Header -->
+
+    <div class="mobile-sidebar-header">
+
+      <a
+        href="/"
+        class="logo-area"
+      >
+
+        <Image
+          src={logoImg}
+          alt="Mahati Enterprises Logo"
+          class="logo-img"
+          loading="lazy"
+        />
+
+      </a>
+
+
+      <button
+        class="close-menu-btn"
+        id="close-menu-btn"
+        aria-label="Close menu"
+      >
+
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+
+          <line
+            x1="18"
+            y1="6"
+            x2="6"
+            y2="18"
+          />
+
+          <line
+            x1="6"
+            y1="6"
+            x2="18"
+            y2="18"
+          />
+
+        </svg>
+
+      </button>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         MOBILE NAVIGATION
+    ======================================================= -->
+
+    <nav
+      class="mobile-nav"
+      aria-label="Mobile navigation"
+    >
+
+      <ul class="mobile-nav-list">
+
+        {navItems.map((item) => {
+
+          const active = isActive(item.href);
+
+          const hasDropdown =
+            !!item.dropdown;
+
+          return (
+
+            <li class="mobile-nav-item">
+
+
+              <!-- Main mobile item -->
+
+              <div class="mobile-nav-link-wrapper">
+
+                <a
+                  href={item.href}
+                  class:list={[
+                    "mobile-nav-link",
+                    active && "active"
+                  ]}
+                >
+
+                  {item.label}
+
+                </a>
+
+
+                {hasDropdown && (
+
+                  <button
+                    class="mobile-dropdown-toggle"
+                    aria-label={`Toggle ${item.label} submenu`}
+                    aria-expanded="false"
+                  >
+
+                    <svg
+                      class="mobile-dropdown-arrow"
+                      width="12"
+                      height="8"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+
+                    </svg>
+
+                  </button>
+
+                )}
+
+              </div>
+
+
+
+              <!-- =================================================
+                   MOBILE FIRST LEVEL
+              ================================================== -->
+
+              {item.dropdown && (
+
+                <div class="mobile-dropdown-menu">
+
+                  {item.dropdown.map((subItem) => {
+
+                    const hasSubmenu =
+                      !!subItem.dropdown;
+
+                    return (
+
+                      <div
+                        class:list={[
+                          "mobile-dropdown-wrapper",
+                          hasSubmenu && "mobile-has-submenu"
+                        ]}
+                      >
+
+
+                        <!-- First-level item -->
+
+                        <div class="mobile-submenu-link-wrapper">
+
+                          <a
+                            href={subItem.href}
+                            class="mobile-dropdown-item"
+                          >
+
+                            {subItem.label}
+
+                          </a>
+
+
+                          {hasSubmenu && (
+
+                            <button
+                              class="mobile-submenu-toggle"
+                              aria-label={`Toggle ${subItem.label} submenu`}
+                              aria-expanded="false"
+                            >
+
+                              <svg
+                                class="mobile-submenu-arrow"
+                                width="11"
+                                height="7"
+                                viewBox="0 0 10 6"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+
+                                <path
+                                  d="M1 1L5 5L9 1"
+                                  stroke="currentColor"
+                                  stroke-width="1.7"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+
+                              </svg>
+
+                            </button>
+
+                          )}
+
+                        </div>
+
+
+
+                        <!-- ==========================================
+                             MOBILE SECOND LEVEL
+                        =========================================== -->
+
+                        {subItem.dropdown && (
+
+                          <div class="mobile-submenu">
+
+                            {subItem.dropdown.map((childItem) => (
+
+                              <a
+                                href={childItem.href}
+                                class="mobile-submenu-item"
+                              >
+
+                                {childItem.label}
+
+                              </a>
+
+                            ))}
+
+                          </div>
+
+                        )}
+
+                      </div>
+
+                    );
+
+                  })}
+
+                </div>
+
+              )}
+
+            </li>
+
+          );
+
+        })}
+
+      </ul>
+
+    </nav>
+
+
+
+    <!-- Mobile Footer -->
+
+    <div class="mobile-sidebar-footer">
+
+      <a
+        href="/contact"
+        class="btn-dark mobile-btn-dark"
+      >
+        Get In Touch
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<style>
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+
+  background-color:
+    rgba(230, 235, 240, 0.65);
+
+  backdrop-filter:
+    blur(20px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(20px)
+    saturate(180%);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.5);
+
+  box-shadow:
+    0 8px 32px
+    rgba(0,0,0,.04);
+
+  padding:
+    .75rem 2rem;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+}
+
+
+@media (max-width: 1024px) {
+
+  .header {
+
+    padding:
+      .75rem 1rem;
+
+  }
+
+}
+
+
+/* ============================================================
+   HEADER CONTAINER
+============================================================ */
+
+.header-container {
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.logo-area {
+
+  display: flex;
+
+  align-items: center;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+
+}
+
+
+.logo-img {
+
+  height: 48px;
+
+  width: auto;
+
+  object-fit: contain;
+
+  mix-blend-mode: multiply;
+
+}
+
+
+@media (max-width: 768px) {
+
+  .logo-img {
+
+    height: 40px;
+
+  }
+
+}
+
+
+/* ============================================================
+   DESKTOP NAV
+============================================================ */
+
+.desktop-nav {
+
+  display: flex;
+
+}
+
+
+.nav-list {
+
+  display: flex;
+
+  gap: 2rem;
+
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  align-items: center;
+
+}
+
+
+@media (max-width: 1100px) {
+
+  .nav-list {
+
+    gap: 1.25rem;
+
+  }
+
+}
+
+
+.nav-list-item {
+
+  position: relative;
+
+}
+
+
+/* ============================================================
+   MAIN NAV LINK
+============================================================ */
+
+.nav-link {
+
+  text-decoration: none;
+
+  font-family:
+    var(
+      --font-heading,
+      'Manrope',
+      sans-serif
+    );
+
+  font-size: .9rem;
+
+  font-weight: 600;
+
+  color: #4a5568;
+
+  position: relative;
+
+  padding:
+    .4rem 0;
+
+  transition:
+    color .2s ease;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+}
+
+
+.nav-link:hover {
+
+  color: #1a202c;
+
+}
+
+
+.nav-link.active {
+
+  color: #e65c00;
+
+  font-weight: 700;
+
+}
+
+
+.nav-link.active::after {
+
+  content: '';
+
+  position: absolute;
+
+  bottom: -2px;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 2.5px;
+
+  background-color: #e65c00;
+
+  border-radius: 2px;
+
+}
+
+
+/* ============================================================
+   MAIN ARROW
+============================================================ */
+
+.dropdown-arrow {
+
+  transition:
+    transform .2s ease;
+
+  margin-top: 2px;
+
+}
+
+
+.nav-item-dropdown:hover >
+.nav-link .dropdown-arrow {
+
+  transform:
+    rotate(180deg);
+
+}
+
+
+/* ============================================================
+   FIRST LEVEL DROPDOWN
+============================================================ */
+
+.dropdown-menu {
+
+  position: absolute;
+
+  top: calc(100% + 10px);
+
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    translateY(8px);
+
+  width: 220px;
+
+  padding: 7px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(15,30,50,.08);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 18px 45px
+    rgba(15,30,50,.14);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity .2s ease,
+    visibility .2s ease,
+    transform .2s ease;
+
+  z-index: 2000;
+
+}
+
+
+/* Small invisible bridge so hover doesn't disappear */
+
+.dropdown-menu::before {
+
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  top: -12px;
+
+  height: 12px;
+
+}
+
+
+.nav-item-dropdown:hover >
+.dropdown-menu {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+
+}
+
+
+.dropdown-inner {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+/* ============================================================
+   DROPDOWN ITEM
+============================================================ */
+
+.dropdown-item-wrapper {
+
+  position: relative;
+
+}
+
+
+.dropdown-item {
+
+  min-height: 44px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding:
+    11px
+    13px;
+
+  border-radius: 7px;
+
+  color: #24364b;
+
+  font-family:
+    var(
+      --font-body,
+      'Hanken Grotesk',
+      sans-serif
+    );
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+
+}
+
+
+.dropdown-item:hover {
+
+  background:
+    #fff3e7;
+
+  color:
+    #e65c00;
+
+}
+
+
+.dropdown-item-parent {
+
+  cursor: default;
+
+}
+
+
+.has-submenu:hover >
+.dropdown-item {
+
+  background:
+    #ed7900;
+
+  color:
+    #ffffff;
+
+}
+
+
+/* ============================================================
+   SUBMENU ARROW
+============================================================ */
+
+.submenu-arrow {
+
+  flex-shrink: 0;
+
+  transition:
+    transform .2s ease;
+
+}
+
+
+.has-submenu:hover
+.submenu-arrow {
+
+  transform:
+    translateX(2px);
+
+}
+
+
+/* ============================================================
+   SECOND LEVEL SUBMENU
+============================================================ */
+
+.submenu {
+
+  position: absolute;
+
+  top: -7px;
+
+  left: calc(100% + 7px);
+
+  width: 205px;
+
+  padding: 7px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(15,30,50,.08);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 18px 45px
+    rgba(15,30,50,.14);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform:
+    translateX(-7px);
+
+  transition:
+    opacity .2s ease,
+    visibility .2s ease,
+    transform .2s ease;
+
+  z-index: 2100;
+
+}
+
+
+.submenu::before {
+
+  content: '';
+
+  position: absolute;
+
+  left: -8px;
+
+  top: 0;
+
+  width: 8px;
+
+  height: 100%;
+
+}
+
+
+.has-submenu:hover >
+.submenu {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateX(0);
+
+}
+
+
+.submenu-inner {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+.submenu-item {
+
+  display: block;
+
+  padding:
+    12px
+    13px;
+
+  border-radius: 7px;
+
+  color: #24364b;
+
+  font-family:
+    var(
+      --font-body,
+      'Hanken Grotesk',
+      sans-serif
+    );
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    padding-left .2s ease;
+
+}
+
+
+.submenu-item:hover {
+
+  background:
+    #fff3e7;
+
+  color:
+    #e65c00;
+
+  padding-left:
+    17px;
+
+}
+
+
+/* ============================================================
+   HEADER ACTIONS
+============================================================ */
+
+.header-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+}
+
+
+/* ============================================================
+   DARK BUTTON
+============================================================ */
+
+.btn-dark {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background-color: #0d1424;
+
+  color: #ffffff;
+
+  padding:
+    .6rem 1.4rem;
+
+  border-radius: 12px;
+
+  font-family:
+    var(
+      --font-heading,
+      'Manrope',
+      sans-serif
+    );
+
+  font-weight: 600;
+
+  font-size: .85rem;
+
+  text-decoration: none;
+
+  transition:
+    background-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+
+  box-shadow:
+    0 4px 10px
+    rgba(0,0,0,.1);
+
+}
+
+
+.btn-dark:hover {
+
+  background-color: #1a233a;
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 6px 14px
+    rgba(0,0,0,.16);
+
+}
+
+
+.btn-dark:active {
+
+  transform:
+    translateY(0);
+
+}
+
+
+/* ============================================================
+   MOBILE MENU BUTTON
+============================================================ */
+
+.mobile-menu-toggle {
+
+  display: none;
+
+  background: transparent;
+
+  border: none;
+
+  cursor: pointer;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  height: 20px;
+
+  width: 24px;
+
+  padding: 0;
+
+  z-index: 200;
+
+}
+
+
+.hamburger-line {
+
+  display: block;
+
+  width: 100%;
+
+  height: 2px;
+
+  background-color: #0f172a;
+
+  border-radius: 2px;
+
+  transition:
+    all .3s ease;
+
+}
+
+
+/* ============================================================
+   MOBILE OVERLAY
+============================================================ */
+
+.mobile-sidebar-overlay {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100vh;
+
+  background-color:
+    rgba(15,23,42,.4);
+
+  backdrop-filter:
+    blur(4px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    all .3s ease;
+
+  z-index: 998;
+
+}
+
+
+.mobile-sidebar-overlay.is-active {
+
+  opacity: 1;
+
+  visibility: visible;
+
+}
+
+
+/* ============================================================
+   MOBILE SIDEBAR
+============================================================ */
+
+.mobile-sidebar {
+
+  position: fixed;
+
+  top: 0;
+
+  right: -100%;
+
+  width: 85%;
+
+  max-width: 340px;
+
+  height: 100vh;
+
+  background-color: #ffffff;
+
+  box-shadow:
+    -10px 0 30px
+    rgba(0,0,0,.1);
+
+  z-index: 999;
+
+  transition:
+    right .4s
+    cubic-bezier(.16,1,.3,1);
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow-y: auto;
+
+}
+
+
+.mobile-sidebar.is-active {
+
+  right: 0;
+
+}
+
+
+/* ============================================================
+   MOBILE HEADER
+============================================================ */
+
+.mobile-sidebar-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 1.25rem;
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.05);
+
+}
+
+
+.close-menu-btn {
+
+  background: transparent;
+
+  border: none;
+
+  color: #0f172a;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 4px;
+
+  border-radius: 4px;
+
+}
+
+
+.close-menu-btn:hover {
+
+  background: #f1f5f9;
+
+}
+
+
+/* ============================================================
+   MOBILE NAV
+============================================================ */
+
+.mobile-nav {
+
+  flex-grow: 1;
+
+  padding:
+    1.5rem 1.25rem;
+
+}
+
+
+.mobile-nav-list {
+
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0;
+
+}
+
+
+.mobile-nav-item {
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.05);
+
+}
+
+
+.mobile-nav-item:last-child {
+
+  border-bottom: none;
+
+}
+
+
+.mobile-nav-link-wrapper {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+.mobile-nav-link {
+
+  text-decoration: none;
+
+  font-family:
+    var(
+      --font-heading,
+      'Manrope',
+      sans-serif
+    );
+
+  font-size: 1.05rem;
+
+  font-weight: 600;
+
+  color: #0f172a;
+
+  padding:
+    14px 0;
+
+  display: block;
+
+  flex-grow: 1;
+
+}
+
+
+.mobile-nav-link.active {
+
+  color: #e65c00;
+
+}
+
+
+/* ============================================================
+   MOBILE FIRST DROPDOWN TOGGLE
+============================================================ */
+
+.mobile-dropdown-toggle {
+
+  background:
+    #f8fafc;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #64748b;
+
+  transition:
+    all .2s ease;
+
+}
+
+
+.mobile-dropdown-toggle.is-open {
+
+  background:
+    #e65c00;
+
+  border-color:
+    #e65c00;
+
+  color: #ffffff;
+
+}
+
+
+.mobile-dropdown-toggle.is-open
+.mobile-dropdown-arrow {
+
+  transform:
+    rotate(180deg);
+
+}
+
+
+/* ============================================================
+   MOBILE FIRST DROPDOWN
+============================================================ */
+
+.mobile-dropdown-menu {
+
+  display: none;
+
+  padding:
+    0 0 10px 15px;
+
+  border-left:
+    2px solid
+    #f1f5f9;
+
+  margin-left: 5px;
+
+}
+
+
+.mobile-dropdown-menu.is-open {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+/* ============================================================
+   MOBILE DROPDOWN ITEM
+============================================================ */
+
+.mobile-dropdown-wrapper {
+
+  position: relative;
+
+}
+
+
+.mobile-submenu-link-wrapper {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+
+.mobile-dropdown-item {
+
+  flex: 1;
+
+  text-decoration: none;
+
+  font-family:
+    var(
+      --font-body,
+      'Hanken Grotesk',
+      sans-serif
+    );
+
+  font-size: .95rem;
+
+  color: #475569;
+
+  padding:
+    11px 8px;
+
+  display: block;
+
+}
+
+
+.mobile-dropdown-item:hover {
+
+  color: #e65c00;
+
+}
+
+
+/* ============================================================
+   MOBILE SECOND LEVEL TOGGLE
+============================================================ */
+
+.mobile-submenu-toggle {
+
+  width: 30px;
+
+  height: 30px;
+
+  margin-right: 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: transparent;
+
+  border: none;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  border-radius: 6px;
+
+}
+
+
+.mobile-submenu-toggle.is-open {
+
+  color: #e65c00;
+
+  background:
+    #fff3e7;
+
+}
+
+
+.mobile-submenu-toggle.is-open
+.mobile-submenu-arrow {
+
+  transform:
+    rotate(180deg);
+
+}
+
+
+/* ============================================================
+   MOBILE SECOND LEVEL
+============================================================ */
+
+.mobile-submenu {
+
+  display: none;
+
+  margin:
+    0
+    8px
+    8px
+    8px;
+
+  padding:
+    5px
+    0
+    5px
+    13px;
+
+  border-left:
+    1px solid
+    #e2e8f0;
+
+}
+
+
+.mobile-submenu.is-open {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+
+}
+
+
+.mobile-submenu-item {
+
+  display: block;
+
+  padding:
+    9px 10px;
+
+  color: #64748b;
+
+  font-family:
+    var(
+      --font-body,
+      'Hanken Grotesk',
+      sans-serif
+    );
+
+  font-size: .88rem;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+}
+
+
+.mobile-submenu-item:hover {
+
+  color: #e65c00;
+
+  background:
+    #fff7f0;
+
+}
+
+
+/* ============================================================
+   MOBILE FOOTER
+============================================================ */
+
+.mobile-sidebar-footer {
+
+  padding:
+    1.5rem 1.25rem;
+
+  border-top:
+    1px solid
+    rgba(0,0,0,.05);
+
+}
+
+
+.mobile-btn-dark {
+
+  width: 100%;
+
+  padding: 1rem;
+
+  font-size: 1rem;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 992px) {
+
+  .desktop-nav {
+
+    display: none;
+
+  }
+
+
+  .desktop-cta {
+
+    display: none;
+
+  }
+
+
+  .mobile-menu-toggle {
+
+    display: flex;
+
+  }
+
+}
+
+</style>
+
+
+
+<script>
+
+  /* ==========================================================
+     HEADER SETUP
+  ========================================================== */
+
+  function setupHeader() {
+
+    /* ========================================================
+       1. ACTIVE LINKS
+    ========================================================= */
+
+    const currentPath =
+      window.location.pathname;
+
+    const desktopLinks =
+      document.querySelectorAll('.nav-link');
+
+    const mobileLinks =
+      document.querySelectorAll('.mobile-nav-link');
+
+
+    [
+      ...desktopLinks,
+      ...mobileLinks
+    ].forEach((link) => {
+
+      const href =
+        link.getAttribute('href');
+
+      if (!href || href === '#') return;
+
+
+      let active = false;
+
+
+      if (href === '/') {
+
+        active =
+          currentPath === '/' ||
+          currentPath === '';
+
+      } else {
+
+        active =
+          currentPath.startsWith(href);
+
+      }
+
+
+      if (active) {
+
+        link.classList.add('active');
+
+      } else {
+
+        link.classList.remove('active');
+
+      }
+
+    });
+
+
+
+    /* ========================================================
+       2. MOBILE MENU
+    ========================================================= */
+
+    const menuBtn =
+      document.getElementById(
+        'mobile-menu-btn'
+      );
+
+    const closeBtn =
+      document.getElementById(
+        'close-menu-btn'
+      );
+
+    const sidebar =
+      document.getElementById(
+        'mobile-sidebar'
+      );
+
+    const overlay =
+      document.getElementById(
+        'mobile-overlay'
+      );
+
+
+    const openMenu = () => {
+
+      if (!sidebar || !overlay) return;
+
+      sidebar.classList.add('is-active');
+
+      overlay.classList.add('is-active');
+
+      sidebar.setAttribute(
+        'aria-hidden',
+        'false'
+      );
+
+      menuBtn?.setAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      document.body.style.overflow =
+        'hidden';
+
+    };
+
+
+    const closeMenu = () => {
+
+      if (!sidebar || !overlay) return;
+
+      sidebar.classList.remove('is-active');
+
+      overlay.classList.remove('is-active');
+
+      sidebar.setAttribute(
+        'aria-hidden',
+        'true'
+      );
+
+      menuBtn?.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+      document.body.style.overflow =
+        '';
+
+    };
+
+
+    /* --------------------------------------------------------
+       Avoid duplicate listeners with Astro transitions
+    -------------------------------------------------------- */
+
+    if (menuBtn) {
+
+      menuBtn.onclick = openMenu;
+
+    }
+
+
+    if (closeBtn) {
+
+      closeBtn.onclick = closeMenu;
+
+    }
+
+
+    if (overlay) {
+
+      overlay.onclick = closeMenu;
+
+    }
+
+
+
+    /* ========================================================
+       3. MOBILE FIRST-LEVEL DROPDOWNS
+    ========================================================= */
+
+    const dropdownToggles =
+      document.querySelectorAll(
+        '.mobile-dropdown-toggle'
+      );
+
+
+    dropdownToggles.forEach((toggle) => {
+
+      const button =
+        toggle as HTMLButtonElement;
+
+
+      button.onclick = (event) => {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+
+        const parent =
+          button.closest(
+            '.mobile-nav-item'
+          );
+
+        if (!parent) return;
+
+
+        const menu =
+          parent.querySelector(
+            ':scope > .mobile-dropdown-menu'
+          );
+
+        if (!menu) return;
+
+
+        const isOpen =
+          menu.classList.toggle(
+            'is-open'
+          );
+
+
+        button.classList.toggle(
+          'is-open',
+          isOpen
+        );
+
+
+        button.setAttribute(
+          'aria-expanded',
+          String(isOpen)
+        );
+
+      };
+
+    });
+
+
+
+    /* ========================================================
+       4. MOBILE SECOND-LEVEL DROPDOWNS
+    ========================================================= */
+
+    const submenuToggles =
+      document.querySelectorAll(
+        '.mobile-submenu-toggle'
+      );
+
+
+    submenuToggles.forEach((toggle) => {
+
+      const button =
+        toggle as HTMLButtonElement;
+
+
+      button.onclick = (event) => {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+
+        const parent =
+          button.closest(
+            '.mobile-has-submenu'
+          );
+
+        if (!parent) return;
+
+
+        const submenu =
+          parent.querySelector(
+            ':scope > .mobile-submenu'
+          );
+
+        if (!submenu) return;
+
+
+        const isOpen =
+          submenu.classList.toggle(
+            'is-open'
+          );
+
+
+        button.classList.toggle(
+          'is-open',
+          isOpen
+        );
+
+
+        button.setAttribute(
+          'aria-expanded',
+          String(isOpen)
+        );
+
+      };
+
+    });
+
+
+
+    /* ========================================================
+       5. CLOSE MOBILE MENU WHEN CLICKING A LINK
+    ========================================================= */
+
+    const mobileNavLinks =
+      document.querySelectorAll(
+        '.mobile-sidebar a'
+      );
+
+
+    mobileNavLinks.forEach((link) => {
+
+      (link as HTMLAnchorElement).onclick =
+        () => {
+
+          closeMenu();
+
+        };
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     INITIAL LOAD + ASTRO VIEW TRANSITIONS
+  ========================================================== */
+
+  document.addEventListener(
+    'astro:page-load',
+    setupHeader
+  );
+
+</script>

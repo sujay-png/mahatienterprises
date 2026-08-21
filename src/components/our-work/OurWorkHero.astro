@@ -1,0 +1,106 @@
+---
+---
+
+<section class="our-work-hero">
+  <div class="hero-bg"></div>
+  <div class="glow-effect"></div>
+  
+  <div class="hero-content">
+    <span class="badge">Our Portfolio</span>
+    <h1 class="title">Powering Karnataka, One Rooftop at a Time.</h1>
+    <p class="description">Real solar projects, real results. Browse our completed solar installations across Udupi and Mangalore.</p>
+  </div>
+</section>
+
+<style>
+  .our-work-hero {
+    position: relative;
+    background-color: #131b2e;
+    color: #ffffff;
+    overflow: hidden;
+    padding: 80px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+
+  @media (min-width: 768px) {
+    .our-work-hero {
+      padding: 120px 40px;
+    }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#ffffff1a, #ffffff1a), linear-gradient(#131b2ebf, #131b2ee6), url('/src/images/Our-work banner.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  .glow-effect {
+    position: absolute;
+    top: -160px;
+    right: -160px;
+    width: 384px;
+    height: 384px;
+    background-color: #fd761a;
+    opacity: 0.2;
+    border-radius: 50%;
+    filter: blur(64px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background-color: rgba(86, 94, 116, 0.3);
+    color: #ffb690;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+
+  @media (min-width: 768px) {
+    .title {
+      font-size: 48px;
+      line-height: 56px;
+    }
+  }
+
+  .description {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 18px;
+    line-height: 28px;
+    color: #bec6e0;
+    max-width: 672px;
+  }
+</style>

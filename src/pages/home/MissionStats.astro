@@ -1,0 +1,158 @@
+<!-- Mission & Stats Section -->
+<section class="mission-section">
+  <div class="mission-container">
+    <div class="mission-grid">
+      
+      <!-- Text Content -->
+      <div class="mission-text-box">
+        <h2 class="mission-title">Our Mission</h2>
+        <p class="mission-desc">
+          At Mahati Enterprises, we are dedicated to transforming how the world consumes energy. Our mission is to accelerate the global transition to renewable sources through technical excellence and uncompromising service quality.
+        </p>
+      </div>
+
+      <!-- Stats Grid (4 White Elevated Cards) -->
+      <div class="stats-grid">
+        
+        <div class="stat-card">
+          <span class="material-symbols-outlined stat-icon">groups</span>
+          <div class="stat-number">5,000+</div>
+          <div class="stat-title">Satisfied Customers</div>
+        </div>
+
+        <div class="stat-card">
+          <span class="material-symbols-outlined stat-icon">solar_power</span>
+          <div class="stat-number">120+</div>
+          <div class="stat-title">Active Projects</div>
+        </div>
+
+        <div class="stat-card">
+          <span class="material-symbols-outlined stat-icon">eco</span>
+          <div class="stat-number">150M+</div>
+          <div class="stat-title">CO2 Savings (kg)</div>
+        </div>
+
+        <div class="stat-card">
+          <span class="material-symbols-outlined stat-icon">workspace_premium</span>
+          <div class="stat-number">15+</div>
+          <div class="stat-title">Industry Awards</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base Section Background matching the light tone in the image */
+  .mission-section {
+    background-color: var(--color-surface-container-low, #f4f7fc);
+    padding: 80px 24px;
+    width: 100%;
+  }
+
+  .mission-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Grid Layout */
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .mission-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+  }
+
+  /* Left Text Styling */
+  .mission-text-box {
+    max-width: 540px;
+  }
+
+  .mission-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+    color: var(--color-primary, #0b1727);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .mission-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--color-on-surface-variant, #4a5568);
+  }
+
+  /* 2x2 Stats Cards Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Solid White Elevated Cards matching the design image */
+  .stat-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    cursor: default;
+  }
+
+  /* Hover Animations & Lift Effect */
+  .stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(11, 23, 39, 0.08), 0 6px 16px rgba(11, 23, 39, 0.04);
+    border-color: rgba(253, 118, 26, 0.2);
+  }
+
+  /* Icon Styling with subtle hover animation */
+  .stat-icon {
+    font-size: 38px !important;
+    color: var(--color-secondary-container, #fd761a);
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .stat-card:hover .stat-icon {
+    transform: scale(1.15);
+  }
+
+  /* Number Value */
+  .stat-number {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 32px;
+    color: var(--color-primary, #0b1727);
+    margin-bottom: 6px;
+  }
+
+  /* Label Text */
+  .stat-title {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(74, 85, 104, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+</style>

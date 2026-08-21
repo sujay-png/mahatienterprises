@@ -1,0 +1,101 @@
+---
+// src/components/Products/Solar/SolarSpecs.astro
+---
+
+<section class="specs-section">
+  <div class="specs-container">
+    <h2 class="specs-title reveal slide-up">Additional Product Details</h2>
+    <div class="specs-table-wrapper reveal slide-up" style="transition-delay: 200ms;">
+      <table class="specs-table">
+        <tbody>
+          <tr>
+            <th>Product Range</th>
+            <td>Off-Grid, On-Grid, Hybrid Systems, Water Heaters, Heat Pumps, Water Pumps, Street Lights, High Mast Lights, Flood Lights</td>
+          </tr>
+          <tr>
+            <th>Application</th>
+            <td>Residential, Commercial, Agricultural, Industrial, Municipal</td>
+          </tr>
+          <tr>
+            <th>Technology</th>
+            <td>Monocrystalline / Bifacial / TOPCON Solar Panels</td>
+          </tr>
+          <tr>
+            <th>Inverter Types</th>
+            <td>String Inverters, Hybrid Inverters, Off-Grid Inverters</td>
+          </tr>
+          <tr>
+            <th>Battery Options</th>
+            <td>Lead Acid, Lithium-Ion, VRLA</td>
+          </tr>
+          <tr>
+            <th>Warranty</th>
+            <td>25-Year Panel Performance Warranty (brand-dependent)</td>
+          </tr>
+          <tr>
+            <th>Service Area</th>
+            <td>Karnataka and surrounding regions</td>
+          </tr>
+          <tr>
+            <th>Support</th>
+            <td>Installation, Commissioning, AMC, After-Sales Support</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .specs-section {
+    padding: 80px 40px;
+    background-color: var(--c-background, #f8fafc);
+  }
+  @media (max-width: 768px) {
+    .specs-section { padding: 80px 16px; }
+  }
+  .specs-container { max-width: 1024px; margin: 0 auto; }
+  .specs-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .specs-table-wrapper {
+    background-color: var(--c-surface-lowest, #ffffff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    overflow: hidden;
+  }
+  .specs-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  .specs-table tr { 
+    border-bottom: 1px solid var(--c-surface-container, #e5eeff); 
+    transition: background-color 0.3s ease;
+  }
+  .specs-table tr:hover {
+    background-color: rgba(15, 23, 42, 0.02);
+  }
+  .specs-table th {
+    padding: 20px 24px;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--c-primary, #0f172a);
+    width: 33.333%;
+    background-color: var(--c-surface-bright, #f8f9ff);
+  }
+  .specs-table td {
+    padding: 20px 24px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+// src/layouts/BaseLayout.astro
+import '../styles/global.css';
+import Header from '../components/global/Header/Header.astro';
+import Footer from '../components/global/Footer/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+
+
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Mahati Enterprises | Solar Power & UPS Solutions", 
+  description = "Government-registered solar power systems, UPS batteries & inverter installation services." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body>
+    <!-- Global Header -->
+    <Header />
+
+    <!-- Main Content Area -->
+    <main transition:animate="fade">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Global styles if any */
+</style>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+  }
+</style>

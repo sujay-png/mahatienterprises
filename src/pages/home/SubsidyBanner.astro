@@ -1,0 +1,255 @@
+---
+import { subsidyData } from '../../data/home/subsidy';
+---
+
+<section class="subsidy-section">
+  <div class="subsidy-card group">
+    <!-- Subtle Gradient Mesh Background -->
+    <div class="mesh-bg"></div>
+
+    <!-- Background Watermark Icon -->
+    <div class="watermark-wrapper">
+      <span class="material-symbols-outlined watermark-icon">
+        {subsidyData?.bgIcon || 'account_balance'}
+      </span>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="subsidy-content">
+      
+      <!-- Text Information & Stats -->
+      <div class="info-container">
+        <h2 class="subsidy-title">
+          {subsidyData?.title || "PM Surya Ghar Muft Bijli Yojana"}
+        </h2>
+
+        <p class="subsidy-desc">
+          {subsidyData?.description || "Unlock up to ₹78,000 in government subsidies for your residential rooftop solar installation. Let us handle the paperwork and technical compliance."}
+        </p>
+
+        <!-- Glassmorphism Stat Cards -->
+        <div class="stats-row">
+          {subsidyData?.stats?.map((stat) => (
+            <div class="stat-card">
+              <span class="stat-value">{stat.value}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Action CTA Button -->
+      <div class="action-container">
+        <a href={subsidyData?.btnHref || "/contact"} class="subsidy-btn">
+          {subsidyData?.btnText || "Apply for Subsidy"}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Section Padding */
+  .subsidy-section {
+    padding: 64px 24px;
+    max-width: 1039px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Main Card using global variables & dark surface */
+  .subsidy-card {
+    position: relative;
+    background-color: rgba(2, 16, 34, 0.848);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 20px 40px #011120e1;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .subsidy-card:hover {
+    transform: translateY(-6px);
+    background-color: rgba(0, 7, 16, 0.846);
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 30px 60px rgba(1, 15, 30, 0.7), 
+                0 0 30px rgba(244, 213, 192, 0.083);
+  }
+
+  /* Vibrant Mesh Accent Glow */
+  .mesh-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(253, 118, 26, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(2, 13, 40, 0.398) 0%, transparent 45%);
+    transition: opacity 0.5s ease;
+  }
+
+  .subsidy-card:hover .mesh-bg {
+    opacity: 0.9;
+  }
+
+  /* Watermark Icon Styling */
+  .watermark-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 32px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .watermark-icon {
+    font-size: 130px !important;
+    font-variation-settings: 'FILL' 1, 'wght' 300;
+    color: rgba(255, 255, 255, 0.06);
+    transition: transform 0.5s ease, color 0.5s ease;
+  }
+
+  .subsidy-card:hover .watermark-icon {
+    color: rgba(253, 118, 26, 0.15);
+    transform: scale(1.08) rotate(-4deg);
+  }
+
+  /* Layout Box */
+  .subsidy-content {
+    position: relative;
+    z-index: 10;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  @media (min-width: 850px) {
+    .subsidy-content {
+      padding: 48px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .info-container {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* Title & Typography */
+  .subsidy-title {
+    font-family: var( --font-heading, 'Manrope', sans-serif);
+           font-size: 15px;     
+    line-height: 40px;
+    font-weight:400;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .subsidy-title {
+      font-size: 30px;
+      line-height: 44px;
+    }
+  }
+
+  .subsidy-desc {
+    font-family: var(--font-body2, 'Canela', serif);
+    font-size: 15.9px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 28px;
+    white-space: pre-line;
+  }
+
+  /* Glassmorphism Stat Cards */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .stats-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .stat-card {
+    background: #ffffff0f;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #ffffff1f;
+    padding: 16px 24px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all .3s;
+  }
+
+  .stat-card:hover {
+    background: rgba(255, 255, 255, 0.131);
+    border-color: rgba(253, 118, 26, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .stat-value {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-secondary-container, #fd761a);
+    line-height: 32px;
+  }
+
+  .stat-label {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  /* CTA Button */
+  .action-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .subsidy-btn {
+    display: inline-block;
+    background-color: var(--color-secondary-container, #fd761a);
+    color: var(--color-on-secondary, #ffffff);
+    padding: 16px 36px;
+    border-radius: 21px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+    width: 90%;
+    box-shadow: 0 8px 20px rgba(253, 117, 26, 0.24);
+    transition: all 0.25s ease;
+  }
+
+  @media (min-width: 850px) {
+    .subsidy-btn {
+      width: auto;
+    }
+  }
+
+  .subsidy-btn:hover {
+    background-color: var(--color-secondary, #9d4300);
+    box-shadow: 0 12px 28px rgba(253, 118, 26, 0.45);
+    transform: translateY(-2px);
+  }
+</style>

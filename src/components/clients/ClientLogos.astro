@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../../images/*.webp', { eager: true });
+
+// Filter out irrelevant images (like backgrounds, main logo, or hero images)
+const clientLogos = Object.values(images)
+  .filter((module) => {
+    const src = module.default.src;
+    return !src.includes('Logo.webp') && !src.includes('Client-Hero.webp') && !src.includes('solar-bg.png');
+  })
+  .map(module => module.default);
+---
+
+<section class="logos-section">
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <!-- First set of logos -->
+      <div class="marquee-group">
+        {clientLogos.map((logo) => (
+          <div class="logo-item">
+            <Image src={logo} alt="Client Logo" class="logo-img" />
+          </div>
+        ))}
+      </div>
+      <!-- Second set for seamless infinite scrolling -->
+      <div class="marquee-group" aria-hidden="true">
+        {clientLogos.map((logo) => (
+          <div class="logo-item">
+            <Image src={logo} alt="Client Logo" class="logo-img" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logos-section {
+    padding: 80px 0; /* Remove horizontal padding so marquee bleeds to edges */
+    background-color: #f8f9ff; /* surface */
+  }
+
+  .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    /* Elegant fade effect on the edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
+
+  /* Pause animation on hover for better user experience */
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 64px; /* Space between logos */
+    padding-right: 64px; /* Must match gap to ensure seamless loop */
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 100px;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .logo-item:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+</style>

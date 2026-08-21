@@ -1,0 +1,873 @@
+---
+import { contactData } from '../../data/contact/contactData';
+---
+
+<div class="contact-form-card">
+  <h2 class="form-title">Send us a message</h2>
+
+  <form class="contact-form" onsubmit="event.preventDefault();">
+
+    <!-- First Name / Last Name -->
+    <div class="form-row">
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+
+        <input
+          type="text"
+          id="firstName"
+          placeholder="Sujay"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+
+        <input
+          type="text"
+          id="lastName"
+          placeholder="Kumar"
+          required
+        />
+      </div>
+
+    </div>
+
+
+    <!-- Email / Phone -->
+    <div class="form-row">
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="john@company.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+91 XXXXX XXXXX"
+          required
+        />
+      </div>
+
+    </div>
+
+
+    <!-- Interested Product -->
+    <div class="form-group">
+
+      <label for="product">
+        Interested Product
+      </label>
+
+      <div class="select-wrapper">
+
+        <select id="product" required>
+
+          <option value="" disabled selected>
+            Select a solution category
+          </option>
+
+          {contactData.formOptions.map((option) => (
+            <option value={option.value}>
+              {option.label}
+            </option>
+          ))}
+
+        </select>
+
+        <span class="material-symbols-outlined select-icon">
+          expand_more
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- CONDITIONAL PRODUCT TYPE FIELD -->
+    <!-- ================================= -->
+
+    <div
+      class="form-group conditional-product"
+      id="conditionalProduct"
+      style="display: none;"
+    >
+
+      <label
+        for="productType"
+        id="productTypeLabel"
+      >
+        Select Product Type
+      </label>
+
+      <div class="select-wrapper">
+
+        <select id="productType">
+
+          <option value="" disabled selected>
+            Select product type
+          </option>
+
+        </select>
+
+        <span class="material-symbols-outlined select-icon">
+          expand_more
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Project Details -->
+    <div class="form-group">
+
+      <label for="comments">
+        Project Details / Comments
+      </label>
+
+      <textarea
+        id="comments"
+        rows="4"
+        placeholder="Briefly describe your requirements..."
+        required
+      ></textarea>
+
+    </div>
+
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="submit-btn"
+    >
+
+      <span>
+        Get In Touch
+      </span>
+
+      <span class="material-symbols-outlined icon-small">
+        arrow_forward
+      </span>
+
+    </button>
+
+  </form>
+</div>
+
+
+<script>
+  /*
+   * ============================================
+   * GET FORM ELEMENTS
+   * ============================================
+   */
+
+  const productSelect =
+    document.querySelector('#product') as HTMLSelectElement | null;
+
+  const conditionalProduct =
+    document.querySelector('#conditionalProduct') as HTMLDivElement | null;
+
+  const productType =
+    document.querySelector('#productType') as HTMLSelectElement | null;
+
+  const productTypeLabel =
+    document.querySelector('#productTypeLabel') as HTMLLabelElement | null;
+
+
+  /*
+   * ============================================
+   * PRODUCT OPTIONS
+   * ============================================
+   */
+
+  type ProductOption = {
+    label: string;
+    options: string[];
+  };
+
+
+  const conditionalOptions: Record<string, ProductOption> = {
+
+    /*
+     * SOLAR SOLUTIONS
+     */
+    solar: {
+      label: 'Solar Solution Type',
+
+      options: [
+        'Off Grid Solar System',
+        'On Grid Solar System',
+        'Hybrid Solar System',
+        'Water Heater',
+        'Heat Pumps',
+        'Water Pumps',
+        'Street Lights',
+        'High-Mast Lights',
+        'Flood Lights'
+      ]
+    },
+
+
+    /*
+     * UPS SOLUTION
+     */
+    ups: {
+      label: 'UPS Solution Type',
+
+      options: [
+        'Online UPS solution',
+        'Offline UPS solution'
+      ]
+    },
+
+
+    /*
+     * BATTERIES
+     */
+    batteries: {
+      label: 'Battery Type',
+
+      options: [
+        'Industrial Batteries',
+        'Lead Acid Batteries',
+        'Sealed Lead Acid (SLA) Batteries',
+        'VRLA Batteries',
+        'Lithium-Ion Batteries'
+      ]
+    }
+
+  };
+
+
+  /*
+   * ============================================
+   * UPDATE CONDITIONAL FIELD
+   * ============================================
+   */
+
+  function updateProductType() {
+
+    /*
+     * Make sure all required elements exist.
+     */
+
+    if (
+      !productSelect ||
+      !conditionalProduct ||
+      !productType ||
+      !productTypeLabel
+    ) {
+      return;
+    }
+
+
+    /*
+     * Get the currently selected option.
+     */
+
+    const selectedOption =
+      productSelect.options[
+        productSelect.selectedIndex
+      ];
+
+
+    /*
+     * Get the visible text.
+     *
+     * Example:
+     *
+     * "Solar Solutions"
+     * "UPS Solution"
+     * "Batteries"
+     */
+
+    const selectedText =
+      selectedOption?.textContent
+        ?.trim()
+        .toLowerCase() || '';
+
+
+    /*
+     * Initially there is no selected
+     * conditional option.
+     */
+
+    let selectedData: ProductOption | null = null;
+
+
+    /*
+     * ==========================================
+     * SOLAR
+     * ==========================================
+     */
+
+    if (
+      selectedText.includes('solar')
+    ) {
+
+      selectedData =
+        conditionalOptions.solar;
+
+    }
+
+
+    /*
+     * ==========================================
+     * UPS
+     * ==========================================
+     */
+
+    else if (
+      selectedText.includes('ups')
+    ) {
+
+      selectedData =
+        conditionalOptions.ups;
+
+    }
+
+
+    /*
+     * ==========================================
+     * BATTERIES
+     * ==========================================
+     */
+
+    else if (
+      selectedText.includes('batter')
+    ) {
+
+      selectedData =
+        conditionalOptions.batteries;
+
+    }
+
+
+    /*
+     * ==========================================
+     * NO CONDITIONAL FIELD
+     * ==========================================
+     *
+     * If the user selects another product,
+     * hide the second dropdown.
+     */
+
+    if (!selectedData) {
+
+      conditionalProduct.style.display = 'none';
+
+      productType.required = false;
+
+      productType.value = '';
+
+      productType.innerHTML = `
+        <option value="" disabled selected>
+          Select product type
+        </option>
+      `;
+
+      return;
+    }
+
+
+    /*
+     * ==========================================
+     * SHOW CONDITIONAL FIELD
+     * ==========================================
+     */
+
+    conditionalProduct.style.display = 'flex';
+
+
+    /*
+     * Make the second field required.
+     */
+
+    productType.required = true;
+
+
+    /*
+     * Change the label.
+     *
+     * Solar:
+     * Solar Solution Type
+     *
+     * UPS:
+     * UPS Solution Type
+     *
+     * Batteries:
+     * Battery Type
+     */
+
+    productTypeLabel.textContent =
+      selectedData.label;
+
+
+    /*
+     * ==========================================
+     * CLEAR OLD OPTIONS
+     * ==========================================
+     */
+
+    productType.innerHTML = `
+      <option value="" disabled selected>
+        Select ${selectedData.label}
+      </option>
+    `;
+
+
+    /*
+     * ==========================================
+     * ADD NEW OPTIONS
+     * ==========================================
+     */
+
+    selectedData.options.forEach(
+      (option) => {
+
+        const newOption =
+          document.createElement('option');
+
+
+        newOption.value =
+          option;
+
+
+        newOption.textContent =
+          option;
+
+
+        productType.appendChild(
+          newOption
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ============================================
+   * LISTEN FOR PRODUCT CHANGE
+   * ============================================
+   */
+
+  productSelect?.addEventListener(
+    'change',
+    updateProductType
+  );
+</script>
+
+
+<style>
+
+  /*
+   * ============================================
+   * CONTACT CARD
+   * ============================================
+   */
+
+  .contact-form-card {
+    background-color: rgba(255, 255, 255, 0.9);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 12px;
+
+    padding: 32px;
+
+    box-shadow:
+      0px 4px 20px rgba(15, 23, 42, 0.05);
+
+    border: 1px solid #dce9ff;
+
+    height: 100%;
+  }
+
+
+  @media (min-width: 1024px) {
+
+    .contact-form-card {
+      padding: 48px;
+    }
+
+  }
+
+
+  /*
+   * ============================================
+   * FORM TITLE
+   * ============================================
+   */
+
+  .form-title {
+    font-family:
+      var(--font-heading, 'Manrope', sans-serif);
+
+    font-size: 24px;
+
+    line-height: 32px;
+
+    font-weight: 600;
+
+    color: #0b1c30;
+
+    margin: 0 0 32px 0;
+  }
+
+
+  /*
+   * ============================================
+   * FORM
+   * ============================================
+   */
+
+  .contact-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+  }
+
+
+  /*
+   * ============================================
+   * TWO COLUMN ROW
+   * ============================================
+   */
+
+  .form-row {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+  }
+
+
+  @media (min-width: 768px) {
+
+    .form-row {
+      grid-template-columns:
+        1fr 1fr;
+    }
+
+  }
+
+
+  /*
+   * ============================================
+   * FORM GROUP
+   * ============================================
+   */
+
+  .form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+
+  /*
+   * ============================================
+   * LABEL
+   * ============================================
+   */
+
+  label {
+    font-family:
+      var(--font-body, 'Hanken Grotesk', sans-serif);
+
+    font-size: 14px;
+
+    line-height: 16px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+
+    color: #45464d;
+  }
+
+
+  /*
+   * ============================================
+   * INPUT / SELECT / TEXTAREA
+   * ============================================
+   */
+
+  input,
+  select,
+  textarea {
+
+    background-color: #F1F5F9;
+
+    border: 1px solid transparent;
+
+    border-radius: 4px;
+
+    padding: 12px 16px;
+
+    font-family:
+      var(--font-body, 'Hanken Grotesk', sans-serif);
+
+    font-size: 16px;
+
+    line-height: 24px;
+
+    color: #0b1c30;
+
+    outline: none;
+
+    transition:
+      all 0.2s ease;
+
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+
+  /*
+   * ============================================
+   * TEXTAREA
+   * ============================================
+   */
+
+  textarea {
+    resize: none;
+  }
+
+
+  /*
+   * ============================================
+   * FOCUS
+   * ============================================
+   */
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+
+    background-color: #ffffff;
+
+    border-color: #0b1c30;
+
+    box-shadow:
+      0 0 0 2px
+      rgba(11, 28, 48, 0.2);
+  }
+
+
+  /*
+   * ============================================
+   * PLACEHOLDER
+   * ============================================
+   */
+
+  input::placeholder,
+  textarea::placeholder {
+
+    color: #76777d;
+  }
+
+
+  /*
+   * ============================================
+   * SELECT WRAPPER
+   * ============================================
+   */
+
+  .select-wrapper {
+    position: relative;
+
+    width: 100%;
+  }
+
+
+  /*
+   * ============================================
+   * SELECT
+   * ============================================
+   */
+
+  select {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    padding-right: 40px;
+  }
+
+
+  /*
+   * ============================================
+   * SELECT ARROW
+   * ============================================
+   */
+
+  .select-icon {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform:
+      translateY(-50%);
+
+    color: #45464d;
+
+    pointer-events: none;
+  }
+
+
+  /*
+   * ============================================
+   * CONDITIONAL FIELD
+   * ============================================
+   */
+
+  .conditional-product {
+
+    animation:
+      conditionalFadeIn
+      0.25s ease;
+  }
+
+
+  /*
+   * ============================================
+   * CONDITIONAL FIELD ANIMATION
+   * ============================================
+   */
+
+  @keyframes conditionalFadeIn {
+
+    from {
+
+      opacity: 0;
+
+      transform:
+        translateY(-8px);
+
+    }
+
+    to {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+  }
+
+
+  /*
+   * ============================================
+   * SUBMIT BUTTON
+   * ============================================
+   */
+
+  .submit-btn {
+
+    margin-top: 12px;
+
+    background-color: #fd761a;
+
+    color: #ffffff;
+
+    font-family:
+      var(--font-body, 'Hanken Grotesk', sans-serif);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+
+    border: none;
+
+    border-radius: 4px;
+
+    padding: 16px 24px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition:
+      background-color 0.2s ease;
+
+    width: 100%;
+  }
+
+
+  @media (min-width: 768px) {
+
+    .submit-btn {
+
+      width: auto;
+
+      align-self: flex-start;
+
+    }
+
+  }
+
+
+  /*
+   * ============================================
+   * BUTTON HOVER
+   * ============================================
+   */
+
+  .submit-btn:hover {
+
+    background-color: #9d4300;
+  }
+
+
+  /*
+   * ============================================
+   * BUTTON ICON
+   * ============================================
+   */
+
+  .icon-small {
+
+    font-size: 20px;
+  }
+
+</style>

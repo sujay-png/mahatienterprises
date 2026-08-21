@@ -1,0 +1,125 @@
+---
+// src/components/Products/Solar/SolarWhyUs.astro
+---
+
+<section class="why-us-section">
+  <div class="why-us-container">
+    <h2 class="why-us-title reveal slide-up">Why Choose <br/><span>Mahati Enterprises</span> <br/>For Your Solar Solutions?</h2>
+    <p class="why-us-desc reveal fade-in" style="transition-delay: 200ms;">Our solar solutions aren't just products, they are long-term investments that we stand behind. Here is what sets us apart:</p>
+    <div class="why-us-grid">
+      <div class="why-card reveal slide-up" style="transition-delay: 100ms;">
+        <div class="why-icon-wrapper">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">engineering</span>
+        </div>
+        <h3 class="why-card-title">End-to-End Service</h3>
+        <p class="why-card-desc">From consultation and installation to after-sales maintenance</p>
+      </div>
+      <div class="why-card reveal slide-up" style="transition-delay: 200ms;">
+        <div class="why-icon-wrapper">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+        </div>
+        <h3 class="why-card-title">Certified Products</h3>
+        <p class="why-card-desc">All solar energy products sourced from reliable, certified manufacturers</p>
+      </div>
+      <div class="why-card reveal slide-up" style="transition-delay: 300ms;">
+        <div class="why-icon-wrapper">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+        </div>
+        <h3 class="why-card-title">Expert Team</h3>
+        <p class="why-card-desc">Experienced engineers and technicians on ground</p>
+      </div>
+      <div class="why-card reveal slide-up" style="transition-delay: 100ms;">
+        <div class="why-icon-wrapper">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_city</span>
+        </div>
+        <h3 class="why-card-title">Local Knowledge</h3>
+        <p class="why-card-desc">Deep understanding of Karnataka's grid regulations including MESCOM, HESCOM, and BESCOM norms</p>
+      </div>
+      <div class="why-card reveal slide-up" style="transition-delay: 200ms;">
+        <div class="why-icon-wrapper">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">tune</span>
+        </div>
+        <h3 class="why-card-title">Flexible Options</h3>
+        <p class="why-card-desc">Solutions for every budget, scale, and application</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-us-section {
+    padding: 80px 40px;
+    background-color: var(--c-surface-bright, #f8f9ff);
+  }
+  @media (max-width: 768px) {
+    .why-us-section { padding: 80px 16px; }
+  }
+  .why-us-container { max-width: 1024px; margin: 0 auto; text-align: center; }
+  .why-us-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 16px;
+  }
+  .why-us-title span { color: var(--c-secondary, #f47d20); }
+  .why-us-desc {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 48px;
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: left;
+  }
+  @media (max-width: 768px) {
+    .why-us-grid { grid-template-columns: 1fr; }
+  }
+  .why-card {
+    background-color: var(--c-surface-lowest, #ffffff);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    transition: transform 0.3s ease;
+  }
+  .why-card:hover {
+    transform: translateY(-4px);
+  }
+  .why-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(244, 125, 32, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--c-secondary, #f47d20);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .why-card:hover .why-icon-wrapper {
+    transform: scale(1.1);
+    background-color: rgba(244, 125, 32, 0.2);
+  }
+  .why-card-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 8px;
+  }
+  .why-card-desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+  }
+</style>
+

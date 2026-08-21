@@ -1,0 +1,412 @@
+---
+import { Image } from 'astro:assets';
+import industrialImg from '../../../images/batteries/industrial-battery.jpg';
+import leadAcidImg from '../../../images/batteries/lead-acid-battery.jpg';
+import slaImg from '../../../images/batteries/sla-battery.jpg';
+import vrlaImg from '../../../images/batteries/vrla-battery.jpg';
+import lithiumImg from '../../../images/batteries/lithium-ion-battery.jpg';
+---
+
+<section class="range-section" id="range">
+  <div class="range-container">
+    <div class="range-header">
+      <h2 class="range-title">Our Battery Range</h2>
+      <p class="range-desc">Engineered for durability, efficiency, and uninterrupted performance across all applications.</p>
+    </div>
+
+    <div class="range-list">
+      
+      <!-- Industrial Batteries -->
+      <div class="product-card">
+        <div class="content-col text-left">
+          <h3 class="product-title">Industrial Batteries</h3>
+          <p class="product-desc">
+            Industrial batteries are heavy-duty, high-capacity power storage units built for demanding, continuous-use environments. Unlike standard batteries, they are engineered for deep discharge cycles, high load tolerance, and long operational life making them the backbone of large-scale power backup systems.
+          </p>
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">check_circle</span> Best suited for:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Manufacturing plants & factory floors</li>
+                <li>&bull; Telecom towers & remote installations</li>
+                <li>&bull; Railways & utility infrastructure</li>
+                <li>&bull; Large UPS systems & power grids</li>
+              </ul>
+            </div>
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">star</span> Why choose:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Built for deep cycle & high-load</li>
+                <li>&bull; Robust for harsh environments</li>
+                <li>&bull; High capacity for critical loads</li>
+                <li>&bull; Long operational lifespan</li>
+              </ul>
+            </div>
+          </div>
+          <a href="/contact" class="btn-outline">
+            Enquire Now
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="image-col">
+          <Image src={industrialImg} alt="Industrial Batteries" class="product-image" />
+        </div>
+      </div>
+
+      <!-- Lead Acid Battery -->
+      <div class="product-card reverse">
+        <div class="content-col text-left">
+          <h3 class="product-title">Lead Acid Battery</h3>
+          <p class="product-desc">
+            The lead acid battery is one of the most widely used and trusted battery technologies in the world. Known for its reliability, affordability, and wide availability, it remains the go-to choice for UPS systems, inverters, and general power backup applications.
+          </p>
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">check_circle</span> Best suited for:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Office & commercial UPS</li>
+                <li>&bull; Home & small business inverters</li>
+                <li>&bull; Telecom & signal towers</li>
+                <li>&bull; General industrial backup</li>
+              </ul>
+            </div>
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">star</span> Why choose:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Proven, time-tested reliability</li>
+                <li>&bull; Cost-effective investment</li>
+                <li>&bull; Easily serviceable</li>
+                <li>&bull; Recyclable & manageable</li>
+              </ul>
+            </div>
+          </div>
+          <a href="/contact" class="btn-outline">
+            Enquire Now
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="image-col">
+          <Image src={leadAcidImg} alt="Lead Acid Battery" class="product-image" />
+        </div>
+      </div>
+
+      <!-- SLA Batteries -->
+      <div class="product-card">
+        <div class="content-col text-left">
+          <h3 class="product-title">Sealed Lead Acid (SLA) Batteries</h3>
+          <p class="product-desc">
+            Our SLA batteries are completely sealed meaning no liquid electrolyte spillage, no water top-ups, and no routine maintenance. They are safe for indoor installation and can be used in any orientation, making them highly versatile for a range of applications.
+          </p>
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">check_circle</span> Best suited for:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; UPS systems in offices</li>
+                <li>&bull; Security & surveillance</li>
+                <li>&bull; Emergency lighting</li>
+                <li>&bull; Telecom & networking</li>
+              </ul>
+            </div>
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">star</span> Why choose:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Maintenance-free design</li>
+                <li>&bull; Safe for indoor spaces</li>
+                <li>&bull; No risk of acid spills</li>
+                <li>&bull; Compact & easy to install</li>
+              </ul>
+            </div>
+          </div>
+          <a href="/contact" class="btn-outline">
+            Enquire Now
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="image-col">
+          <Image src={slaImg} alt="SLA Batteries" class="product-image" />
+        </div>
+      </div>
+
+      <!-- VRLA Batteries -->
+      <div class="product-card reverse">
+        <div class="content-col text-left">
+          <h3 class="product-title">VRLA Batteries</h3>
+          <p class="product-desc">
+            VRLA batteries — Valve Regulated Lead Acid — are the preferred choice for modern UPS and standby power systems. The valve-regulated, sealed design means they are virtually maintenance-free and safe for use in enclosed, indoor environments.
+          </p>
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">check_circle</span> Best suited for:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Data centres & server rooms</li>
+                <li>&bull; Hospitals & healthcare</li>
+                <li>&bull; Banks & financial institutions</li>
+                <li>&bull; Industrial control panels</li>
+              </ul>
+            </div>
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">star</span> Why choose:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; Zero maintenance</li>
+                <li>&bull; Long standby life</li>
+                <li>&bull; Any orientation install</li>
+                <li>&bull; Excellent performance</li>
+              </ul>
+            </div>
+          </div>
+          <a href="/contact" class="btn-outline">
+            Enquire Now
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="image-col">
+          <Image src={vrlaImg} alt="VRLA Batteries" class="product-image" />
+        </div>
+      </div>
+
+      <!-- Lithium Ion Batteries -->
+      <div class="product-card">
+        <div class="content-col text-left">
+          <h3 class="product-title">Lithium Ion Batteries</h3>
+          <p class="product-desc">
+            Step up to the future of power storage with our lithium ion batteries. Lighter, faster to charge, and significantly longer-lasting than conventional lead acid options, lithium ion technology is fast becoming the standard for advanced UPS systems, solar energy storage, and critical infrastructure.
+          </p>
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">check_circle</span> Best suited for:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; High-end UPS & data centres</li>
+                <li>&bull; Solar energy storage</li>
+                <li>&bull; EV charging infrastructure</li>
+                <li>&bull; Compact space requirements</li>
+              </ul>
+            </div>
+            <div class="feature-box">
+              <h4 class="feature-heading">
+                <span class="material-symbols-outlined">star</span> Why choose:
+              </h4>
+              <ul class="feature-list">
+                <li>&bull; 3–4x longer cycle life</li>
+                <li>&bull; Lighter and more compact</li>
+                <li>&bull; Fast recharge capabilities</li>
+                <li>&bull; Minimal self-discharge</li>
+              </ul>
+            </div>
+          </div>
+          <a href="/contact" class="btn-outline">
+            Enquire Now
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <div class="image-col">
+          <Image src={lithiumImg} alt="Lithium Ion Batteries" class="product-image" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .range-section {
+    padding: 80px 24px;
+    background-color: #eff4ff; /* surface-container-low */
+  }
+
+  @media (min-width: 1024px) {
+    .range-section {
+      padding: 120px 24px;
+    }
+  }
+
+  .range-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .range-header {
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto 64px auto;
+  }
+
+  .range-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .range-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 18px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .range-list {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+  }
+
+  .product-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .product-card {
+      padding: 48px;
+      grid-template-columns: 5fr 7fr;
+    }
+    .product-card.reverse {
+      grid-template-columns: 7fr 5fr;
+    }
+    .product-card.reverse .content-col {
+      order: 2;
+    }
+    .product-card.reverse .image-col {
+      order: 1;
+    }
+  }
+
+  .content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .product-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 1024px) {
+    .product-title {
+      font-size: 32px;
+    }
+  }
+
+  .product-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #475569;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .feature-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-secondary-container);
+    margin-bottom: 12px;
+  }
+
+  .feature-heading .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feature-list li {
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.4;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    background-color: transparent;
+    border-radius: 9999px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .btn-outline .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  .image-col {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+</style>

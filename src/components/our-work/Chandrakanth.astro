@@ -1,0 +1,531 @@
+---
+import heroImg from '../../images/Chandrakanth kramballi1.jpg';
+import gallery1 from '../../images/Chandrakanth kramballi2.jpg';
+import gallery2 from '../../images/Chandrakanth kramballi3.jpg';
+import gallery3 from '../../images/Chandrakanth kramballi4.jpg';
+import gallery4 from '../../images/Chandrakanth kramballi5.jpg';
+---
+  <div class="case-study-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg" style={`background-image: url('${heroImg.src}')`}></div>
+        <div class="hero-content">
+            <span class="type-badge">Commercial Solar Project</span>
+            <h1 class="hero-title">Chandrakanth</h1>
+            <p class="hero-location">
+                <span class="material-symbols-outlined location-icon">location_on</span>
+                Manipal, Karnataka
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <section class="main-content">
+        <div class="content-grid">
+            <!-- Left Column: Specs -->
+            <div class="specs-col">
+                <div class="specs-card sticky">
+                    <h3 class="specs-title">
+                        <span class="material-symbols-outlined title-icon">assignment</span>
+                        Project Specifications
+                    </h3>
+                    <dl class="specs-list">
+                        <div class="spec-item">
+                            <dt class="spec-label">Customer</dt>
+                            <dd class="spec-value">Chandrakanth</dd>
+                        </div>
+                        <div class="spec-item">
+                            <dt class="spec-label">Location</dt>
+                            <dd class="spec-value">Manipal, Karnataka</dd>
+                        </div>
+                        <div class="spec-item">
+                            <dt class="spec-label">System Capacity</dt>
+                            <dd class="spec-value flex-value">
+                                <span class="material-symbols-outlined spec-icon">bolt</span>
+                                8 kW On-Grid Non-DCR
+                            </dd>
+                        </div>
+                        <div class="spec-item">
+                            <dt class="spec-label">Solar Panels</dt>
+                            <dd class="spec-value">Waaree N-Type TOPCon 575W</dd>
+                        </div>
+                        <div class="spec-item no-border">
+                            <dt class="spec-label">Product</dt>
+                            <dd class="spec-value">Inverter Growatt 8 kW</dd>
+                        </div>
+                    </dl>
+                    <div class="cta-wrapper">
+                        <a href="/contact" class="consultation-btn">
+                            Get a Consultation
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Narrative & Gallery -->
+            <div class="details-col">
+                <!-- About The Project -->
+                <div class="about-card">
+                    <h2 class="section-title">About The Project</h2>
+                    <div class="about-narrative">
+                        <p>This 8 kW on-grid solar project at Manipal is a standout example of a high-efficiency rooftop solar installation for a commercial property.</p>
+                        <p>The system is built around Waaree's advanced N-Type TOPCon 575W panels — among the most efficient modules available in India today — paired with a reliable Growatt 8 kW grid-tied inverter.</p>
+                        <p>The complete solar system installation includes properly mounted AC and DC distribution boxes, a dedicated solar meter, and clean cable management, ensuring both performance and safety for years to come.</p>
+                    </div>
+                    
+                    <div class="highlights-container">
+                        <span class="highlight-chip">
+                            <span class="material-symbols-outlined chip-icon">solar_power</span>
+                            High-Efficiency TOPCon Panels
+                        </span>
+                        <span class="highlight-chip">
+                            <span class="material-symbols-outlined chip-icon">grid_on</span>
+                            Grid-Tied Commercial System
+                        </span>
+                        <span class="highlight-chip">
+                            <span class="material-symbols-outlined chip-icon">storefront</span>
+                            Commercial Property
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Project Gallery Bento Grid -->
+                <div class="gallery-section">
+                    <h2 class="section-title gallery-title">
+                        <span class="material-symbols-outlined title-icon">photo_library</span>
+                        Project Gallery
+                    </h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item featured">
+                            <div class="gallery-bg" style={`background-image: url('${gallery1.src}')`}></div>
+                        </div>
+                        <div class="gallery-item small1">
+                            <div class="gallery-bg" style={`background-image: url('${gallery2.src}')`}></div>
+                        </div>
+                        <div class="gallery-item small2">
+                            <div class="gallery-bg" style={`background-image: url('${gallery3.src}')`}></div>
+                        </div>
+                        <div class="gallery-item technical">
+                            <div class="gallery-bg" style={`background-image: url('${gallery4.src}')`}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bottom-cta">
+        <div class="bottom-cta-content">
+            <h2 class="bottom-cta-title">Ready to transition to solar?</h2>
+            <p class="bottom-cta-desc">Join our satisfied customers like Chandrakanth in reducing energy costs with our high-efficiency solar solutions.</p>
+            <div class="bottom-cta-buttons">
+                <a href="/contact" class="primary-btn">Contact Us Today</a>
+                <a href="/our-work" class="secondary-btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
+  </div>
+
+
+<style>
+    .case-study-page {
+        width: 100%;
+        background-color: #f8fafc;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #213145;
+        overflow: hidden;
+    }
+    
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.4;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 0 16px;
+        max-width: 56rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .type-badge {
+        display: inline-block;
+        padding: 6px 16px;
+        background-color: rgba(253, 118, 26, 0.2);
+        color: #fd761a;
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 9999px;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(253, 118, 26, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+        font-family: var(--font-heading, 'Manrope', sans-serif);
+        font-size: 48px;
+        line-height: 56px;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 0;
+    }
+
+    .hero-location {
+        font-family: var(--font-heading, 'Manrope', sans-serif);
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 600;
+        color: #eaf1ff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 8px 0 0 0;
+    }
+
+    .location-icon {
+        color: #fd761a;
+    }
+
+    /* Main Content Area */
+    .main-content {
+        width: 100%;
+        padding: 80px 24px;
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+
+    @media (min-width: 1024px) {
+        .content-grid {
+            grid-template-columns: repeat(12, 1fr);
+        }
+        .specs-col {
+            grid-column: span 4;
+        }
+        .details-col {
+            grid-column: span 8;
+        }
+    }
+
+    .specs-col {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .specs-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .sticky {
+        position: sticky;
+        top: 112px; /* 7rem */
+    }
+
+    .specs-title {
+        font-family: var(--font-heading, 'Manrope', sans-serif);
+        font-size: 24px;
+        font-weight: 600;
+        color: #0b1c30;
+        margin: 0 0 24px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .title-icon {
+        color: #fd761a;
+    }
+
+    .specs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin: 0;
+    }
+
+    .spec-item {
+        border-bottom: 1px solid rgba(198, 198, 205, 0.3);
+        padding-bottom: 16px;
+    }
+
+    .spec-item.no-border {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .spec-label {
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 12px;
+        font-weight: 500;
+        color: #45464d;
+        text-transform: uppercase;
+        margin: 0 0 4px 0;
+    }
+
+    .spec-value {
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 18px;
+        font-weight: 500;
+        color: #0b1c30;
+        margin: 0;
+    }
+
+    .flex-value {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .spec-icon {
+        color: #fd761a;
+        font-size: 20px;
+    }
+
+    .cta-wrapper {
+        margin-top: 32px;
+    }
+
+    .consultation-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 8px;
+        background-color: transparent;
+        border: 1px solid #000000;
+        color: #000000;
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .consultation-btn:hover {
+        background-color: #eff4ff;
+    }
+
+    .details-col {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .about-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    @media (min-width: 1024px) {
+        .about-card {
+            padding: 48px;
+        }
+    }
+
+    .section-title {
+        font-family: var(--font-heading, 'Manrope', sans-serif);
+        font-size: 32px;
+        font-weight: 600;
+        color: #0b1c30;
+        margin: 0 0 24px 0;
+        border-left: 4px solid #fd761a;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .gallery-title {
+        border-left: none;
+        padding-left: 0;
+        margin-bottom: 32px;
+    }
+
+    .about-narrative p {
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 18px;
+        line-height: 28px;
+        color: #45464d;
+        margin: 0 0 24px 0;
+    }
+
+    .highlights-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+    }
+
+    .highlight-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background-color: #e5eeff;
+        color: #0b1c30;
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 9999px;
+    }
+
+    .chip-icon {
+        color: #fd761a;
+        font-size: 18px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        grid-auto-rows: 250px;
+    }
+
+    @media (min-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .technical {
+            grid-column: span 3;
+            height: 300px;
+        }
+    }
+
+    .gallery-item {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        position: relative;
+    }
+
+    .gallery-bg {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.7s ease;
+    }
+
+    .gallery-item:hover .gallery-bg {
+        transform: scale(1.05);
+    }
+
+    /* CTA Section */
+    .bottom-cta {
+        width: 100%;
+        padding: 80px 24px;
+        background-color: #e5eeff;
+    }
+
+    .bottom-cta-content {
+        max-width: 896px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .bottom-cta-title {
+        font-family: var(--font-heading, 'Manrope', sans-serif);
+        font-size: 32px;
+        font-weight: 600;
+        color: #0b1c30;
+        margin: 0;
+    }
+
+    .bottom-cta-desc {
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 18px;
+        line-height: 28px;
+        color: #45464d;
+        max-width: 672px;
+        margin: 0;
+    }
+
+    .bottom-cta-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .primary-btn {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 16px 32px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: opacity 0.3s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .primary-btn:hover {
+        opacity: 0.9;
+    }
+
+    .secondary-btn {
+        background-color: #ffffff;
+        color: #0b1c30;
+        font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 16px 32px;
+        border-radius: 4px;
+        border: 1px solid #c6c6cd;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .secondary-btn:hover {
+        background-color: #eff4ff;
+    }
+
+</style>

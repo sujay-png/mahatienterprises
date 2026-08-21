@@ -1,0 +1,97 @@
+---
+import '../../assets/Chillax_Complete/Fonts/WEB/css/chillax.css';
+import { clientsData } from '../../data/clients/clientsData';
+---
+
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-subtitle">{clientsData.hero.subtitle}</span>
+    <h1 class="hero-title">{clientsData.hero.title}</h1>
+    <p class="hero-tagline">{clientsData.hero.tagline}</p>
+    <p class="hero-desc">{clientsData.hero.description}</p>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 120px 24px;
+    overflow: hidden;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b1c30;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 160px 24px;
+      min-height: 70vh;
+    }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(#ffffff1a, #ffffff1a), linear-gradient(#0b1c30bf, #0b1c30e6), url(/src/images/Client-Hero.webp);
+    background-position: center top; /* Shift focus to the top of the image so heads aren't cut off */
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-subtitle {
+    display: block;
+    color: #ffdbca; /* secondary-fixed */
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    font-family: 'Chillax-Bold', var(--font-heading, 'Manrope', sans-serif);
+  }
+
+  .hero-tagline {
+    color: #d3e4fe; /* surface-variant */
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    max-width: 42rem;
+    margin: 0 auto;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  .hero-desc {
+    color: #eaf1ff; /* inverse-on-surface */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-top: 24px;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+</style>

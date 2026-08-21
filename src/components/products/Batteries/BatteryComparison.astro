@@ -1,0 +1,201 @@
+---
+// BatteryComparison.astro
+---
+
+<section class="comparison-section">
+  <div class="comparison-container">
+    <div class="comparison-header">
+      <h2 class="comparison-title">Compare Battery Technologies</h2>
+      <p class="comparison-desc">Find the perfect power storage solution for your specific requirements.</p>
+    </div>
+    
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th class="rounded-tl">Specification</th>
+            <th>Industrial</th>
+            <th>Lead Acid</th>
+            <th>SLA</th>
+            <th>VRLA</th>
+            <th class="rounded-tr">Lithium Ion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Maintenance</td>
+            <td>Low-Periodic</td>
+            <td>Periodic</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Installation</td>
+            <td>Upright</td>
+            <td>Upright only</td>
+            <td>Any orientation</td>
+            <td>Any orientation</td>
+            <td>Any orientation</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Cycle Life</td>
+            <td>500-1000 cycles</td>
+            <td>300-500 cycles</td>
+            <td>300-500 cycles</td>
+            <td>500-800 cycles</td>
+            <td class="highlight-orange">2000-5000 cycles</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Self-Discharge</td>
+            <td>Moderate</td>
+            <td>Moderate</td>
+            <td>Low</td>
+            <td>Low</td>
+            <td>Very Low</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Best For</td>
+            <td>Heavy industrial use</td>
+            <td>UPS, inverters</td>
+            <td>UPS, security</td>
+            <td>Data centres, hospitals</td>
+            <td>Advanced UPS, solar storage</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Cost</td>
+            <td>Moderate-High</td>
+            <td>Budget-friendly</td>
+            <td>Moderate</td>
+            <td>Moderate</td>
+            <td>Higher upfront</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Weight</td>
+            <td>Very Heavy</td>
+            <td>Heavy</td>
+            <td>Moderate</td>
+            <td>Moderate</td>
+            <td>Lightweight</td>
+          </tr>
+          <tr>
+            <td class="feature-name rounded-bl">Typical Life</td>
+            <td>5-8 years</td>
+            <td>3-5 years</td>
+            <td>3-5 years</td>
+            <td>4-6 years</td>
+            <td class="highlight-orange rounded-br">8-12 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparison-section {
+    padding: 80px 24px;
+    background-color: var(--color-bg);
+  }
+
+  @media (min-width: 1024px) {
+    .comparison-section {
+      padding: 120px 24px;
+    }
+  }
+
+  .comparison-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .comparison-header {
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto 64px auto;
+  }
+
+  .comparison-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .comparison-desc {
+    font-family: var(--font-body, sans-serif);
+    font-size: 18px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+    border: 1px solid #f1f5f9;
+  }
+
+  .comparison-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+
+  .comparison-table th {
+    padding: 24px 32px;
+    background-color: #f4f7fc;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .comparison-table th.rounded-tl {
+    border-top-left-radius: 12px;
+  }
+
+  .comparison-table th.rounded-tr {
+    border-top-right-radius: 12px;
+  }
+
+  .comparison-table td {
+    padding: 24px 32px;
+    border-bottom: 1px solid #f1f5f9;
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    color: #475569;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+  }
+
+  .comparison-table tr:hover td {
+    background-color: #f8fafc;
+  }
+
+  .comparison-table td.feature-name {
+    font-weight: 700;
+    color: #1e293b;
+  }
+  
+  .comparison-table td.highlight-orange {
+    color: #ea580c;
+    font-weight: 600;
+  }
+
+  .comparison-table td.rounded-bl {
+    border-bottom-left-radius: 12px;
+    border-bottom: none;
+  }
+
+  .comparison-table td.rounded-br {
+    border-bottom-right-radius: 12px;
+    border-bottom: none;
+  }
+  
+  .comparison-table tr:last-child td {
+      border-bottom: none;
+  }
+</style>

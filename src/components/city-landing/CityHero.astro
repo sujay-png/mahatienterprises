@@ -1,0 +1,173 @@
+---
+export interface Props {
+  city: string;
+  heroSubtitle: string;
+  heroTitle: string;
+  heroTitleHighlight: string;
+  heroDesc: string[];
+}
+
+const { city, heroSubtitle, heroTitle, heroTitleHighlight, heroDesc } = Astro.props;
+---
+
+<section class="city-hero">
+  <div class="hero-container">
+    <div class="badge-wrapper">
+      <div class="sun-badge">
+        <span class="material-symbols-outlined">light_mode</span>
+      </div>
+      <span class="badge-text">{heroSubtitle}</span>
+    </div>
+    
+    <h1 class="hero-title">
+      {heroTitle} <span class="highlight">{heroTitleHighlight}</span>
+    </h1>
+    
+    <div class="hero-desc">
+      {heroDesc.map((desc) => (
+        <p>{desc}</p>
+      ))}
+    </div>
+    
+    <div class="hero-actions">
+      <a href="/contact" class="btn-primary">Get a Free Quote</a>
+      <a href="/services" class="btn-secondary">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .city-hero {
+    background-color: var(--color-surface-container-lowest, #ffffff);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Warm amber gradient for the background effect */
+  .city-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vw;
+    max-width: 1200px;
+    max-height: 1200px;
+    background: radial-gradient(circle, rgba(255, 171, 64, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge-wrapper {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff8e1;
+    border: 1px solid #ffe082;
+    padding: 6px 16px 6px 6px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .sun-badge {
+    background-color: #ffab40;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
+
+  .sun-badge span {
+    font-size: 18px;
+  }
+
+  .badge-text {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-weight: 600;
+    font-size: 14px;
+    color: #ff8f00;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, 'Hanken Grotesk', sans-serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .highlight {
+    color: #ffab40;
+  }
+
+  .hero-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: clamp(16px, 2vw, 20px);
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background-color: #ffab40;
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 171, 64, 0.4);
+  }
+
+  .btn-primary:hover {
+    background-color: #ff8f00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 171, 64, 0.5);
+  }
+
+  .btn-secondary {
+    background-color: white;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+  }
+
+  .btn-secondary:hover {
+    border-color: #ffab40;
+    color: #ffab40;
+    transform: translateY(-2px);
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+</style>

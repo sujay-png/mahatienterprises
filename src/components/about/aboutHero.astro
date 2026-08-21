@@ -1,0 +1,133 @@
+---
+import { aboutHeroData } from '../../data/about/aboutHero';
+---
+
+<section class="about-hero-section">
+  <!-- Background Image with Overlay -->
+  <div 
+    class="hero-bg" 
+    style={`background-image: url('${aboutHeroData?.bgImage}');`}
+    aria-label={aboutHeroData?.bgAlt}
+  >
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="hero-content">
+    <h1 class="hero-title">
+      {aboutHeroData?.titleLine1}<br />{aboutHeroData?.titleLine2}
+    </h1>
+    <p class="hero-desc">
+      {aboutHeroData?.description}
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Base Hero Section Layout */
+  .about-hero-section {
+    position: relative;
+    width: 100%;
+    height: 614px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Background Image with Subtle Parallax Scale Effect */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.03);
+    animation: slowZoom 12s ease-out forwards;
+  }
+
+  /* Overlay matching primary container styling */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(11, 23, 39, 0.65); /* Warm dark tint over solar bg */
+    backdrop-filter: blur(1px);
+  }
+
+  /* Text Area Container */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 896px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      padding: 0 48px;
+    }
+  }
+
+  /* Headline Styling & Motion */
+  .hero-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 38px;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    animation: fadeInSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 56px;
+      margin-bottom: 24px;
+    }
+  }
+
+  /* Description Body Text */
+  .hero-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 400;
+    max-width: 720px;
+    margin: 0 auto;
+    animation: fadeInSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  @media (min-width: 768px) {
+    .hero-desc {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  /* Awwwards Smooth Entrance Keyframes */
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slowZoom {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+</style>

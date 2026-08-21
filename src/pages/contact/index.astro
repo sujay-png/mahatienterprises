@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactHero from '../../components/contact/ContactHero.astro';
+import ContactInfo from '../../components/contact/ContactInfo.astro';
+import ContactForm from '../../components/contact/ContactForm.astro';
+---
+
+<BaseLayout title="Contact Us - Mahati Enterprises">
+  <main class="contact-page">
+    <ContactHero />
+    
+    <section class="content-section">
+      <div class="contact-grid">
+        <div class="info-column">
+          <ContactInfo />
+        </div>
+        <div class="form-column">
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9ff; /* surface */
+  }
+
+  .content-section {
+    padding: 0 16px 80px 16px; /* margin-mobile and pb-xl */
+    max-width: 1440px;
+    margin: -80px auto 0 auto; /* negative margin overlap */
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .content-section {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px; /* gap-lg */
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 5fr 7fr;
+      gap: 24px; /* gap-gutter */
+    }
+  }
+
+  .info-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-column {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

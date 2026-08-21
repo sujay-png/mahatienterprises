@@ -1,0 +1,199 @@
+---
+import { Image } from 'astro:assets';
+import vrlaBatteryImg from '../../../images/batteries/vrla-battery.jpg';
+---
+
+<section class="hero-section">
+  <div class="hero-bg-accent"></div>
+  
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="badge">Power Storage</span>
+      <h1 class="hero-title">Batteries: A Dependable Power Storage for Every Application</h1>
+      
+      <p class="hero-desc-large">
+        A reliable battery is the backbone of every power backup system. At Mahati Enterprises, we supply a complete range of industrial batteries built to handle the toughest power demands, last longer, and keep your operations running without interruption.
+      </p>
+      
+      <p class="hero-desc-small">
+        Whether you need a rugged lead acid battery for your UPS system or advanced lithium ion batteries for next-generation energy storage, whatever your application, we have the right battery solution to keep your systems running without interruption.
+      </p>
+      
+      <a href="#range" class="btn-primary">
+        Explore Our Range
+        <span class="material-symbols-outlined">arrow_downward</span>
+      </a>
+    </div>
+    
+    <div class="hero-image-wrapper">
+      <div class="image-container">
+        <Image src={vrlaBatteryImg} alt="VRLA Batteries" class="hero-image" />
+      </div>
+      <div class="glow-orange"></div>
+      <div class="glow-navy"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 80px 24px;
+    overflow: hidden;
+    background-color: var(--color-bg);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 120px 24px;
+    }
+  }
+
+  .hero-bg-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #eff4ff;
+    border-bottom-left-radius: 100px;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hero-content {
+    max-width: 640px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: #eff4ff;
+    color: var(--color-secondary-container);
+    font-family: var(--font-body, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 48px;
+    }
+  }
+
+  .hero-desc-large {
+    font-family: var(--font-body, sans-serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc-small {
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 40px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 16px 32px;
+    border-radius: 9999px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  }
+
+  .btn-primary:hover {
+    background-color: #1e293b;
+  }
+
+  .btn-primary .material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+  }
+
+  .image-container {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12);
+    background-color: #dce9ff;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .glow-orange {
+    position: absolute;
+    bottom: -32px;
+    left: -32px;
+    width: 192px;
+    height: 192px;
+    background-color: rgba(244, 125, 32, 0.1);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+  }
+
+  .glow-navy {
+    position: absolute;
+    top: -32px;
+    right: -32px;
+    width: 256px;
+    height: 256px;
+    background-color: rgba(15, 23, 42, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+  }
+</style>

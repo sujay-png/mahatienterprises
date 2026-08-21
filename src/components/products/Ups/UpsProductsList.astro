@@ -1,0 +1,265 @@
+---
+import { Image } from 'astro:assets';
+import onlineUpsImg from '../../../images/stitch-ups-2.jpeg';
+import offlineUpsImg from '../../../images/stitch-ups-3.jpeg';
+---
+
+<section class="ups-products-section">
+  <!-- What Is a UPS System? -->
+  <div class="info-banner">
+    <div class="info-content">
+      <h2 class="info-title">What Is a UPS System?</h2>
+      <p class="info-desc">
+        A UPS system (Uninterruptible Power Supply) is a piece of electrical equipment that offers emergency power to a load when the main power source fails. It helps keep things like computers, medical gear, and other important electronics running without dropping a beat. Think of it as a safety net for your gadgets.
+      </p>
+    </div>
+  </div>
+
+  <!-- Our UPS Products -->
+  <div class="container">
+    <h2 class="section-title">Our UPS Products</h2>
+    <div class="products-grid">
+      
+      <!-- Online UPS -->
+      <div class="product-card">
+        <Image src={onlineUpsImg} alt="Online UPS System" class="card-image" />
+        <div class="card-content">
+          <h3 class="card-title">Online UPS System</h3>
+          <p class="card-desc">
+            An online UPS is great for places where even a tiny pause in power can cause big problems. It uses a method called "double conversion." This means it changes the AC power from the wall into DC power, then changes it back into clean, steady AC power for your devices. This keeps your machines running perfectly without any stops when the power fails.
+          </p>
+          <div class="benefits-group">
+            <h4 class="benefits-title">Best suited for:</h4>
+            <ul class="benefits-list disc">
+              <li>Data centers</li>
+              <li>Hospitals</li>
+              <li>Big businesses</li>
+              <li>Factories</li>
+            </ul>
+          </div>
+          <div class="benefits-group mt-auto">
+            <h4 class="benefits-title">Why choose our online UPS?</h4>
+            <ul class="benefits-list check">
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>No Waiting:</strong> It switches to battery power instantly.</span>
+              </li>
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>Clean Power:</strong> It filters out bad power signals.</span>
+              </li>
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>Reliable:</strong> Perfect for very sensitive equipment.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Offline UPS -->
+      <div class="product-card">
+        <Image src={offlineUpsImg} alt="Offline UPS System" class="card-image" />
+        <div class="card-content">
+          <h3 class="card-title">Offline UPS System</h3>
+          <p class="card-desc">
+            Also known as a standby UPS, this system works well for homes and small businesses. It connects directly to the main power line. If the power drops or goes out, it quickly switches over to its battery. The changeover happens in a few milliseconds—so fast that most devices, like your computer, won't even notice it!
+          </p>
+          <div class="benefits-group">
+            <h4 class="benefits-title">Best suited for:</h4>
+            <ul class="benefits-list disc">
+              <li>Home computers</li>
+              <li>Wi-Fi routers</li>
+              <li>Small offices</li>
+              <li>Point of Sale (POS) systems</li>
+            </ul>
+          </div>
+          <div class="benefits-group mt-auto">
+            <h4 class="benefits-title">Why choose our offline UPS?</h4>
+            <ul class="benefits-list check">
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>Affordable:</strong> Great for smaller budgets.</span>
+              </li>
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>Efficient:</strong> Uses less energy when the power is on.</span>
+              </li>
+              <li>
+                <span class="material-symbols-outlined icon">check_circle</span>
+                <span><strong>Quiet:</strong> Doesn't make a lot of noise.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .ups-products-section {
+    padding-bottom: 80px;
+    background-color: #f8fafc;
+  }
+
+  .info-banner {
+    background-color: #ffffff;
+    padding: 80px 16px;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .info-banner {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .info-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: #f8f9ff;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    border-left: 4px solid #f47d20;
+  }
+
+  .info-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: #0b1c30;
+    margin-bottom: 16px;
+  }
+
+  .info-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    color: #45464d;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 16px;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: #0b1c30;
+    margin-bottom: 48px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .product-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 256px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: #0b1c30;
+    margin-bottom: 16px;
+  }
+
+  .card-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: #45464d;
+    margin-bottom: 24px;
+  }
+
+  .benefits-group {
+    margin-bottom: 24px;
+  }
+
+  .benefits-group.mt-auto {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+  .benefits-title {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #f47d20;
+    margin-bottom: 8px;
+  }
+
+  .benefits-list {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    color: #45464d;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .benefits-list.disc {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  .benefits-list.check {
+    list-style: none;
+  }
+
+  .benefits-list.check li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .benefits-list.check .icon {
+    color: #f47d20;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+</style>

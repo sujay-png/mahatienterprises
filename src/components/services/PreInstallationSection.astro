@@ -1,0 +1,202 @@
+---
+import { preInstallationData } from '../../data/services/preInstallationServices';
+---
+
+<section class="pre-installation-section">
+  <div class="section-container">
+    
+    <!-- Header -->
+    <div class="section-header">
+      <span class="stage-badge">{preInstallationData.stageBadge}</span>
+      <h2 class="section-title">{preInstallationData.title}</h2>
+      <p class="section-subtitle">{preInstallationData.subtitle}</p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid-layout">
+      {preInstallationData.services.map(service => (
+        <div class="card">
+          <div class="card-header">
+            <span class="card-number">{service.number}</span>
+            <span class="material-symbols-outlined card-icon">{service.icon}</span>
+          </div>
+          <h3 class="card-title">{service.title}</h3>
+          <p class="card-description">{service.description}</p>
+
+          <div class="card-footer">
+            {service.subtitle && <p class="footer-label">{service.subtitle}</p>}
+            <ul class="points-list">
+              {service.points?.map(point => (
+                <li>
+                  <span class="material-symbols-outlined check-icon">check</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .pre-installation-section {
+    background-color: var(--color-bg, #ffffff);
+    padding: 0 24px 80px 24px;
+    width: 100%;
+  }
+
+  .section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .stage-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #f1f5f9;
+    color: #475569;
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .section-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-text-dark, #0d1424);
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    color: #5c6479;
+  }
+
+  /* Grid Mechanics */
+  .grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .grid-layout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-layout {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Shared Card Base */
+  .card {
+    background-color: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 32px rgba(13, 20, 36, 0.06);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .card-number {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(230, 92, 0, 0.4);
+  }
+
+  .card-icon {
+    font-size: 28px !important;
+    color: var(--color-orange, #e65c00);
+    font-variation-settings: 'FILL' 1;
+  }
+
+  .card-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-dark, #0d1424);
+    margin-bottom: 12px;
+  }
+
+  .card-description {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 14px;
+    line-height: 22px;
+    color: #475569;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
+  /* Card Footer & Lists */
+  .card-footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+    margin-top: auto;
+  }
+
+  .footer-label {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #0d1424;
+    margin-bottom: 12px;
+  }
+
+  .points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 13.5px;
+    color: #475569;
+  }
+
+  .check-icon {
+    font-size: 16px !important;
+    color: var(--color-orange, #e65c00);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+</style>

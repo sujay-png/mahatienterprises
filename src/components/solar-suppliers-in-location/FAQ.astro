@@ -1,0 +1,76 @@
+---
+interface Props {
+  faqData: {
+    title: string;
+    faqs: {
+      question: string;
+      answer: string;
+    }[];
+  };
+}
+const { faqData } = Astro.props;
+---
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 style="font-family: var(--font-heading); font-weight: 800; font-size: 24px;">{faqData.title}</h2>
+    </div>
+    <div class="faq-list">
+      {faqData.faqs.map((faq, index) => (
+        <div class={`faq-item ${index === 0 ? 'open' : ''}`}>
+          <button class="faq-q">
+            {faq.question} 
+            <span class="material-symbols-outlined">add</span>
+          </button>
+          <div class="faq-a">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section { padding: 76px 0; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .section-head { max-width: 700px; margin-bottom: 40px; }
+  
+  .faq-list { max-width: 780px; }
+  .faq-item { border-bottom: 1px solid var(--color-border); }
+  .faq-q {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 22px 4px; background: none; border: none; cursor: pointer; text-align: left;
+    font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--color-primary);
+  }
+  .faq-q .material-symbols-outlined { color: var(--color-secondary); flex-shrink: 0; transition: transform .25s ease; }
+  :global(.faq-item.open) .faq-q .material-symbols-outlined { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .faq-a p { padding: 0 4px 22px; color: var(--color-text-muted); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+  :global(.faq-item.open) .faq-a { max-height: 220px; }
+</style>
+
+<script>
+  function initFAQ() {
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      const newBtn = btn.cloneNode(true) as HTMLElement;
+      if(btn.parentNode) btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', () => {
+        const item = newBtn.closest('.faq-item');
+        document.querySelectorAll('.faq-item').forEach(i => { 
+          if (i !== item) i.classList.remove('open'); 
+        });
+        item?.classList.toggle('open');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFAQ);
+  if(document.readyState === 'complete' || document.readyState === 'interactive') {
+    initFAQ();
+  } else {
+    document.addEventListener('DOMContentLoaded', initFAQ);
+  }
+</script>

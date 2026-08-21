@@ -1,0 +1,268 @@
+---
+import { Image } from 'astro:assets';
+import offGridImg from '../../../images/stitch-solar-2.jpeg';
+import onGridImg from '../../../images/stitch-solar-3.jpeg';
+import hybridImg from '../../../images/stitch-solar-4.jpeg';
+---
+
+<section id="products" class="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Our Solar Products</h2>
+      <p class="section-desc">High-performance energy solutions engineered for reliability and maximum efficiency.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- Off-Grid -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={offGridImg} alt="Off-grid solar system" class="card-image" />
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Off-Grid Solar System</h3>
+          <p class="card-desc">An off-grid solar system is ideal for homes and facilities that have no access to the main electricity grid or face frequent power cuts. It stores solar energy in batteries, giving you complete independence from the grid. Our off-grid systems are robust, scalable, and suitable for rural homes, farms, remote offices, and more.</p>
+          
+          <h4 class="benefits-title">Key Benefits:</h4>
+          <ul class="benefits-list">
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Total energy independence</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>No electricity bill</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Works in areas with no grid connectivity</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Ideal for frequent power outage zones</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- On-Grid -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={onGridImg} alt="On-grid solar system" class="card-image" />
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">On-Grid Solar System</h3>
+          <p class="card-desc">Designed for urban homes, offices, and industries that have a stable grid connection. On-grid systems generate electricity during the day and feed the excess power back to the electricity board (Grid) using Net-Metering. This system does not require batteries, making it the most cost-effective solar solution.</p>
+          
+          <h4 class="benefits-title">Key Benefits:</h4>
+          <ul class="benefits-list">
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Huge savings on electricity bills</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Lower initial investment (no batteries)</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Earn from excess power generated</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Low maintenance cost</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hybrid -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={hybridImg} alt="Hybrid solar system" class="card-image" />
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Hybrid Solar System</h3>
+          <p class="card-desc">The best of both worlds! A hybrid system connects to the grid while also utilizing battery storage. During the day, it powers your loads and charges batteries. If the grid fails, it switches to battery power seamlessly. Excess power can still be exported to the grid.</p>
+          
+          <h4 class="benefits-title">Key Benefits:</h4>
+          <ul class="benefits-list">
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Uninterrupted power supply</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Grid synchronization & battery backup</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Smart energy management</span>
+            </li>
+            <li>
+              <span class="material-symbols-outlined icon">check_circle</span>
+              <span>Protects against both grid failure & high bills</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .products-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #f8f9ff;
+  }
+
+  @media (min-width: 768px) {
+    .products-section {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    color: #0f172a;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .section-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 18px;
+    color: #45464d;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .product-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card-image-wrapper {
+    height: 256px;
+    overflow: hidden;
+    position: relative;
+    padding: 24px;
+    background-color: #e5eeff;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+  }
+
+  .product-card:hover .card-image {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    padding: 32px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: #45464d;
+    margin-bottom: 24px;
+  }
+
+  .benefits-title {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 32px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .benefits-list .icon {
+    color: #f47d20;
+    font-size: 20px;
+    font-variation-settings: 'FILL' 1;
+  }
+
+  .benefits-list span:not(.icon) {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    color: #0b1c30;
+  }
+</style>

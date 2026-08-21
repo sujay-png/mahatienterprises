@@ -1,0 +1,213 @@
+---
+---
+
+<section class="ups-features-section">
+  <div class="container">
+    <h2 class="section-title">Additional Product Details</h2>
+    <div class="table-container">
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Offline UPS</th>
+            <th>Online UPS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Transfer Time</td>
+            <td>Few milliseconds (2-10ms)</td>
+            <td>Zero transfer time (Instant)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Power Conditioning</td>
+            <td>Basic (protects against surges)</td>
+            <td>Advanced (filters all power issues)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Cost</td>
+            <td>Budget-friendly</td>
+            <td>Higher investment</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Efficiency</td>
+            <td>High (when main power is on)</td>
+            <td>Slightly lower (always converting power)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Best Use Case</td>
+            <td>Homes &amp; small offices</td>
+            <td>Hospitals &amp; large data centers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="applications-container">
+    <div class="container">
+      <h2 class="section-title mb-2">Applications</h2>
+      <h3 class="section-subtitle">Where Our UPS Power Backup Works Best</h3>
+      
+      <div class="apps-grid">
+        <div class="app-card">
+          <span class="material-symbols-outlined icon">home</span>
+          <span class="app-label">Homes</span>
+        </div>
+        <div class="app-card">
+          <span class="material-symbols-outlined icon">domain</span>
+          <span class="app-label">Offices &amp; Co-working Spaces</span>
+        </div>
+        <div class="app-card">
+          <span class="material-symbols-outlined icon">local_hospital</span>
+          <span class="app-label">Hospitals &amp; Clinics</span>
+        </div>
+        <div class="app-card">
+          <span class="material-symbols-outlined icon">factory</span>
+          <span class="app-label">Manufacturing &amp; Industry</span>
+        </div>
+        <div class="app-card">
+          <span class="material-symbols-outlined icon">router</span>
+          <span class="app-label">IT &amp; Telecom</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ups-features-section {
+    background-color: #ffffff;
+  }
+
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 80px 16px;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: #0b1c30;
+    margin-bottom: 32px;
+  }
+
+  .section-title.mb-2 {
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: #f47d20;
+    margin-bottom: 48px;
+  }
+
+  .table-container {
+    background-color: #f8f9ff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    overflow-x: auto;
+  }
+
+  .features-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+
+  .features-table th {
+    padding: 16px;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #0b1c30;
+    background-color: #e5eeff;
+    border-bottom: 1px solid #dce9ff;
+  }
+
+  .features-table td {
+    padding: 16px;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    color: #45464d;
+    border-bottom: 1px solid #e5eeff;
+  }
+
+  .features-table tr:hover td {
+    background-color: rgba(229, 238, 255, 0.5);
+  }
+
+  .features-table .feature-name {
+    font-weight: 600;
+    color: #0b1c30;
+  }
+
+  .applications-container {
+    background-color: #f8fafc;
+  }
+
+  .applications-container .container {
+    max-width: 1440px;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .apps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .apps-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  .app-card {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .app-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .app-card .icon {
+    font-size: 36px;
+    color: #f47d20;
+    font-variation-settings: 'FILL' 1;
+  }
+
+  .app-label {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #0b1c30;
+  }
+</style>

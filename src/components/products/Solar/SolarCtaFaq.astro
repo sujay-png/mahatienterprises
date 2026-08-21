@@ -1,0 +1,255 @@
+---
+// src/components/Products/Solar/SolarCtaFaq.astro
+---
+
+<section class="cta-faq-section">
+  <div class="cta-faq-container">
+    <div class="cta-box reveal scale-in">
+      <div class="cta-bg"></div>
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Power Up With Solar?</h2>
+        <p class="cta-desc">Switching to solar is one of the smartest decisions you can make for your wallet, your business, and the planet. Mahati Enterprises makes it simple, seamless, and rewarding. Our solar solutions are trusted by homeowners, farmers, businesses, and institutions across Karnataka. Let us help you find the right fit.</p>
+        <a href="/contact" class="btn-cta">Get Your Free Quote</a>
+      </div>
+    </div>
+    
+    <h2 class="faq-title reveal slide-up">Frequently Asked Questions (FAQs)</h2>
+    <div class="faq-accordion" data-accordion="single">
+      
+      <div class="faq-item reveal slide-up" data-state="open" style="transition-delay: 100ms;">
+        <button type="button" class="faq-trigger" aria-expanded="true">
+          <span class="faq-question">1. Which solar system is right for me — Off-Grid, On-Grid, or Hybrid?</span>
+          <span class="material-symbols-outlined toggle-icon">expand_more</span>
+        </button>
+        <div class="faq-content-wrapper" style="height: auto;">
+          <div class="faq-content">
+            <p class="faq-a">Simple rule: On-Grid if you want lower bills, Off-Grid if you want full independence, and Hybrid if you want both. Not sure? Our team will assess your needs and recommend the perfect fit.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item reveal slide-up" data-state="closed" style="transition-delay: 150ms;">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-question">2. How much does a solar system cost?</span>
+          <span class="material-symbols-outlined toggle-icon">expand_more</span>
+        </button>
+        <div class="faq-content-wrapper" style="height: 0px;">
+          <div class="faq-content">
+            <p class="faq-a">A standard 3 kW On-Grid home system starts at around ₹1.5–₹2.5 lakhs before subsidies. With government schemes like PM Surya Ghar, the cost drops significantly. Contact us for a free, personalised quote.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item reveal slide-up" data-state="closed" style="transition-delay: 200ms;">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-question">3. Do solar products work during cloudy days or monsoon?</span>
+          <span class="material-symbols-outlined toggle-icon">expand_more</span>
+        </button>
+        <div class="faq-content-wrapper" style="height: 0px;">
+          <div class="faq-content">
+            <p class="faq-a">Yes! Solar panels still generate power on cloudy days, just at reduced capacity. Solar Heat Pumps are especially reliable year-round since they run on ambient air heat not just direct sunlight.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item reveal slide-up" data-state="closed" style="transition-delay: 250ms;">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-question">4. How much maintenance do solar products need?</span>
+          <span class="material-symbols-outlined toggle-icon">expand_more</span>
+        </button>
+        <div class="faq-content-wrapper" style="height: 0px;">
+          <div class="faq-content">
+            <p class="faq-a">Very little. A panel wipe-down every 2–3 months and an annual battery check are all it takes. We also offer AMC packages so you never have to worry about upkeep.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item reveal slide-up" data-state="closed" style="transition-delay: 300ms;">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-question">5. Does Mahati Enterprises handle everything from installation to approvals?</span>
+          <span class="material-symbols-outlined toggle-icon">expand_more</span>
+        </button>
+        <div class="faq-content-wrapper" style="height: 0px;">
+          <div class="faq-content">
+            <p class="faq-a">Absolutely. We take care of site assessment, system design, MESCOM/HESCOM approvals, installation, and after-sales support. You sit back; we handle the rest.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Only select items that haven't been initialized yet
+    const accordionItems = document.querySelectorAll('.faq-item:not([data-initialized])');
+
+    accordionItems.forEach((item) => {
+      // Mark as initialized
+      item.setAttribute('data-initialized', 'true');
+      
+      const trigger = item.querySelector('.faq-trigger');
+      const wrapper = item.querySelector('.faq-content-wrapper') as HTMLElement;
+
+      trigger?.addEventListener('click', () => {
+        const isOpen = item.getAttribute('data-state') === 'open';
+
+        // Close all other open items
+        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.setAttribute('data-state', 'closed');
+            otherItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+            const otherWrapper = otherItem.querySelector('.faq-content-wrapper') as HTMLElement;
+            if (otherWrapper) otherWrapper.style.height = '0px';
+          }
+        });
+
+        // Expand/Collapse active item smoothly
+        if (isOpen) {
+          item.setAttribute('data-state', 'closed');
+          trigger.setAttribute('aria-expanded', 'false');
+          wrapper.style.height = '0px';
+        } else {
+          item.setAttribute('data-state', 'open');
+          trigger.setAttribute('aria-expanded', 'true');
+          wrapper.style.height = `${wrapper.scrollHeight}px`;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .cta-faq-section {
+    padding: 80px 40px;
+    background-color: var(--c-background, #f8fafc);
+  }
+  @media (max-width: 768px) {
+    .cta-faq-section { padding: 80px 16px; }
+  }
+  .cta-faq-container { max-width: 1024px; margin: 0 auto; }
+  
+  .cta-box {
+    background-color: var(--c-primary, #0f172a);
+    color: #fff;
+    border-radius: 32px;
+    padding: 32px;
+    margin-bottom: 64px;
+    box-shadow: var(--shadow-2, 0px 10px 32px rgba(15,23,42,0.12));
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .cta-box { padding: 48px; }
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--c-primary, #0f172a), var(--c-primary-container, #131b2e));
+    z-index: 0;
+  }
+  .cta-content { position: relative; z-index: 10; }
+  .cta-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 768px) {
+    .cta-title { font-size: 32px; line-height: 40px; }
+  }
+  .cta-desc {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--c-primary-fixed, #dae2fd);
+    margin-bottom: 32px;
+    max-width: 672px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-cta {
+    display: inline-block;
+    background-color: var(--c-secondary, #f47d20);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 16px 32px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  .btn-cta:hover {
+    background-color: var(--c-secondary-hover, #e06c17);
+    transform: translateY(-2px);
+  }
+  .btn-cta:active { transform: scale(0.95); }
+
+  .faq-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .faq-item {
+    background-color: var(--c-surface-lowest, #ffffff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    overflow: hidden;
+  }
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  .faq-trigger:hover {
+    background-color: rgba(15, 23, 42, 0.02);
+  }
+  .faq-question {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--c-primary, #0f172a);
+    line-height: 1.4;
+  }
+  .toggle-icon {
+    font-size: 24px !important;
+    color: var(--c-primary, #0f172a);
+    transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  .faq-item[data-state="open"] .toggle-icon {
+    transform: rotate(180deg);
+  }
+  .faq-content-wrapper {
+    overflow: hidden;
+    transition: height 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  .faq-content {
+    padding: 0 24px 24px 24px;
+  }
+  .faq-a {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+  }
+</style>

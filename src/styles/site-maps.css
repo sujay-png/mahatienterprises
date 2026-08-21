@@ -1,0 +1,184 @@
+/* Site Maps Hero Styles */
+.site-maps-hero {
+  width: 100%;
+  padding: 6rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-color: var(--on-tertiary-container);
+}
+
+@media (min-width: 768px) {
+  .site-maps-hero {
+    padding: 8rem 4rem;
+  }
+}
+
+.pattern-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.hero-content {
+  max-width: var(--container-max, 1280px);
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Site Maps City Links Styles */
+.stitch-city-section {
+  max-width: 56rem; /* 4xl */
+  margin: 0 auto;
+  padding: 5rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .stitch-city-section {
+    padding: 6rem 4rem;
+  }
+}
+
+.stitch-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 105, 0, 0.1); /* primary-container/10 */
+  margin-bottom: 1.25rem;
+}
+
+.icon-sun {
+  color: var(--primary-container, #ff6900);
+  font-size: 1.875rem;
+}
+
+.stitch-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.5rem;
+  line-height: 3rem;
+  color: var(--on-tertiary-container, #233144);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.stitch-subtitle {
+  color: var(--on-surface-variant, #5a4136);
+  font-size: 1.125rem;
+}
+
+.stitch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .stitch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Make the last odd item span 2 columns if there are 5 items */
+  .stitch-card:nth-child(5):last-child {
+    grid-column: span 2;
+    max-width: calc(50% - 10px);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+.stitch-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: var(--surface-container-lowest, #ffffff);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(226, 191, 176, 0.4); /* outline-variant/40 */
+  box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.06);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.stitch-card:hover {
+  box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.12);
+  border-color: rgba(255, 105, 0, 0.4); /* primary-container/40 */
+  transform: translateY(-3px);
+}
+
+.card-icon-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 105, 0, 0.1);
+  transition: background-color 0.25s ease;
+}
+
+.stitch-card:hover .card-icon-container {
+  background-color: rgba(255, 105, 0, 0.15);
+}
+
+.card-icon {
+  color: var(--primary-container, #ff6900);
+  font-size: 1.5rem;
+}
+
+.card-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: var(--on-tertiary-container, #233144);
+  transition: color 0.25s ease;
+}
+
+.stitch-card:hover .card-title {
+  color: var(--primary-container, #ff6900);
+}
+
+.arrow-icon {
+  margin-left: auto;
+  color: var(--primary-container, #ff6900);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.25s ease;
+}
+
+.stitch-card:hover .arrow-icon {
+  opacity: 1;
+  transform: translateX(0);
+}

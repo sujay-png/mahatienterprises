@@ -1,0 +1,1237 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { fetchWordPress } from '../../data/wordpress';
+
+export async function getStaticPaths() {
+
+  const query = `
+    query GetAllPosts {
+      posts(first: 100) {
+        nodes {
+          slug
+        }
+      }
+    }
+  `;
+
+  const data = await fetchWordPress(query);
+
+  return data.posts.nodes.map((post: any) => ({
+    params: {
+      slug: post.slug,
+    },
+  }));
+}
+
+
+const { slug } = Astro.params;
+
+
+const query = `
+  query GetSinglePost($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      id
+      title
+      slug
+      date
+      content
+      excerpt
+
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+
+      author {
+        node {
+          name
+        }
+      }
+    }
+  }
+`;
+
+
+const data = await fetchWordPress(query, {
+  slug,
+});
+
+
+const post = data.post;
+
+
+if (!post) {
+  throw new Error('Blog post not found');
+}
+
+
+const category =
+  post.categories?.nodes?.[0]?.name || 'Insights';
+
+
+const author =
+  post.author?.node?.name || 'Mahati Enterprises';
+
+
+const formattedDate =
+  new Date(post.date).toLocaleDateString(
+    'en-IN',
+    {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }
+  );
+---
+
+
+<BaseLayout
+  title={`${post.title} | Mahati Enterprises`}
+  description={post.excerpt?.replace(/<[^>]*>/g, '')}
+>
+
+
+  <!-- =====================================
+       ARTICLE HERO
+  ====================================== -->
+
+  <section class="article-hero">
+
+    <div class="article-container">
+
+      <!-- Breadcrumb -->
+
+      <div class="breadcrumb">
+
+        <a href="/">
+          Home
+        </a>
+
+        <span>↓</span>
+
+    
+
+    
+ 
+    
+      </div>
+
+
+      <!-- Category -->
+
+      <div class="article-category">
+        {category}
+      </div>
+
+
+      <!-- Title -->
+
+      <h1>
+        {post.title}
+      </h1>
+
+
+      <!-- Meta -->
+
+      <div class="article-meta">
+
+        <span>
+          {formattedDate}
+        </span>
+
+        <span class="meta-dot"></span>
+
+    
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================
+       FEATURED IMAGE
+  ====================================== -->
+
+  {
+    post.featuredImage?.node?.sourceUrl && (
+
+      <section class="featured-section">
+
+        <div class="featured-container">
+
+          <img
+            src={post.featuredImage.node.sourceUrl}
+            alt={
+              post.featuredImage.node.altText ||
+              post.title
+            }
+            class="featured-image"
+          />
+
+        </div>
+
+      </section>
+
+    )
+  }
+
+
+
+  <!-- =====================================
+       ARTICLE CONTENT
+  ====================================== -->
+
+  <section class="article-section">
+
+    <div class="article-layout">
+
+
+      <!-- Main Article -->
+
+      <article class="article-content">
+
+        <div
+          class="wordpress-content"
+          set:html={post.content}
+        ></div>
+
+
+        <!-- Back to Blog -->
+
+        <div class="article-bottom">
+
+          <a
+            href="/blog"
+            class="back-to-blog"
+          >
+
+            <span class="back-arrow">
+              ←
+            </span>
+
+            <span>
+              Back to all articles
+            </span>
+
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- Sidebar -->
+
+      <aside class="article-sidebar">
+
+        <div class="sidebar-card">
+
+          <span class="sidebar-label">
+            MAHATI ENTERPRISES
+          </span>
+
+          <h3>
+            Powering a
+            <em>Brighter</em>
+            Future
+          </h3>
+
+          <p>
+            Discover our solar, UPS, battery and
+            sustainable energy solutions.
+          </p>
+
+          <a
+            href="/contact"
+            class="sidebar-button"
+          >
+            Talk to Our Experts
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </aside>
+
+
+    </div>
+
+  </section>
+
+
+</BaseLayout>
+
+
+
+<style>
+
+
+/* =========================================
+   ARTICLE HERO
+========================================= */
+
+.article-hero {
+
+  padding:
+    80px 24px
+    70px;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(126, 158, 78, 0.12),
+      transparent 35%
+    ),
+    #f7f8f5;
+}
+
+
+.article-container {
+
+  width:
+    min(1000px, 100%);
+
+  margin:
+    0 auto;
+
+  text-align:
+    center;
+}
+
+
+/* =========================================
+   BREADCRUMB
+========================================= */
+
+.breadcrumb {
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    9px;
+
+  margin-bottom:
+    30px;
+
+  color:
+    #8a9388;
+
+  font-size:
+    12px;
+}
+
+
+.breadcrumb a {
+
+  color:
+    #65725f;
+
+  text-decoration:
+    none;
+
+  transition:
+    color .2s ease;
+}
+
+
+.breadcrumb a:hover {
+
+  color:
+    #78954d;
+}
+
+
+.breadcrumb span:nth-child(2),
+.breadcrumb span:nth-child(4) {
+
+  color:
+    #b6bdb3;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.article-category {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    8px 15px;
+
+  border:
+    1px solid
+    rgba(120, 149, 77, .25);
+
+  border-radius:
+    100px;
+
+  background:
+    rgba(120, 149, 77, .08);
+
+  color:
+    #78954d;
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    1.8px;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.article-hero h1 {
+
+  max-width:
+    950px;
+
+  margin:
+    25px auto 0;
+
+  color:
+    #172018;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      68px
+    );
+
+  font-weight:
+    600;
+
+  line-height:
+    1.05;
+
+  letter-spacing:
+    -2px;
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.article-meta {
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  margin-top:
+    28px;
+
+  color:
+    #697269;
+
+  font-size:
+    13px;
+}
+
+
+.meta-dot {
+
+  width:
+    4px;
+
+  height:
+    4px;
+
+  border-radius:
+    50%;
+
+  background:
+    #9cac91;
+}
+
+
+/* =========================================
+   FEATURED IMAGE
+========================================= */
+
+.featured-section {
+
+  padding:
+    0 24px;
+
+  background:
+    #f7f8f5;
+}
+
+
+.featured-container {
+
+  width:
+    min(1180px, 100%);
+
+  margin:
+    0 auto;
+
+  transform:
+    translateY(25px);
+}
+
+
+.featured-image {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  max-height:
+    620px;
+
+  object-fit:
+    cover;
+
+  border-radius:
+    26px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(20, 30, 20, .14);
+}
+
+
+/* =========================================
+   ARTICLE SECTION
+========================================= */
+
+.article-section {
+
+  padding:
+    100px 24px
+    120px;
+
+  background:
+    #ffffff;
+}
+
+
+.article-layout {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    300px;
+
+  gap:
+    70px;
+
+  width:
+    min(1080px, 100%);
+
+  margin:
+    0 auto;
+
+  align-items:
+    start;
+}
+
+
+/* =========================================
+   ARTICLE CONTENT
+========================================= */
+
+.article-content {
+
+  min-width:
+    0;
+}
+
+
+.wordpress-content {
+
+  color:
+    #000000;
+
+  font-size:
+    20px;
+
+  line-height:
+    1.85;
+}
+
+
+/* Paragraph */
+
+.wordpress-content :global(p) {
+
+  margin:
+    0 0 24px;
+}
+
+
+/* Headings */
+
+.wordpress-content :global(h2) {
+
+  margin:
+    50px 0 20px;
+
+  color:
+    #172018;
+
+  font-size:
+    34px;
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    -.7px;
+}
+
+
+.wordpress-content :global(h3) {
+
+  margin:
+    40px 0 16px;
+
+  color:
+    #172018;
+
+  font-size:
+    26px;
+
+  line-height:
+    1.3;
+}
+
+
+.wordpress-content :global(h4) {
+
+  margin:
+    32px 0 14px;
+
+  color:
+    #172018;
+
+  font-size:
+    21px;
+}
+
+
+/* Links */
+
+.wordpress-content :global(a) {
+
+  color:
+    #6f8d46;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    underline;
+
+  text-decoration-thickness:
+    1px;
+
+  text-underline-offset:
+    3px;
+}
+
+
+/* Strong */
+
+.wordpress-content :global(strong) {
+
+  color:
+    #172018;
+
+  font-weight:
+    700;
+}
+
+
+/* Images */
+
+.wordpress-content :global(img) {
+
+  display:
+    block;
+
+  width:
+    auto;
+
+  max-width:
+    100%;
+
+  height:
+    auto;
+
+  margin:
+    35px auto;
+
+  border-radius:
+    14px;
+}
+
+
+/* Lists */
+
+.wordpress-content :global(ul),
+.wordpress-content :global(ol) {
+
+  margin:
+    0 0 28px;
+
+  padding-left:
+    25px;
+}
+
+
+.wordpress-content :global(li) {
+
+  margin-bottom:
+    10px;
+
+  padding-left:
+    5px;
+}
+
+
+/* Blockquote */
+
+.wordpress-content :global(blockquote) {
+
+  margin:
+    35px 0;
+
+  padding:
+    25px 30px;
+
+  border-left:
+    4px solid
+    #78954d;
+
+  border-radius:
+    0 12px 12px 0;
+
+  background:
+    #f4f7f1;
+
+  color:
+    #344034;
+
+  font-size:
+    19px;
+
+  font-style:
+    italic;
+}
+
+
+/* Tables */
+
+.wordpress-content :global(table) {
+
+  width:
+    100%;
+
+  margin:
+    35px 0;
+
+  border-collapse:
+    collapse;
+
+  overflow:
+    hidden;
+
+  font-size:
+    15px;
+}
+
+
+.wordpress-content :global(th),
+.wordpress-content :global(td) {
+
+  padding:
+    13px 15px;
+
+  border:
+    1px solid
+    #dfe5dc;
+
+  text-align:
+    left;
+}
+
+
+.wordpress-content :global(th) {
+
+  background:
+    #eef3ea;
+
+  color:
+    #172018;
+
+  font-weight:
+    700;
+}
+
+
+/* Horizontal line */
+
+.wordpress-content :global(hr) {
+
+  margin:
+    45px 0;
+
+  border:
+    0;
+
+  border-top:
+    1px solid
+    #e5e9e3;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.article-sidebar {
+
+  position:
+    sticky;
+
+  top:
+    110px;
+}
+
+
+.sidebar-card {
+
+  padding:
+    30px;
+
+  border:
+    1px solid
+    rgba(120, 149, 77, .18);
+
+  border-radius:
+    22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f2f6ee,
+      #ffffff
+    );
+
+  box-shadow:
+    0 15px 40px
+    rgba(30, 45, 25, .06);
+}
+
+
+.sidebar-label {
+
+  color:
+    #78954d;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    2px;
+}
+
+
+.sidebar-card h3 {
+
+  margin:
+    16px 0;
+
+  color:
+    #172018;
+
+  font-size:
+    28px;
+
+  line-height:
+    1.15;
+
+  letter-spacing:
+    -.7px;
+}
+
+
+.sidebar-card h3 em {
+
+  color:
+    #78954d;
+
+  font-style:
+    normal;
+}
+
+
+.sidebar-card p {
+
+  margin:
+    0;
+
+  color:
+    #667066;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.7;
+}
+
+
+/* =========================================
+   SIDEBAR BUTTON
+========================================= */
+
+.sidebar-button {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-top:
+    24px;
+
+  padding:
+    14px 17px;
+
+  border-radius:
+    12px;
+
+  background:
+    #172018;
+
+  color:
+    #ffffff;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+
+.sidebar-button:hover {
+
+  background:
+    #78954d;
+
+  transform:
+    translateY(-2px);
+}
+
+
+.sidebar-button span {
+
+  font-size:
+    18px;
+}
+
+
+/* =========================================
+   BACK TO BLOG
+========================================= */
+
+.article-bottom {
+
+  margin-top:
+    60px;
+
+  padding-top:
+    30px;
+
+  border-top:
+    1px solid
+    #e5e9e3;
+}
+
+
+.back-to-blog {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  color:
+    #172018;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+}
+
+
+.back-arrow {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    32px;
+
+  height:
+    32px;
+
+  border:
+    1px solid
+    #dce2d9;
+
+  border-radius:
+    50%;
+
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+
+.back-to-blog:hover .back-arrow {
+
+  background:
+    #78954d;
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .article-layout {
+
+    grid-template-columns:
+      1fr;
+
+    gap:
+      50px;
+  }
+
+
+  .article-sidebar {
+
+    position:
+      static;
+
+    max-width:
+      500px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .article-hero {
+
+    padding:
+      60px 18px
+      55px;
+  }
+
+
+  .article-hero h1 {
+
+    font-size:
+      38px;
+
+    letter-spacing:
+      -1.2px;
+  }
+
+
+  .article-meta {
+
+    flex-wrap:
+      wrap;
+
+    font-size:
+      12px;
+  }
+
+
+  .featured-section {
+
+    padding:
+      0 15px;
+  }
+
+
+  .featured-container {
+
+    transform:
+      translateY(15px);
+  }
+
+
+  .featured-image {
+
+    max-height:
+      400px;
+
+    border-radius:
+      18px;
+  }
+
+
+  .article-section {
+
+    padding:
+      70px 18px
+      80px;
+  }
+
+
+  .wordpress-content {
+
+    font-size:
+      16px;
+
+    line-height:
+      1.8;
+  }
+
+
+  .wordpress-content :global(h2) {
+
+    margin-top:
+      40px;
+
+    font-size:
+      28px;
+  }
+
+
+  .wordpress-content :global(h3) {
+
+    font-size:
+      23px;
+  }
+
+
+  .wordpress-content :global(blockquote) {
+
+    padding:
+      20px;
+
+    font-size:
+      17px;
+  }
+
+
+  .wordpress-content :global(table) {
+
+    display:
+      block;
+
+    overflow-x:
+      auto;
+
+    white-space:
+      nowrap;
+  }
+
+
+  .article-sidebar {
+
+    max-width:
+      none;
+  }
+
+}
+</style>

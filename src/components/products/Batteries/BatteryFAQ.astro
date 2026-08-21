@@ -1,0 +1,176 @@
+---
+const faqData = [
+  {
+    question: "How long does an industrial battery typically last?",
+    answer: "The lifespan depends on the technology and usage. A standard lead acid battery may last 3-5 years, while advanced VRLA and Lithium Ion batteries can last anywhere from 5 to 15 years with proper care."
+  },
+  {
+    question: "Do SLA and VRLA batteries require maintenance?",
+    answer: "No, Sealed Lead Acid (SLA) and Valve Regulated Lead Acid (VRLA) batteries are designed to be completely maintenance-free. They do not require water top-ups and have no risk of acid spillage."
+  },
+  {
+    question: "Are Lithium Ion batteries worth the higher initial cost?",
+    answer: "Yes, for many applications. While the upfront cost is higher, they offer a significantly longer lifespan (up to 3-4x longer), much faster charging times, and are much lighter, offering a better Return on Investment (ROI) over time."
+  },
+  {
+    question: "Can you install the batteries at our facility?",
+    answer: "Absolutely. Mahati Enterprises provides end-to-end services, including professional installation by our expert technicians to ensure safe and optimal setup."
+  }
+];
+---
+
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-accordion" data-accordion="single">
+      {faqData.map((item, index) => (
+        <div class="faq-item" data-state={index === 0 ? "open" : "closed"}>
+          <button type="button" class="faq-trigger" aria-expanded={index === 0 ? "true" : "false"}>
+            <span class="faq-question">{index + 1}. {item.question}</span>
+            <span class="material-symbols-outlined toggle-icon">expand_more</span>
+          </button>
+
+          <div class="faq-content-wrapper" style={index === 0 ? "height: auto;" : "height: 0px;"}>
+            <div class="faq-content">
+              {item.answer && <p class="faq-text">{item.answer}</p>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Only select items that haven't been initialized yet
+    const accordionItems = document.querySelectorAll('.faq-item:not([data-initialized])');
+
+    accordionItems.forEach((item) => {
+      // Mark as initialized
+      item.setAttribute('data-initialized', 'true');
+      
+      const trigger = item.querySelector('.faq-trigger');
+      const wrapper = item.querySelector('.faq-content-wrapper') as HTMLElement;
+
+      trigger?.addEventListener('click', () => {
+        const isOpen = item.getAttribute('data-state') === 'open';
+
+        // Close all other open items
+        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.setAttribute('data-state', 'closed');
+            otherItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+            const otherWrapper = otherItem.querySelector('.faq-content-wrapper') as HTMLElement;
+            if (otherWrapper) otherWrapper.style.height = '0px';
+          }
+        });
+
+        // Expand/Collapse active item smoothly
+        if (isOpen) {
+          item.setAttribute('data-state', 'closed');
+          trigger.setAttribute('aria-expanded', 'false');
+          wrapper.style.height = '0px';
+        } else {
+          item.setAttribute('data-state', 'open');
+          trigger.setAttribute('aria-expanded', 'true');
+          wrapper.style.height = `${wrapper.scrollHeight}px`;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    background-color: var(--color-bg, #f8fafc);
+    padding: 100px 24px;
+    width: 100%;
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .faq-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--color-text-dark, #0f172a);
+    text-align: center;
+    margin-bottom: 56px;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .faq-title {
+      font-size: 38px;
+    }
+  }
+
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Minimalist Row Item */
+  .faq-item {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+  }
+
+  /* Trigger Button */
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    user-select: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-dark, #0f172a);
+    line-height: 1.4;
+  }
+
+  .toggle-icon {
+    font-size: 24px !important;
+    color: var(--color-text-dark, #0f172a);
+    transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+
+  .faq-item[data-state="open"] .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Smooth Expansion Wrapper */
+  .faq-content-wrapper {
+    overflow: hidden;
+    transition: height 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+
+  .faq-content {
+    padding: 12px 0 16px 0;
+  }
+
+  .faq-text {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 15px;
+    line-height: 26px;
+    color: var(--color-text-muted, #475569);
+  }
+</style>

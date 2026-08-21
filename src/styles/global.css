@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-heading2: "Cormorant Garamond", serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-body2: "Cormorant Garamond", serif;
+
+  /* Colors based on new senior design token mappings */
+  --color-primary: #000000;
+  --color-secondary: #9d4300;
+  --color-secondary-container: #fd761a;
+  --color-on-secondary: #ffffff;
+  --color-on-primary-container: #7c839b;
+  --color-bg: #f8fafc;
+  --color-surface-container: #e5eeff;
+  --color-border: #c6c6cd;
+
+  /* Legacy variable fallbacks */
+  --color-blue: #1671adfc;
+  --color-dark-blue: #082437fc;
+  --color-orange: #fd761a;
+  --color-card-bg: #ffffff;
+  --color-text-dark: #0b1c30;
+  --color-text-muted: #7c839b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+}
+
+/* Premium Card helper class */
+.premium-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s ease;
+}
+
+.premium-card:hover {
+  box-shadow: 0px 10px 32px rgba(15, 23, 42, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Material Icons helper */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

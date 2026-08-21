@@ -1,0 +1,163 @@
+---
+const faqData = [
+  {
+    question: "Which UPS is better for a computer, online or offline?",
+    answer: "For a home or small office computer, an offline UPS is usually enough. It's cheaper and works great. But if it's a very important server, an online UPS is safer."
+  },
+  {
+    question: "How long can a UPS provide power?",
+    answer: "It depends on the size of the battery and what you plug into it. Most small ones give you 10-15 minutes—just enough time to save your work and shut down. Larger ones can last for hours."
+  },
+  {
+    question: "Can I use a UPS for my TV or fridge?",
+    answer: "You can use a UPS for a TV, but usually not for a fridge. Fridges need a lot of power to start up, which most standard UPS units can't handle. For heavy appliances, an inverter is a better choice."
+  },
+  {
+    question: "Do UPS batteries need to be replaced?",
+    answer: "Yes. A typical UPS battery will last about 3 to 5 years. After that, it won't hold a charge as well, and you'll need to buy a new battery."
+  },
+  {
+    question: "What happens if I plug a power strip into a UPS?",
+    answer: "You can, but be careful not to plug in too many things! If you plug in more devices than the UPS can handle, it will overload and might shut off completely."
+  }
+];
+---
+
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 class="faq-title reveal slide-up">Frequently Asked Questions (FAQs)</h2>
+
+    <div class="faq-accordion" data-accordion="single">
+      {faqData.map((item, index) => (
+        <div class="faq-item reveal slide-up" data-state={index === 0 ? "open" : "closed"} style={`transition-delay: ${100 + index * 50}ms;`}>
+          <button type="button" class="faq-trigger" aria-expanded={index === 0 ? "true" : "false"}>
+            <span class="faq-question">{index + 1}. {item.question}</span>
+            <span class="material-symbols-outlined toggle-icon">expand_more</span>
+          </button>
+
+          <div class="faq-content-wrapper" style={index === 0 ? "height: auto;" : "height: 0px;"}>
+            <div class="faq-content">
+              {item.answer && <p class="faq-a">{item.answer}</p>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Only select items that haven't been initialized yet
+    const accordionItems = document.querySelectorAll('.faq-item:not([data-initialized])');
+
+    accordionItems.forEach((item) => {
+      // Mark as initialized
+      item.setAttribute('data-initialized', 'true');
+      
+      const trigger = item.querySelector('.faq-trigger');
+      const wrapper = item.querySelector('.faq-content-wrapper') as HTMLElement;
+
+      trigger?.addEventListener('click', () => {
+        const isOpen = item.getAttribute('data-state') === 'open';
+
+        // Close all other open items
+        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.setAttribute('data-state', 'closed');
+            otherItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+            const otherWrapper = otherItem.querySelector('.faq-content-wrapper') as HTMLElement;
+            if (otherWrapper) otherWrapper.style.height = '0px';
+          }
+        });
+
+        // Expand/Collapse active item smoothly
+        if (isOpen) {
+          item.setAttribute('data-state', 'closed');
+          trigger.setAttribute('aria-expanded', 'false');
+          wrapper.style.height = '0px';
+        } else {
+          item.setAttribute('data-state', 'open');
+          trigger.setAttribute('aria-expanded', 'true');
+          wrapper.style.height = `${wrapper.scrollHeight}px`;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: 80px 40px;
+    background-color: var(--c-background, #f8fafc);
+  }
+  @media (max-width: 768px) {
+    .faq-section { padding: 80px 16px; }
+  }
+  .faq-container { max-width: 1024px; margin: 0 auto; }
+  
+  .faq-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .faq-item {
+    background-color: var(--c-surface-lowest, #ffffff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    overflow: hidden;
+  }
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  .faq-trigger:hover {
+    background-color: rgba(15, 23, 42, 0.02);
+  }
+  .faq-question {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--c-primary, #0f172a);
+    line-height: 1.4;
+  }
+  .toggle-icon {
+    font-size: 24px !important;
+    color: var(--c-primary, #0f172a);
+    transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  .faq-item[data-state="open"] .toggle-icon {
+    transform: rotate(180deg);
+  }
+  .faq-content-wrapper {
+    overflow: hidden;
+    transition: height 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  .faq-content {
+    padding: 0 24px 24px 24px;
+  }
+  .faq-a {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+  }
+</style>

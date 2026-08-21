@@ -1,0 +1,260 @@
+---
+import { Image } from 'astro:assets';
+import waterHeaterImg from '../../../images/stitch-solar-5.jpeg';
+import heatPumpImg from '../../../images/stitch-solar-6.jpeg';
+import waterPumpImg from '../../../images/stitch-solar-7.jpeg';
+import streetLightImg from '../../../images/stitch-solar-8.jpeg';
+import floodLightImg from '../../../images/stitch-solar-9.jpeg';
+---
+
+<section class="other-products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Other Solutions</h2>
+    </div>
+    <div class="products-grid">
+      <!-- Water Heater -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={waterHeaterImg} alt="Solar Water Heater" class="card-image" />
+        </div>
+        <h4 class="card-title">Solar Water Heater</h4>
+        <p class="card-desc">Say goodbye to high electricity bills from conventional geysers. Our solar water heaters use sunlight to heat water efficiently, making them ideal for homes, hotels, hospitals, hostels, and industries. Available in pressurised and non-pressurised variants, our water heaters are built to deliver consistent hot water throughout the year.</p>
+        <h5 class="list-title">Suitable For:</h5>
+        <ul class="benefits-list">
+          <li>Homes</li>
+          <li>Hotels</li>
+          <li>Hospitals</li>
+          <li>Hostels</li>
+          <li>Factories</li>
+        </ul>
+        <a href="/contact" class="enquire-link">
+          Enquire Now <span class="material-symbols-outlined icon">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Heat Pumps -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={heatPumpImg} alt="Heat Pumps" class="card-image" />
+        </div>
+        <h4 class="card-title">Heat Pumps</h4>
+        <p class="card-desc">For large-scale hot water requirements, heat pumps are an energy-efficient alternative to traditional electric heaters. They extract heat from the air to heat water, consuming significantly less electricity. Perfectly suited for commercial applications.</p>
+        <h5 class="list-title">Suitable For:</h5>
+        <ul class="benefits-list">
+          <li>Hotels and Resorts</li>
+          <li>Hospitals</li>
+          <li>Hostels</li>
+          <li>Swimming Pools</li>
+        </ul>
+        <a href="/contact" class="enquire-link">
+          Enquire Now <span class="material-symbols-outlined icon">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Water Pumps -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={waterPumpImg} alt="Solar Water Pumps" class="card-image" />
+        </div>
+        <h4 class="card-title">Solar Water Pumps</h4>
+        <p class="card-desc">A highly reliable and eco-friendly solution for irrigation and water supply. Run your water pumps directly on solar power without depending on the grid or diesel generators. Available in surface and submersible models.</p>
+        <h5 class="list-title">Suitable For:</h5>
+        <ul class="benefits-list">
+          <li>Agricultural Irrigation</li>
+          <li>Drinking Water Supply</li>
+          <li>Livestock Watering</li>
+          <li>Residential Complexes</li>
+        </ul>
+        <a href="/contact" class="enquire-link">
+          Enquire Now <span class="material-symbols-outlined icon">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Street Lights -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={streetLightImg} alt="Solar Street Lights" class="card-image" />
+        </div>
+        <h4 class="card-title">Solar Street Lights</h4>
+        <p class="card-desc">Light up the streets, parks, and pathways with zero running costs. Our solar street lights come with integrated solar panels, batteries, and LED lights, ensuring hassle-free installation and automatic dusk-to-dawn operation.</p>
+        <h5 class="list-title">Suitable For:</h5>
+        <ul class="benefits-list">
+          <li>Residential Streets</li>
+          <li>Campuses</li>
+          <li>Parks and Gardens</li>
+          <li>Industrial Areas</li>
+        </ul>
+        <a href="/contact" class="enquire-link">
+          Enquire Now <span class="material-symbols-outlined icon">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- High-Mast & Flood Lights -->
+      <div class="product-card">
+        <div class="card-image-wrapper">
+          <Image src={floodLightImg} alt="High-Mast & Flood Lights" class="card-image" />
+        </div>
+        <h4 class="card-title">High-Mast & Flood Lights</h4>
+        <p class="card-desc">Need bright illumination for large open spaces? Our solar-powered high-mast and flood lights offer high-lumen output for enhanced safety and visibility during the night.</p>
+        <h5 class="list-title">Suitable For:</h5>
+        <ul class="benefits-list">
+          <li>Highways and Toll Plazas</li>
+          <li>Sports Grounds</li>
+          <li>Railway Stations</li>
+          <li>Large Commercial Yards</li>
+        </ul>
+        <a href="/contact" class="enquire-link">
+          Enquire Now <span class="material-symbols-outlined icon">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .other-products-section {
+    padding-bottom: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #f8f9ff;
+  }
+
+  @media (min-width: 768px) {
+    .other-products-section {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 1.2;
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .product-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    box-shadow: 0px 10px 32px rgba(15, 23, 42, 0.12);
+  }
+
+  .card-image-wrapper {
+    height: 192px;
+    margin-bottom: 16px;
+    background-color: #e5eeff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .card-image {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+  }
+
+  .product-card:hover .card-image {
+    transform: scale(1.1);
+  }
+
+  .card-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: #45464d;
+    margin-bottom: 16px;
+  }
+
+  .list-title {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 8px;
+    margin-top: auto;
+  }
+
+  .benefits-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    color: #45464d;
+    margin: 0 0 16px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .enquire-link {
+    color: #f47d20;
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+
+  .product-card:hover .enquire-link {
+    gap: 8px;
+  }
+
+  .enquire-link .icon {
+    font-size: 18px;
+  }
+</style>

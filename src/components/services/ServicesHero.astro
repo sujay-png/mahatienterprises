@@ -1,0 +1,204 @@
+---
+import { servicesHeroData } from '../../data/services/hero';
+---
+
+<section class="services-hero">
+  <div class="hero-container">
+    
+    <!-- Text Content Column -->
+    <div class="hero-content">
+      <span class="company-tag">{servicesHeroData.tagline}</span>
+      <h1 class="hero-title">{servicesHeroData.title}</h1>
+      
+      <div class="text-group">
+        {servicesHeroData.paragraphs.map((p) => (
+          <p class="hero-description">{p}</p>
+        ))}
+      </div>
+
+      <a href={servicesHeroData.ctaLink} class="cta-btn">
+        <span>{servicesHeroData.ctaText}</span>
+        <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- Visual Card Column -->
+    <div class="hero-visual">
+      <img 
+        src={servicesHeroData.imageSrc} 
+        alt={servicesHeroData.imageAlt}
+        class="visual-img"
+        loading="eager"
+      />
+      <div class="visual-gradient"></div>
+      
+      <div class="visual-badge">
+        <p class="badge-title">{servicesHeroData.badgeTitle}</p>
+        <p class="badge-subtitle">{servicesHeroData.badgeSubtitle}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .services-hero {
+    background-color: var(--color-bg, #ffffff);
+    padding: 60px 24px 80px 24px;
+    width: 100%;
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+  }
+
+  /* Left Column Styling */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .company-tag {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-orange, #e65c00);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--color-text-dark, #0d1424);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 64px;
+    }
+  }
+
+  .text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+
+  .hero-description {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    line-height: 26px;
+    color: #475569;
+  }
+
+  /* CTA Button */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0d1424;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0px 4px 14px rgba(13, 20, 36, 0.12);
+  }
+
+  .cta-btn:hover {
+    background-color: var(--color-orange, #e65c00);
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 20px rgba(230, 92, 0, 0.25);
+  }
+
+  .btn-icon {
+    font-size: 18px !important;
+    transition: transform 0.2s ease;
+  }
+
+  .cta-btn:hover .btn-icon {
+    transform: translateX(4px);
+  }
+
+  /* Right Column Visual Card */
+  .hero-visual {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 16px 40px rgba(13, 20, 36, 0.08);
+    background-color: #e2e8f0;
+  }
+
+  @media (min-width: 768px) {
+    .hero-visual {
+      height: 560px;
+    }
+  }
+
+  .visual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-visual:hover .visual-img {
+    transform: scale(1.05);
+  }
+
+  .visual-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13, 20, 36, 0.85) 0%, rgba(13, 20, 36, 0) 60%);
+    pointer-events: none;
+  }
+
+  /* Image Overlay Badge */
+  .visual-badge {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    right: 28px;
+    color: #ffffff;
+    z-index: 2;
+  }
+
+  .badge-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .badge-subtitle {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+</style>

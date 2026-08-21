@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/solar-suppliers-in-location/Hero.astro';
+import WhyChooseUs from '../../components/solar-suppliers-in-location/WhyChooseUs.astro';
+import Products from '../../components/solar-suppliers-in-location/Products.astro';
+import FAQ from '../../components/solar-suppliers-in-location/FAQ.astro';
+import CTA from '../../components/solar-suppliers-in-location/CTA.astro';
+
+import { getHeroData } from '../../data/solar-suppliers-in-location/hero';
+import { getWhyChooseUsData } from '../../data/solar-suppliers-in-location/whyChooseUs';
+import { getProductsData } from '../../data/solar-suppliers-in-location/products';
+import { getFaqData } from '../../data/solar-suppliers-in-location/faq';
+import { getCtaData } from '../../data/solar-suppliers-in-location/cta';
+
+export function getStaticPaths() {
+  return [
+    { params: { location: 'mangalore' } },
+    { params: { location: 'udupi' } },
+    { params: { location: 'manipal' } },
+    { params: { location: 'moodabidri' } },
+    { params: { location: 'mulki' } }
+  ];
+}
+
+const { location } = Astro.params;
+const formattedLocation = location ? location.charAt(0).toUpperCase() + location.slice(1) : 'Mangalore';
+
+const heroData = getHeroData(formattedLocation);
+const whyChooseUsData = getWhyChooseUsData(formattedLocation);
+const productsData = getProductsData(formattedLocation);
+const faqData = getFaqData(formattedLocation);
+const ctaData = getCtaData(formattedLocation);
+
+const seoTitle = `Solar Suppliers in ${formattedLocation} | Solar Panels, UPS & Batteries`;
+const seoDescription = `Solar Suppliers in ${formattedLocation} offering solar panels, inverters, batteries, UPS systems and installation services. Get expert consultation now.`;
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+  <!-- Schema block for local business -->
+  <Fragment slot="head">
+    <link rel="canonical" href={`https://mahatienterprises.com/solar-suppliers-in-${location}/`} />
+    <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+    <meta property="og:title" content={`Solar Suppliers in ${formattedLocation} | Solar Panels, UPS & Batteries`} />
+    <meta property="og:description" content={`Solar Suppliers in ${formattedLocation} offering solar panels, inverters, batteries, UPS systems and installation services. Get expert consultation now.`} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={`https://mahatienterprises.com/solar-suppliers-in-${location}/`} />
+    <meta property="og:site_name" content="Mahati Enterprises" />
+    <meta property="og:image" content="https://mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg" />
+    
+    <script type="application/ld+json" is:inline set:html={`
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness","SolarEnergyContractor"],
+      "name": "Mahati Enterprises",
+      "url": "https://mahatienterprises.com/solar-suppliers-in-${location}/",
+      "telephone": "+91 7019351344",
+      "email": "mahati@support.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop No. 5-1-27A4 Ground Floor, Sri Vasudev Building, Opposite Swagtha Gopura, Kinnimulky",
+        "addressLocality": "Udupi",
+        "addressRegion": "Karnataka",
+        "postalCode": "576101",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 13.325033427044273, "longitude": 74.7408171938847 },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "08:00", "closes": "17:00"
+      }],
+      "areaServed": [
+        {"@type":"City","name":"Mangalore"},{"@type":"City","name":"Udupi"},
+        {"@type":"City","name":"Manipal"},{"@type":"City","name":"Mulki"},
+        {"@type":"City","name":"Surathkal"},{"@type":"City","name":"Moodabidri"}
+      ]
+    }
+    `} />
+    
+    <script type="application/ld+json" is:inline set:html={`
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Does solar work well in ${formattedLocation} given the heavy monsoon?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Solar panels generate power even on cloudy days. Hybrid solar systems with battery backup ensure uninterrupted power supply during ${formattedLocation}'s monsoon season." } },
+        { "@type": "Question", "name": "Is net metering available in ${formattedLocation}?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We handle the complete net metering approval process with MESCOM, allowing you to export surplus solar power to the grid and receive credits on your electricity bill." } },
+        { "@type": "Question", "name": "How much can ${formattedLocation} homes save on electricity bills?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most homeowners save between 70% and 90% on their monthly electricity bills, depending on their energy consumption and the size of the solar system installed." } },
+        { "@type": "Question", "name": "Are there government subsidies available in ${formattedLocation}?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Eligible homeowners can avail benefits under the PM Surya Ghar Muft Bijli Yojana. Our team assists with the entire subsidy application and documentation process." } },
+        { "@type": "Question", "name": "Is solar a good investment for ${formattedLocation}'s commercial establishments?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. With high daytime energy consumption and increasing electricity tariffs, on-grid solar systems offer excellent return on investment for shops, offices, factories, and warehouses in ${formattedLocation}." } }
+      ]
+    }
+    `} />
+    
+    <script type="application/ld+json" is:inline set:html={`
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "https://mahatienterprises.com/solar-suppliers-in-${location}/#service",
+      "name": "Solar Products, Solar Installation, Batteries & UPS Solutions in ${formattedLocation}",
+      "description": "Mahati Enterprises provides solar panels, solar installation services, batteries, UPS systems, on-grid solar systems, off-grid solar systems, solar engineering, permitting, and energy storage solutions for residential, commercial, and industrial applications.",
+      "provider": {
+        "@type": "LocalBusiness", "name": "Mahati Enterprises",
+        "url": "https://mahatienterprises.com", "telephone": "+91 7019351344", "email": "mahati@support.com"
+      },
+      "areaServed": [
+        {"@type":"City","name":"Mangalore"},{"@type":"City","name":"Udupi"},{"@type":"City","name":"Manipal"},
+        {"@type":"City","name":"Mulki"},{"@type":"City","name":"Surathkal"},{"@type":"City","name":"Moodabidri"}
+      ]
+    }
+    `} />
+  </Fragment>
+  
+  <div class="solar-theme-wrapper">
+    <Hero heroData={heroData} />
+    <WhyChooseUs whyChooseUsData={whyChooseUsData} />
+    <Products productsData={productsData} />
+    <FAQ faqData={faqData} />
+    <CTA ctaData={ctaData} />
+    
+    <div class="bottom-tagline">
+      <p><strong>Mahati Enterprises</strong> &ndash; Your Trusted Solar Suppliers in {formattedLocation} !</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .solar-theme-wrapper {
+    /* Override primary color to navy blue for this page */
+    --color-primary: #0a1f44;
+    font-family: var(--font-body);
+  }
+  .bottom-tagline {
+    text-align: center;
+    padding: 0 24px 64px;
+  }
+  .bottom-tagline p {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    color: var(--color-text-muted);
+  }
+  .bottom-tagline strong {
+    color: var(--color-primary);
+  }
+</style>

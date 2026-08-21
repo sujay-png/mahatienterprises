@@ -1,0 +1,416 @@
+---
+import { Image } from "astro:assets";
+import logoImg from "../../../images/Logo.webp";
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand Column -->
+      <div class="brand-col">
+        <a href="/" class="footer-logo-link">
+          <Image
+            src={logoImg}
+            alt="Mahati Enterprises Logo"
+            class="footer-logo"
+            loading="lazy"
+          />
+        </a>
+        <p class="brand-desc">
+          Leading the transition to sustainable energy with premium solar and
+          UPS solutions. Proudly serving Mangalore, Udupi, Hubli, Manipal,
+          Moodabidri & Mulki.
+        </p>
+        <div class="social-icons">
+          <a
+            href="https://www.facebook.com/powertronicsystems?rdid=ALRUP4KRFRbOknF1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWNRmzSPt%2F#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            class="social-btn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M12 2.04c-5.5 0-10 4.48-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.54-4.5-10.02-10-10.02Z"
+              ></path></svg
+            >
+          </a>
+          <a
+            href="https://www.instagram.com/powertronic_systems"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="social-btn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              ><path
+                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"
+              ></path></svg
+            >
+          </a>
+        </div>
+      </div>
+
+      <!-- Products Column -->
+      <div class="links-col">
+        <h4 class="col-title">Products</h4>
+        <ul class="link-list">
+          <li>
+            <a href="/products/solar" class="footer-link">Solar Solutions</a>
+          </li>
+          <li><a href="/products/ups" class="footer-link">UPS Solutions</a></li>
+          <li>
+            <a href="/products/batteries" class="footer-link">Batteries</a>
+          </li>
+          <li><a href="/travel" class="footer-link">Holiday & Travel</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links Column -->
+      <div class="links-col">
+        <h4 class="col-title">Quick Links</h4>
+        <ul class="quick-grid">
+          <li><a href="/" class="footer-link">Home</a></li>
+          <li><a href="/about" class="footer-link">About Us</a></li>
+          <li><a href="/services" class="footer-link">Services</a></li>
+          <li><a href="/clients" class="footer-link">Clients</a></li>
+          <li><a href="/blog" class="footer-link">Blog</a></li>
+          <li><a href="/contact" class="footer-link">Contact Us</a></li>
+          <li><a href="/site-maps" class="footer-link">Site Maps</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="contact-col">
+        <h4 class="col-title">Contact Us</h4>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="material-symbols-outlined icon">location_on</span>
+            <p>
+              Udupi Office: Shop No. 5-1-27A4 Ground floor Sri Vasudev' Building
+              opposite Swagtha Gopura Kinnimulky, Udupi - 576101.
+            </p>
+          </div>
+          <div class="contact-item">
+            <span class="material-symbols-outlined icon">location_on</span>
+            <p>
+              Hubli Office: G - 53, Eureka Centre Koppikar Road, Hubli - 580 020
+            </p>
+          </div>
+          <div class="contact-item">
+            <span class="material-symbols-outlined icon">call</span>
+            <p>+91 701 935 1344</p>
+          </div>
+          <div class="contact-item">
+            <span class="material-symbols-outlined icon">call</span>
+            <p>+91 948 392 7870</p>
+          </div>
+          <div class="contact-item">
+            <span class="material-symbols-outlined icon">mail</span>
+            <p>team@powertronics.co.in</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+      <p class="copyright">
+        Copyright © Mahati Enterprises 2026 | All Rights Reserved
+      </p>
+      <div class="legal-links">
+        <a href="/privacy-policy" class="legal-link">Privacy Policy</a>
+        <span class="divider">|</span>
+        <a href="/terms-and-conditions" class="legal-link">Terms & Conditions</a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a
+  href="https://wa.me/917019351344"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-btn"
+  aria-label="Chat on WhatsApp"
+>
+  <span class="material-symbols-outlined whatsapp-icon">chat</span>
+</a>
+
+<style>
+  /* Deep Dark Background matched to 2nd Image */
+  .footer {
+    background-color: #0b1120;
+    color: #ffffff;
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+    font-family: var(--font-body, "Hanken Grotesk", system-ui, sans-serif);
+    position: relative;
+    z-index: 10;
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .brand-col,
+  .contact-col {
+    grid-column: span 2;
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1.2fr 0.8fr 1fr 1.1fr;
+    }
+    .brand-col,
+    .contact-col {
+      grid-column: span 1;
+    }
+  }
+
+  .footer-logo-link {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-logo {
+    height: 3.2rem;
+    width: auto;
+    object-fit: contain;
+    /* Clean white background card around logo if non-transparent */
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+
+  /* Text colors matching 2nd image muted gray-blue */
+  .brand-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #8b9bb4;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .social-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .col-title {
+    font-family: var(--font-heading, "Manrope", system-ui, sans-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.2px;
+  }
+
+  .link-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .quick-grid {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-link {
+    color: #8b9bb4;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: block;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #8b9bb4;
+    line-height: 1.5;
+  }
+
+  .contact-item .icon {
+    color: #38bdf8;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Bottom Bar styling matched to subtle line in 2nd image */
+  .bottom-bar {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .bottom-bar {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .copyright {
+    font-size: 0.825rem;
+    color: #64748b;
+  }
+
+  .legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.825rem;
+  }
+
+  .legal-link {
+    color: #8b9bb4;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .legal-link:hover {
+    color: #ffffff;
+  }
+
+  .divider {
+    color: #334155;
+  }
+
+  /* WhatsApp Floating Button */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    background-color: #22c55e;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.08);
+    background-color: #16a34a;
+  }
+
+  .whatsapp-icon {
+    font-size: 1.75rem;
+    font-variation-settings: "FILL" 1;
+  }
+</style>
+
+<script>
+  // Explicitly force scroll-to-top when clicking footer links
+  // This helps on some mobile browsers and when clicking links to the current page
+  function setupFooterScroll() {
+    const footerLinks = document.querySelectorAll(".footer a:not(.social-btn)");
+    footerLinks.forEach((link) => {
+      // Remove old listeners to prevent duplicates
+      const newLink = link.cloneNode(true) as HTMLAnchorElement;
+      link.replaceWith(newLink);
+
+      newLink.addEventListener("click", (e) => {
+        const href = newLink.getAttribute("href");
+
+        // Only force scroll for internal links (starting with /)
+        if (href && href.startsWith("/")) {
+          const targetPath = new URL(newLink.href).pathname;
+          const currentPath = window.location.pathname;
+
+          if (targetPath === currentPath) {
+            // Same page navigation, prevent default and just scroll up smoothly
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            // Different page, scroll instantly so new page loads at top
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          }
+        }
+      });
+    });
+  }
+
+  // Run on initial load and after every view transition swap
+  document.addEventListener("astro:page-load", setupFooterScroll);
+</script>

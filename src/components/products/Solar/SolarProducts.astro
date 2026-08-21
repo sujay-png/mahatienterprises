@@ -1,0 +1,464 @@
+---
+// src/components/Products/Solar/SolarProducts.astro
+import offGridImg from '../../../images/stitch-solar-3.jpeg';
+import onGridImg from '../../../images/stitch-solar-4.jpeg';
+import hybridImg from '../../../images/Hybrid-solar-system.jpg';
+import waterHeaterImg from '../../../images/imgi_5_Solar-water-heater.jpg';
+import heatPumpImg from '../../../images/Solar-heat-pumps.jpg';
+import waterPumpImg from '../../../images/Solar-water-pumps.jpg';
+import streetLightImg from '../../../images/Solar-street-lights.jpg';
+import highMastImg from '../../../images/37_Solar-high-mast.jpg';
+import floodLightImg from '../../../images/Solar-flood-lights.jpg';
+---
+
+<section class="products-section">
+  <div class="container">
+    <div class="section-header reveal slide-up">
+      <h2 class="section-title">Our Solar Products</h2>
+      <p class="section-desc">High-performance energy solutions engineered for reliability and maximum efficiency.</p>
+    </div>
+    
+    <!-- Primary Systems -->
+    <div class="products-grid">
+      <!-- Off-Grid -->
+      <div class="product-card reveal slide-up" style="transition-delay: 100ms;">
+        <div class="product-image-container">
+          <img class="product-image" alt="A robust off-grid solar system setup" src={offGridImg.src}/>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Off-Grid Solar System</h3>
+          <p class="product-desc">An off-grid solar system is ideal for homes and facilities that have no access to the main electricity grid or face frequent power cuts. It stores solar energy in batteries, giving you complete independence from the grid. Our off-grid systems are robust, scalable, and suitable for rural homes, farms, remote offices, and more.</p>
+          <h4 class="product-subtitle">Key Benefits:</h4>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Total energy independence</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">No electricity bill</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Works in areas with no grid connectivity</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Ideal for frequent power outage zones</span>
+            </li>
+          </ul>
+          <a class="link-enquire" href="/contact">
+            Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- On-Grid -->
+      <div class="product-card product-card-popular reveal slide-up" style="transition-delay: 200ms;">
+        <div class="product-image-container">
+          <span class="badge-popular">Most Popular</span>
+          <img class="product-image" alt="An on-grid solar system setup" src={onGridImg.src}/>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">On-Grid Solar System</h3>
+          <p class="product-desc">An on-grid solar system (also called a grid-tied system) connects directly to the public electricity grid. Any excess power you generate is fed back to the grid, often earning you bill credits through net metering. This is the most popular choice for urban homes and commercial buildings looking to reduce their electricity costs significantly.</p>
+          <h4 class="product-subtitle">Key Benefits:</h4>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Reduces monthly electricity bills</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Earns net metering credits</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Low maintenance and cost-effective</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Perfect for urban homes and offices</span>
+            </li>
+          </ul>
+          <a class="link-enquire" href="/contact">
+            Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Hybrid -->
+      <div class="product-card reveal slide-up" style="transition-delay: 300ms;">
+        <div class="product-image-container">
+          <img class="product-image" alt="A hybrid solar power system" src={hybridImg.src}/>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Hybrid Solar System</h3>
+          <p class="product-desc">Can't decide between off-grid and on-grid? A hybrid solar system gives you the best of both worlds. It stays connected to the grid while also storing energy in batteries so you are protected from both power cuts and high bills. Our hybrid solar systems are the smart choice for businesses and homes that need uninterrupted power supply at all times.</p>
+          <h4 class="product-subtitle">Key Benefits:</h4>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Battery backup + grid connection</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Uninterrupted power supply</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Maximum energy savings</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined feature-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="feature-text">Scalable for future expansion</span>
+            </li>
+          </ul>
+          <a class="link-enquire" href="/contact">
+            Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Secondary Products -->
+    <div class="secondary-products-grid">
+      <!-- Water Heater -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 100ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar water heater" src={waterHeaterImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar Water Heater</h4>
+        <p class="secondary-desc">Say goodbye to high electricity bills from conventional geysers. Our solar water heaters use sunlight to heat water efficiently, making them ideal for homes, hotels, hospitals, hostels, and industries. Available in pressurised and non-pressurised variants, our water heaters are built to deliver consistent hot water throughout the year.</p>
+        <h5 class="secondary-subtitle">Suitable For:</h5>
+        <ul class="secondary-list">
+          <li>Homes</li>
+          <li>Hotels</li>
+          <li>Hospitals</li>
+          <li>Hostels</li>
+          <li>Factories</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+      <!-- Heat Pumps -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 200ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar heat pump" src={heatPumpImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar Heat Pumps</h4>
+        <p class="secondary-desc">Our solar heat pumps combine the efficiency of heat pump technology with solar energy to deliver hot water at a fraction of the running cost of traditional systems. Unlike standard geysers, solar heat pumps extract heat from the surrounding air and use solar power to run making them extraordinarily energy-efficient and eco-friendly.</p>
+        <h5 class="secondary-subtitle">Suitable For:</h5>
+        <ul class="secondary-list">
+          <li>Large-scale residential complexes</li>
+          <li>Commercial establishments</li>
+          <li>Industrial facilities</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+      <!-- Water Pumps -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 300ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar water pump" src={waterPumpImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar Water Pumps</h4>
+        <p class="secondary-desc">Farmers and rural communities, this one is for you. Our solar water pumps harness sunlight to pump water for irrigation, drinking water supply, and livestock without any fuel or grid power. With zero operating cost and minimal maintenance, solar water pumps are transforming agriculture across Karnataka.</p>
+        <h5 class="secondary-subtitle">Suitable For:</h5>
+        <ul class="secondary-list">
+          <li>Agricultural irrigation</li>
+          <li>Drinking water supply</li>
+          <li>Livestock farming</li>
+          <li>Remote water lifting</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+      <!-- Street Lights -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 100ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar street lights" src={streetLightImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar Street Lights</h4>
+        <p class="secondary-desc">Our solar street lights are self-contained units with built-in solar panels, batteries, and LED lamps. They charge automatically during the day and switch on at dusk making them perfect for roads, residential layouts, industrial parks, and municipal areas.</p>
+        <h5 class="secondary-subtitle">Features:</h5>
+        <ul class="secondary-list">
+          <li>Auto on/off</li>
+          <li>Motion sensor options</li>
+          <li>Weatherproof</li>
+          <li>Long battery life</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+      <!-- High Mast Lights -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 200ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar high mast lights" src={highMastImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar High Mast Lights</h4>
+        <p class="secondary-desc">When large open areas need powerful illumination, solar high mast lights are the answer. Mounted on tall poles (typically 9–15 metres), these powerful solar-powered lights are ideal for highways, toll plazas, ports, airports, and large industrial yards. Our solar high mast lights combine high-lumen LED performance with reliable solar charging.</p>
+        <h5 class="secondary-subtitle">Features:</h5>
+        <ul class="secondary-list">
+          <li>High luminosity LED</li>
+          <li>Sturdy pole structure</li>
+          <li>Deep-cycle battery</li>
+          <li>Remote monitoring options</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+      <!-- Flood Lights -->
+      <div class="secondary-card reveal slide-up" style="transition-delay: 300ms;">
+        <div class="secondary-image-container">
+          <img class="secondary-image" alt="Solar flood lights" src={floodLightImg.src}/>
+        </div>
+        <h4 class="secondary-title">Solar Flood Lights</h4>
+        <p class="secondary-desc">Need to light up a building facade, sports ground, compound wall, or construction site? Our solar flood lights deliver wide-area, high-intensity illumination without a single unit of grid electricity. Available in various wattages, our solar flood lights are weatherproof, durable, and easy to install.</p>
+        <h5 class="secondary-subtitle">Features:</h5>
+        <ul class="secondary-list">
+          <li>Wide beam angle</li>
+          <li>Adjustable mounting bracket</li>
+          <li>Motion sensor variants</li>
+          <li>IP65 waterproof</li>
+        </ul>
+        <a href="/contact" class="secondary-link">Enquire Now <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .products-section {
+    padding: 80px 40px;
+    background-color: var(--c-surface-bright, #f8f9ff);
+  }
+  @media (max-width: 768px) {
+    .products-section { padding: 80px 16px; }
+  }
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .section-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--c-on-surface-var, #45464d);
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+  .product-card {
+    background-color: var(--c-surface-lowest, #ffffff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  }
+  .product-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: var(--shadow-2, 0px 10px 32px rgba(15,23,42,0.12));
+  }
+  .product-card-popular { border-top: 4px solid var(--c-secondary, #f47d20); }
+  
+  .product-image-container {
+    height: 256px;
+    overflow: hidden;
+    position: relative;
+    padding: 24px;
+    background-color: var(--c-surface-container, #e5eeff);
+  }
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+  }
+  .product-card:hover .product-image { transform: scale(1.08); }
+  .badge-popular {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: rgba(244, 125, 32, 0.1);
+    color: var(--c-secondary, #f47d20);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    z-index: 10;
+  }
+  .product-content {
+    padding: 32px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+  .product-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 12px;
+  }
+  .product-desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 24px;
+  }
+  .product-subtitle {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 12px;
+  }
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .feature-icon {
+    color: var(--c-secondary, #f47d20);
+    font-size: 20px;
+  }
+  .feature-text {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--c-on-surface, #0b1c30);
+  }
+  .link-enquire {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--c-secondary, #f47d20);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-top: auto;
+  }
+  .link-enquire:hover { color: var(--c-secondary-container, #5c2400); }
+
+  .secondary-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1024px) {
+    .secondary-products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .secondary-products-grid { grid-template-columns: 1fr; }
+  }
+  .secondary-card {
+    background-color: var(--c-surface-lowest, #ffffff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-1, 0px 4px 20px rgba(15,23,42,0.05));
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  }
+  .secondary-card:hover { 
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2, 0px 10px 32px rgba(15,23,42,0.12)); 
+  }
+  .secondary-image-container {
+    height: 192px;
+    margin-bottom: 16px;
+    background-color: var(--c-surface-container, #e5eeff);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .secondary-image {
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+  }
+  .secondary-card:hover .secondary-image { transform: scale(1.1); }
+  .secondary-title {
+    font-family: var(--font-heading, 'Manrope', system-ui, sans-serif);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 12px;
+  }
+  .secondary-desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 16px;
+  }
+  .secondary-subtitle {
+    font-family: var(--font-body, 'Hanken Grotesk', system-ui, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--c-primary, #0f172a);
+    margin-bottom: 8px;
+    margin-top: auto;
+  }
+  .secondary-list {
+    list-style: disc;
+    list-style-position: inside;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--c-on-surface-var, #45464d);
+    margin-bottom: 16px;
+    padding-left: 0;
+  }
+  .secondary-list li { margin-bottom: 4px; }
+  .secondary-link {
+    color: var(--c-secondary, #f47d20);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.3s;
+    text-decoration: none;
+  }
+  .secondary-card:hover .secondary-link { gap: 8px; }
+</style>

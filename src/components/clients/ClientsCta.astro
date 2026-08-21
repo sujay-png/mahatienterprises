@@ -1,0 +1,124 @@
+---
+import { clientsData } from '../../data/clients/clientsData';
+---
+
+<section class="banner-cta">
+  <div 
+    class="banner-bg" 
+       style="background-image: url('/src/images/cta  banner image.jpg')"
+  >
+    <div class="banner-overlay"></div>
+  </div>
+
+  <div class="banner-content">
+    <span class="banner-subtitle">{clientsData.cta.subtitle}</span>
+    <h2 class="banner-title">{clientsData.cta.title}</h2>
+    <p class="banner-description">{clientsData.cta.description}</p>
+    <a href={clientsData.cta.buttonLink} class="banner-button">
+      {clientsData.cta.buttonText}
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Layout & Background Overlay */
+  .banner-cta {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    overflow: hidden;
+  }
+
+  .banner-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  /* Dark Overlay matching image contrast */
+  .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 25, 0.72);
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 10;
+    max-width: 720px;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner-subtitle {
+    display: block;
+    color: #ffdbca; /* secondary-fixed */
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  /* Typography */
+  .banner-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .banner-title {
+      font-size: 42px;
+    }
+  }
+
+  .banner-description {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
+    max-width: 620px;
+  }
+
+  /* Button with Light-Color Hover Transition */
+  .banner-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b1c;
+    color: #ffffff;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 38px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  .banner-button:hover {
+    background-color: #ff8c4a;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 20px rgba(255, 140, 74, 0.4);
+  }
+</style>

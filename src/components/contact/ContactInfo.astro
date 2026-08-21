@@ -1,0 +1,137 @@
+---
+import { contactData } from '../../data/contact/contactData';
+---
+
+<div class="contact-info-grid">
+  {contactData.offices.map((office) => (
+    <div class="info-card">
+      <div class="info-header">
+        <span class="material-symbols-outlined icon">{office.icon}</span>
+        <div>
+          <h3 class="info-title">{office.title}</h3>
+          <p class="info-address">{office.address}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <div class="info-card combined-card">
+    {contactData.contacts.slice(0, 2).map((contact) => (
+      <div class="contact-row">
+        <span class="material-symbols-outlined icon-small">{contact.icon}</span>
+        <div>
+          <p class="contact-label">{contact.label}</p>
+          <a href={contact.href} class="contact-link">{contact.value}</a>
+        </div>
+      </div>
+    ))}
+    
+    <div class="contact-row border-top">
+      <span class="material-symbols-outlined icon-small">{contactData.contacts[2].icon}</span>
+      <div>
+        <p class="contact-label">{contactData.contacts[2].label}</p>
+        <a href={contactData.contacts[2].href} class="contact-link">{contactData.contacts[2].value}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .info-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    border: 1px solid transparent;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 32px rgba(15, 23, 42, 0.12);
+    border-color: #cbd5e1; /* light grey border */
+    background-color: #f8fafc;
+  }
+
+  .info-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .icon {
+    font-size: 32px;
+    color: #fd761a; /* secondary-container */
+  }
+
+  .info-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #0b1c30;
+    margin: 0 0 8px 0;
+  }
+
+  .info-address {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    line-height: 24px;
+    color: #45464d;
+    white-space: pre-line;
+    margin: 0;
+  }
+
+  .combined-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .border-top {
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid #cbdbf5;
+  }
+
+  .icon-small {
+    font-size: 24px;
+    color: #000000;
+  }
+
+  .contact-label {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    color: #45464d;
+    margin: 0 0 4px 0;
+  }
+
+  .contact-link {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #0b1c30;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: #fd761a;
+  }
+</style>

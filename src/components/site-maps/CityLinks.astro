@@ -1,0 +1,32 @@
+---
+import type { CityLink } from '../../data/sitemaps';
+
+interface Props {
+  cities: CityLink[];
+}
+
+const { cities } = Astro.props;
+---
+<section class="stitch-city-section">
+  <div class="stitch-header">
+    <span class="icon-circle">
+      <span class="material-symbols-outlined icon-sun" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+    </span>
+    <h2 class="stitch-title">Solar Suppliers In Karnataka</h2>
+    <p class="stitch-subtitle">Serving customers across these locations</p>
+  </div>
+
+  <div class="stitch-grid">
+    {cities.map((city) => (
+      <a href={city.url} class="stitch-card group">
+        <span class="card-icon-container">
+          <span class="material-symbols-outlined card-icon" style="font-variation-settings: 'FILL' 1;">location_on</span>
+        </span>
+        <span class="card-title">{city.name}</span>
+        <span class="material-symbols-outlined arrow-icon">arrow_forward</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+

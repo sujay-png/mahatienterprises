@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductsHero from '../../components/products/ProductsHero.astro';
+import SolarProducts from '../../components/products/SolarProducts.astro';
+import UpsProducts from '../../components/products/UpsProducts.astro';
+import BatteriesProducts from '../../components/products/BatteriesProducts.astro';
+import ProductsCTA from '../../components/products/ProductsCTA.astro';
+---
+
+<BaseLayout title="Our Products | Mahati Enterprises">
+  <main class="products-page">
+    <ProductsHero />
+    <SolarProducts />
+    <UpsProducts />
+    <BatteriesProducts />
+    <ProductsCTA />
+  </main>
+</BaseLayout>
+
+<style>
+  .products-page {
+    width: 100%;
+    background-color: var(--color-bg);
+  }
+</style>
