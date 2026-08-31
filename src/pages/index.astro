@@ -1,22 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../pages/home/Hero.astro';
+import Certifications from '../components/about/certifications.astro';
 import SubsidyBanner from '../pages/home/SubsidyBanner.astro';
+import ClientLogos from '../components/clients/ClientLogos.astro';
 import MissionStats from '../pages/home/MissionStats.astro';
 import Products from '../pages/home/Products.astro';
 import Services from '../pages/home/Services.astro';
+import OurWorkGrid from '../components/our-work/OurWorkGrid.astro';
 import Testimonials from '../pages/home/Testimonials.astro';
+import WhyChooseClients from '../components/clients/WhyChooseClients.astro';
 import Faq from '../pages/home/Faq.astro';
 import Cta from '../pages/home/Cta.astro';
 ---
 
 <BaseLayout title="Mahati Enterprises | Solar Power & UPS Solutions">
   <Hero />
+  <Certifications />
   <SubsidyBanner />
+  <ClientLogos />
   <MissionStats />
   <Products />
   <Services />
+  <OurWorkGrid />
   <Testimonials />
+  <WhyChooseClients />
   <Faq />
   <Cta />
 </BaseLayout>
