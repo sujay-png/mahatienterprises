@@ -1,5 +1,5 @@
 const WORDPRESS_GRAPHQL_URL =
-  "https://mahatienterprises.com/graphql";
+  "https://dashboard.mahatienterprises.com/graphql";
 
 export async function fetchWordPress(
   query: string,
