@@ -6,7 +6,7 @@ export interface ProductItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image: any;
   alt: string;
   linkText: string;
   href: string;
@@ -30,7 +30,7 @@ export const productsData: ProductsData = {
       id: "solar-modules",
       title: "Solar Modules",
       description: "Tier-1 high-efficiency monocrystalline panels designed for maximum energy yield even in low-light conditions.",
-      image: solarPanelImg.src,
+      image: solarPanelImg,
       alt: "High efficiency solar panels",
       linkText: "Explore Details",
       href: "/products/solar-modules"
@@ -39,7 +39,7 @@ export const productsData: ProductsData = {
       id: "inverters-ups",
       title: "Inverters & UPS",
       description: "Intelligent power management systems that ensure seamless energy transition and grid stability for sensitive equipment.",
-      image: appliancesImg.src,
+      image: appliancesImg,
       alt: "Industrial Grade UPS system",
       linkText: "Explore Details",
       href: "/products/inverters-ups"
@@ -48,7 +48,7 @@ export const productsData: ProductsData = {
       id: "energy-storage",
       title: "Energy Storage",
       description: "Next-generation LiFePO4 battery solutions providing reliable backup and optimized self-consumption rates.",
-      image: inverterBatteryImg.src,
+      image: inverterBatteryImg,
       alt: "Advanced battery storage unit",
       linkText: "Explore Details",
       href: "/products/energy-storage"

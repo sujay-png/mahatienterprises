@@ -97,7 +97,21 @@ const formattedDate =
 <BaseLayout
   title={`${post.title} | Mahati Enterprises`}
   description={post.excerpt?.replace(/<[^>]*>/g, '')}
+  image={post.featuredImage?.node?.sourceUrl}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.title,
+      "image": post.featuredImage?.node?.sourceUrl ? [post.featuredImage.node.sourceUrl] : [],
+      "datePublished": new Date(post.date).toISOString(),
+      "author": [{
+        "@type": "Person",
+        "name": author
+      }]
+    })} />
+  </Fragment>
 
 
   <!-- =====================================
