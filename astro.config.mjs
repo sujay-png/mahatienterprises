@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mahatienterprises.com',
+  site: 'https://dashboard.mahatienterprises.com',
   trailingSlash: 'never',
   build: {
     format: 'file'
