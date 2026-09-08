@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { fetchWordPress } from '../../data/wordpress';
+import BlogSidebarForm from '../../components/blog/BlogSidebarForm.astro';
 
 export async function getStaticPaths() {
 
@@ -247,36 +248,8 @@ const formattedDate =
 
 
       <!-- Sidebar -->
-
       <aside class="article-sidebar">
-
-        <div class="sidebar-card">
-
-          <span class="sidebar-label">
-            MAHATI ENTERPRISES
-          </span>
-
-          <h3>
-            Powering a
-            <em>Brighter</em>
-            Future
-          </h3>
-
-          <p>
-            Discover our solar, UPS, battery and
-            sustainable energy solutions.
-          </p>
-
-          <a
-            href="/contact"
-            class="sidebar-button"
-          >
-            Talk to Our Experts
-            <span>→</span>
-          </a>
-
-        </div>
-
+        <BlogSidebarForm />
       </aside>
 
 
@@ -866,152 +839,7 @@ const formattedDate =
 }
 
 
-.sidebar-card {
-
-  padding:
-    30px;
-
-  border:
-    1px solid
-    rgba(120, 149, 77, .18);
-
-  border-radius:
-    22px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #f2f6ee,
-      #ffffff
-    );
-
-  box-shadow:
-    0 15px 40px
-    rgba(30, 45, 25, .06);
-}
-
-
-.sidebar-label {
-
-  color:
-    #78954d;
-
-  font-size:
-    10px;
-
-  font-weight:
-    800;
-
-  letter-spacing:
-    2px;
-}
-
-
-.sidebar-card h3 {
-
-  margin:
-    16px 0;
-
-  color:
-    #172018;
-
-  font-size:
-    28px;
-
-  line-height:
-    1.15;
-
-  letter-spacing:
-    -.7px;
-}
-
-
-.sidebar-card h3 em {
-
-  color:
-    #78954d;
-
-  font-style:
-    normal;
-}
-
-
-.sidebar-card p {
-
-  margin:
-    0;
-
-  color:
-    #667066;
-
-  font-size:
-    14px;
-
-  line-height:
-    1.7;
-}
-
-
-/* =========================================
-   SIDEBAR BUTTON
-========================================= */
-
-.sidebar-button {
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-  margin-top:
-    24px;
-
-  padding:
-    14px 17px;
-
-  border-radius:
-    12px;
-
-  background:
-    #172018;
-
-  color:
-    #ffffff;
-
-  font-size:
-    13px;
-
-  font-weight:
-    700;
-
-  text-decoration:
-    none;
-
-  transition:
-    background .25s ease,
-    transform .25s ease;
-}
-
-
-.sidebar-button:hover {
-
-  background:
-    #78954d;
-
-  transform:
-    translateY(-2px);
-}
-
-
-.sidebar-button span {
-
-  font-size:
-    18px;
-}
+import BlogSidebarForm from '@/components/BlogSidebarForm';
 
 
 /* =========================================

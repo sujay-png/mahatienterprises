@@ -12,6 +12,7 @@ import Testimonials from '../pages/home/Testimonials.astro';
 import WhyChooseClients from '../components/clients/WhyChooseClients.astro';
 import Faq from '../pages/home/Faq.astro';
 import Cta from '../pages/home/Cta.astro';
+import LatestBlogs from '../pages/home/LatestBlogs.astro';
 ---
 
 <BaseLayout title="Mahati Enterprises | Solar Power & UPS Solutions">
@@ -22,9 +23,10 @@ import Cta from '../pages/home/Cta.astro';
   <MissionStats />
   <Products />
   <Services />
-  <OurWorkGrid />
+  <OurWorkGrid limit={3} showViewAll={true} />
   <Testimonials />
   <WhyChooseClients />
+  <LatestBlogs />
   <Faq />
   <Cta />
 </BaseLayout>

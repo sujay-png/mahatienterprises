@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BatteriesHero from '../../components/products/Batteries/BatteriesHero.astro';
+import BatteryRange from '../../components/products/Batteries/BatteryRange.astro';
+import BatteryComparison from '../../components/products/Batteries/BatteryComparison.astro';
+import BatteryApplications from '../../components/products/Batteries/BatteryApplications.astro';
+import BatteryWhyChoose from '../../components/products/Batteries/BatteryWhyChoose.astro';
+import BatteryFAQ from '../../components/products/Batteries/BatteryFAQ.astro';
+import BatteryCTA from '../../components/products/Batteries/BatteryCTA.astro';
+---
+
+<BaseLayout title="Batteries - Mahati Enterprises">
+  <main class="batteries-page">
+    <BatteriesHero />
+    <BatteryRange />
+    <BatteryComparison />
+    <BatteryApplications />
+    <BatteryWhyChoose />
+    <BatteryFAQ />
+    <BatteryCTA />
+  </main>
+</BaseLayout>
+
+<style>
+  .batteries-page {
+    width: 100%;
+    background-color: var(--color-bg);
+  }
+</style>

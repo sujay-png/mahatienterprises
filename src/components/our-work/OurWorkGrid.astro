@@ -1,8 +1,15 @@
 ---
-import imgVedvyasa from '../../images/VedvyasTantra3.jpg';
-import imgAJ from '../../images/AJ institute2.jpg';
-import imgChandra from '../../images/Chandrakanth kramballi3.jpg';
-import imgRaghavendra from '../../images/raghavendra-hero.webp';
+import imgVedvyasa from "../../images/VedvyasTantra3.jpg";
+import imgAJ from "../../images/AJ institute2.jpg";
+import imgChandra from "../../images/Chandrakanth kramballi3.jpg";
+import imgRaghavendra from "../../images/raghavendra-hero.webp";
+
+interface Props {
+  limit?: number;
+  showViewAll?: boolean;
+}
+
+const { limit, showViewAll = false } = Astro.props;
 
 const projects = [
   {
@@ -10,62 +17,85 @@ const projects = [
     category: "Residential Rooftop Installation",
     location: "Marpalli, Udupi",
     link: "/our-work/vedavyasa-tantry",
-    img: imgVedvyasa.src
+    img: imgVedvyasa.src,
   },
   {
     title: "AJ Institute",
     category: "Institutional Solar Array",
     location: "Kottara, Mangalore",
     link: "/our-work/aj-institute",
-    img: imgAJ.src
+    img: imgAJ.src,
   },
   {
     title: "Chandrakanth",
     category: "Residential Solar Solution",
     location: "Kramballi, Udupi",
     link: "/our-work/chandrakanth",
-    img: imgChandra.src
+    img: imgChandra.src,
   },
   {
     title: "Raghavendra KG",
     category: "Solar Installation",
     location: "Padigar, Udupi",
     link: "/our-work/raghavendra",
-    img: imgRaghavendra.src
-  }
+    img: imgRaghavendra.src,
+  },
 ];
 ---
 
 <section class="our-work-grid-section">
   <div class="grid-container">
-    
     <div class="section-header">
       <h2 class="section-title">Solar Projects That Speak for Themselves</h2>
-      <p class="section-subtitle">At Mahati Enterprises, we believe the best proof of our work is the work itself. Browse through our completed solar energy projects — each one designed, supplied, and installed to deliver maximum efficiency, long-term savings, and complete peace of mind for our customers.</p>
+      <p class="section-subtitle">
+        At Mahati Enterprises, we believe the best proof of our work is the work
+        itself. Browse through our completed solar energy projects — each one
+        designed, supplied, and installed to deliver maximum efficiency,
+        long-term savings, and complete peace of mind for our customers.
+      </p>
     </div>
 
     <div class="projects-grid">
-      {projects.map((project) => (
-        <article class="project-card">
-          <div class="image-wrapper">
-            <img src={project.img} alt={project.title} class="project-img" loading="lazy" />
-            <div class="location-badge">
-              <span class="material-symbols-outlined location-icon">location_on</span>
-              <span class="location-text">{project.location}</span>
+      {
+        (limit ? projects.slice(0, limit) : projects).map((project) => (
+          <article class="project-card">
+            <div class="image-wrapper">
+              <img
+                src={project.img}
+                alt={project.title}
+                class="project-img"
+                loading="lazy"
+              />
+              <div class="location-badge">
+                <span class="material-symbols-outlined location-icon">
+                  location_on
+                </span>
+                <span class="location-text">{project.location}</span>
+              </div>
             </div>
-          </div>
-          
-          <div class="project-content">
-            <h3 class="project-title">{project.title}</h3>
-            <p class="project-category">{project.category}</p>
-            <a href={project.link} class="view-link">
-              View Project
-              <span class="material-symbols-outlined link-icon">arrow_forward</span>
-            </a>
-          </div>
-        </article>
-      ))}
+
+            <div class="project-content">
+              <h3 class="project-title">{project.title}</h3>
+              <p class="project-category">{project.category}</p>
+              <a href={project.link} class="view-link">
+                View Project
+                <span class="material-symbols-outlined link-icon">
+                  arrow_forward
+                </span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
     </div>
+
+    {showViewAll && (
+      <div class="view-all-container">
+        <a href="/our-work" class="btn-primary view-all-btn">
+          View All Projects <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+        </a>
+      </div>
+    )}
 
   </div>
 </section>
@@ -88,7 +118,7 @@ const projects = [
   }
 
   .section-title {
-    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-family: var(--font-heading, "Manrope", sans-serif);
     font-size: 32px;
     font-weight: 600;
     color: #0b1c30;
@@ -97,7 +127,7 @@ const projects = [
   }
 
   .section-subtitle {
-    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-family: var(--font-body, "Hanken Grotesk", sans-serif);
     font-size: 16px;
     line-height: 24px;
     color: #45464d;
@@ -132,7 +162,9 @@ const projects = [
     display: flex;
     flex-direction: column;
     box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .project-card:hover {
@@ -177,7 +209,7 @@ const projects = [
   }
 
   .location-text {
-    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-family: var(--font-body, "Hanken Grotesk", sans-serif);
     font-size: 12px;
     font-weight: 500;
     color: #0b1c30;
@@ -192,7 +224,7 @@ const projects = [
   }
 
   .project-title {
-    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-family: var(--font-heading, "Manrope", sans-serif);
     font-size: 24px;
     font-weight: 600;
     color: #0b1c30;
@@ -200,7 +232,7 @@ const projects = [
   }
 
   .project-category {
-    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-family: var(--font-body, "Hanken Grotesk", sans-serif);
     font-size: 14px;
     color: #45464d;
     margin-bottom: 24px;
@@ -211,7 +243,7 @@ const projects = [
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-family: var(--font-body, "Hanken Grotesk", sans-serif);
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -231,6 +263,42 @@ const projects = [
   }
 
   .view-link:hover .link-icon {
+    transform: translateX(4px);
+  }
+
+  /* View All Button */
+  .view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+
+  .view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--c-primary, #0b1727);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    background-color: var(--c-secondary, #fd761a);
+    transform: translateY(-2px);
+  }
+
+  .btn-icon {
+    font-size: 20px !important;
+    transition: transform 0.2s ease;
+  }
+
+  .view-all-btn:hover .btn-icon {
     transform: translateX(4px);
   }
 </style>

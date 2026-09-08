@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SolarHero from '../../components/products/Solar/SolarHero.astro';
+import SolarProducts from '../../components/products/Solar/SolarProducts.astro';
+import SolarSpecs from '../../components/products/Solar/SolarSpecs.astro';
+import SolarWhyUs from '../../components/products/Solar/SolarWhyUs.astro';
+import SolarCtaFaq from '../../components/products/Solar/SolarCtaFaq.astro';
+---
+
+<BaseLayout title="Solar Solutions | Mahati Enterprises">
+  <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+  </Fragment>
+
+  <main class="solar-page">
+    <SolarHero />
+    <SolarProducts />
+    <SolarSpecs />
+    <SolarWhyUs />
+    <SolarCtaFaq />
+  </main>
+
+  <script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('astro:page-load', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Optional: unobserve after animating once
+            // observer.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .solar-page {
+    /* Shared Variables */
+    --c-primary: #0b1727;
+    --c-secondary: #fd761a;
+    --c-secondary-hover: #bd621e;
+    --c-secondary-container: #fd761a;
+    --c-primary-container: #131b2e;
+    --c-surface-lowest: #ffffff;
+    --c-surface-low: #f8fafc;
+    --c-surface-high: #f4f7fc;
+    --c-surface-bright: #ffffff;
+    --c-surface-container: #e5eeff;
+    --c-background: #f8fafc;
+    --c-on-surface: #0b1c30;
+    --c-on-surface-var: #4a5568;
+    --c-primary-fixed: #dae2fd;
+    --shadow-1: 0px 4px 20px rgba(15, 23, 42, 0.05);
+    --shadow-2: 0 20px 40px rgba(11, 23, 39, 0.08), 0 6px 16px rgba(11, 23, 39, 0.04);
+    
+    color: var(--c-on-surface);
+    background-color: var(--c-background);
+  }
+
+  /* Typography Overrides */
+  .solar-page h1, .solar-page h2, .solar-page h3, .solar-page h4, .solar-page h5 {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+  }
+  .solar-page p {
+    font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  }
+
+  /* Reveal Animations */
+  .reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  
+  .reveal.active {
+    animation: fadeUpCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeUpCard {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-up {
+    /* Handled by fadeUpCard animation when .active is added */
+  }
+
+  .fade-in {
+    /* Optional modifier if just fade without slide is desired, but standardizing to fadeUpCard */
+  }
+
+  .scale-in {
+    /* Can use the same fadeUpCard for consistency with their design */
+  }
+</style>
