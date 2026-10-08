@@ -7,7 +7,7 @@ export interface AboutHeroData {
 }
 
 export const aboutHeroData: AboutHeroData = {
-  titleLine1: "Powering Progress,",
+  titleLine1: "hiii,",
   titleLine2: "Powering You",
   description: "Government-Registered Supplier specializing in solar products, batteries, and Inverter manufacturing.",
   bgImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2zrQopirop7L3GtO42EQbYiXFJGlVtCYXZtSWKGULgKVEcdGpP2oN5ee6gp4nDbJRWDbLEW9Syz_fTeMbAgHXWVyvOMQdZFYxNYtHlLwmLPTCd-ocK1vlHsP0s4-Rjc_VnTjTN1kARcfj-YJwRMOg6aetLY9io7qKNX8DQWEy6SZkRvqydfQg4lURC-CsER8bauYOU-4f5FzOstUTfB1-i5NcnbU4tbE_N9mMyiuXhKEtiEEn-PFKug",
