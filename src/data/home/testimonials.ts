@@ -63,6 +63,62 @@ export const testimonialsData: TestimonialsData = {
       author: "Shankar Junior",
       role: "Customer",
       locationOrCompany: ""
+    },
+    {
+      id: "balakrishna",
+      rating: 5,
+      quote: "Highly recommend Mahati Enterprises for solar installations. They handled our 5.5kW off-grid that run 3 phase motars and solar inverter battery setup for our farm, with great expertise. The installation staff is experienced and deeply knowledgeable about the tech components. Their work was fast, high-quality, and backed by prompt service. They genuinely listen to customer needs and only recommend what is actually necessary.",
+      author: "Balakrishna Gadiyar",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "hareesha",
+      rating: 5,
+      quote: "Mahati Enterprises provides very good service. Staff are polite and helpful. Product quality is excellent and delivery is on time. Highly recommended 👍",
+      author: "Hareesha Narayana Poojari",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "manthan",
+      rating: 5,
+      quote: "We had purchased 5kw solar system from Mahati Enerprises and it’s working great for home and my ev charging.",
+      author: "Manthan Bhat",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "jai",
+      rating: 5,
+      quote: "Great service.. They have good knowledge and experience in the field. I recommend Mahati enterprises for any solar installation in your house, office or factory.",
+      author: "Jai Prasad",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "wizdom",
+      rating: 5,
+      quote: "One of the best providers of UPS systems in Udupi. Their services are among the finest we have experienced.",
+      author: "WiZdom Ed",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "shripoorna",
+      rating: 5,
+      quote: "we are dealing with mahati enterprises since many years very good service and verity of products",
+      author: "Shripoorna Udupi",
+      role: "Customer",
+      locationOrCompany: ""
+    },
+    {
+      id: "tantry",
+      rating: 5,
+      quote: "Cannot say enough good things about Mahati Enterprises! Their UPS is outstanding. I've recommended them to everyone I know.",
+      author: "Tantry Harikrishna",
+      role: "Customer",
+      locationOrCompany: ""
     }
   ]
 };
