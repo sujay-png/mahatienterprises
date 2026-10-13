@@ -3,6 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { fetchAllWordPressPosts } from '../../data/wordpress';
 
 const posts = await fetchAllWordPressPosts();
+const perPage = 6;
+const url = new URL(Astro.request.url);
+const page = Number(url.searchParams.get('page') ?? '1');
+const totalPages = Math.ceil(posts.length / perPage);
+const displayedPosts = posts.slice((page - 1) * perPage, page * perPage);
 ---
 
 <BaseLayout
@@ -46,7 +51,7 @@ const posts = await fetchAllWordPressPosts();
       <div class="blog-grid">
 
         {
-          posts.map((post: any) => (
+          displayedPosts.map((post: any) => (
 
             <article class="blog-card">
 
@@ -152,6 +157,13 @@ const posts = await fetchAllWordPressPosts();
         }
 
       </div>
+<div class="pagination">
+  {page > 1 && (<a href={`?page=${page - 1}`} class="prev">Prev</a>)}
+  {Array.from({ length: totalPages }, (_, i) => (
+    <a href={`?page=${i + 1}`} class={`page ${i + 1 === page ? 'active' : ''}`}>{i + 1}</a>
+  ))}
+  {page < totalPages && (<a href={`?page=${page + 1}`} class="next">Next</a>)}
+</div>
 
     </div>
 
