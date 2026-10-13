@@ -1,29 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { fetchWordPress } from '../../data/wordpress';
+import { fetchAllWordPressPosts } from '../../data/wordpress';
 
-const query = `
-  query GetPosts {
-    posts(first: 20) {
-      nodes {
-        id
-        title
-        slug
-        date
-        excerpt
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
-        }
-      }
-    }
-  }
-`;
-
-const data = await fetchWordPress(query);
-const posts = data.posts.nodes;
+const posts = await fetchAllWordPressPosts();
 ---
 
 <BaseLayout

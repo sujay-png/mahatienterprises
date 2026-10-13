@@ -34,3 +34,51 @@ export async function fetchWordPress(
 
   return result.data;
 }
+
+export async function fetchAllWordPressPosts<T = any>(
+  fields: string = `
+    id
+    title
+    slug
+    date
+    excerpt
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  `
+): Promise<T[]> {
+  let allNodes: T[] = [];
+  let hasNextPage = true;
+  let after: string | null = null;
+
+  while (hasNextPage) {
+    const query = `
+      query GetAllPosts($first: Int!, $after: String) {
+        posts(first: $first, after: $after) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            ${fields}
+          }
+        }
+      }
+    `;
+
+    const data = await fetchWordPress(query, {
+      first: 100,
+      after,
+    });
+
+    const posts = data.posts;
+    allNodes = allNodes.concat(posts.nodes);
+    hasNextPage = posts.pageInfo.hasNextPage;
+    after = posts.pageInfo.endCursor;
+  }
+
+  return allNodes;
+}

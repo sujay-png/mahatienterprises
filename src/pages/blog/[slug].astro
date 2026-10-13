@@ -1,22 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { fetchWordPress } from '../../data/wordpress';
+import { fetchWordPress, fetchAllWordPressPosts } from '../../data/wordpress';
 
 export async function getStaticPaths() {
+  const posts = await fetchAllWordPressPosts<{ slug: string }>('slug');
 
-  const query = `
-    query GetAllPosts {
-      posts(first: 100) {
-        nodes {
-          slug
-        }
-      }
-    }
-  `;
-
-  const data = await fetchWordPress(query);
-
-  return data.posts.nodes.map((post: any) => ({
+  return posts.map((post: any) => ({
     params: {
       slug: post.slug,
     },
