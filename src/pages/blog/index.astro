@@ -4,10 +4,9 @@ import { fetchAllWordPressPosts } from '../../data/wordpress';
 
 const posts = await fetchAllWordPressPosts();
 const perPage = 6;
-const url = new URL(Astro.request.url);
-const page = Number(url.searchParams.get('page') ?? '1');
 const totalPages = Math.ceil(posts.length / perPage);
-const displayedPosts = posts.slice((page - 1) * perPage, page * perPage);
+const url = new URL(Astro.request.url);
+const currentPage = Math.max(1, Math.min(Number(url.searchParams.get('page') ?? '1'), totalPages || 1));
 ---
 
 <BaseLayout
@@ -48,12 +47,17 @@ const displayedPosts = posts.slice((page - 1) * perPage, page * perPage);
            BLOG GRID
       ========================== -->
 
-      <div class="blog-grid">
+      <div class="blog-grid" id="blogGrid">
 
         {
-          displayedPosts.map((post: any) => (
-
-            <article class="blog-card">
+          posts.map((post: any, index: number) => {
+            const postPage = Math.floor(index / perPage) + 1;
+            return (
+              <article
+                class="blog-card"
+                data-page={postPage}
+                style={postPage === currentPage ? undefined : "display: none;"}
+              >
 
               <!-- IMAGE -->
 
@@ -152,22 +156,223 @@ const displayedPosts = posts.slice((page - 1) * perPage, page * perPage);
               </div>
 
             </article>
-
-          ))
-        }
+          );
+        })
+      }
 
       </div>
-<div class="pagination">
-  {page > 1 && (<a href={`?page=${page - 1}`} class="prev">Prev</a>)}
-  {Array.from({ length: totalPages }, (_, i) => (
-    <a href={`?page=${i + 1}`} class={`page ${i + 1 === page ? 'active' : ''}`}>{i + 1}</a>
-  ))}
-  {page < totalPages && (<a href={`?page=${page + 1}`} class="next">Next</a>)}
-</div>
+
+      <!-- =========================
+           PAGINATION
+      ========================== -->
+
+      {totalPages > 1 && (
+        <nav
+          class="pagination-container"
+          id="pagination"
+          aria-label="Blog pagination"
+          data-total-pages={totalPages}
+        >
+          <a
+            href={currentPage > 1 ? (currentPage - 1 === 1 ? '/blog' : `?page=${currentPage - 1}`) : '#'}
+            class={`pagination-nav prev ${currentPage <= 1 ? 'disabled' : ''}`}
+            id="prevBtn"
+            aria-label="Previous page"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </a>
+
+          <div class="pagination-numbers" id="paginationNumbers">
+            {(() => {
+              const windowSize = 4;
+              const count = Math.min(windowSize, totalPages);
+              let start = 1;
+              if (currentPage > start + windowSize - 1) {
+                start = currentPage - windowSize + 1;
+              }
+              start = Math.max(1, Math.min(start, totalPages - count + 1));
+              return Array.from({ length: count }, (_, i) => {
+                const pageNum = start + i;
+                return (
+                  <a
+                    href={pageNum === 1 ? '/blog' : `?page=${pageNum}`}
+                    class={`pagination-btn ${pageNum === currentPage ? 'active' : ''}`}
+                    data-page={pageNum}
+                  >
+                    {pageNum}
+                  </a>
+                );
+              });
+            })()}
+          </div>
+
+          <a
+            href={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
+            class={`pagination-nav next ${currentPage >= totalPages ? 'disabled' : ''}`}
+            id="nextBtn"
+            aria-label="Next page"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </nav>
+      )}
 
     </div>
 
   </section>
+
+  <script>
+    function initPagination() {
+      const paginationEl = document.getElementById('pagination');
+      if (!paginationEl) return;
+
+      const totalPages = parseInt(paginationEl.getAttribute('data-total-pages') || '1', 10);
+      const blogCards = Array.from(document.querySelectorAll('.blog-card[data-page]')) as HTMLElement[];
+      const prevBtn = document.getElementById('prevBtn') as HTMLAnchorElement | null;
+      const nextBtn = document.getElementById('nextBtn') as HTMLAnchorElement | null;
+      const numbersContainer = document.getElementById('paginationNumbers');
+
+      let activePage = 1;
+      let windowStart = 1;
+      const windowSize = 4;
+
+      function getVisiblePages(page: number, total: number) {
+        const count = Math.min(windowSize, total);
+        if (page < windowStart) {
+          windowStart = page;
+        } else if (page > windowStart + count - 1) {
+          windowStart = page - count + 1;
+        }
+        if (windowStart < 1) windowStart = 1;
+        if (windowStart > Math.max(1, total - count + 1)) {
+          windowStart = Math.max(1, total - count + 1);
+        }
+        return Array.from({ length: count }, (_, i) => windowStart + i);
+      }
+
+      function renderButtons(page: number) {
+        if (prevBtn) {
+          if (page <= 1) {
+            prevBtn.classList.add('disabled');
+            prevBtn.setAttribute('aria-disabled', 'true');
+            prevBtn.removeAttribute('href');
+          } else {
+            prevBtn.classList.remove('disabled');
+            prevBtn.removeAttribute('aria-disabled');
+            prevBtn.href = page - 1 === 1 ? '/blog' : `?page=${page - 1}`;
+          }
+        }
+
+        if (nextBtn) {
+          if (page >= totalPages) {
+            nextBtn.classList.add('disabled');
+            nextBtn.setAttribute('aria-disabled', 'true');
+            nextBtn.removeAttribute('href');
+          } else {
+            nextBtn.classList.remove('disabled');
+            nextBtn.removeAttribute('aria-disabled');
+            nextBtn.href = `?page=${page + 1}`;
+          }
+        }
+
+        if (numbersContainer) {
+          numbersContainer.innerHTML = '';
+          const visiblePages = getVisiblePages(page, totalPages);
+          visiblePages.forEach((pageNum) => {
+            const a = document.createElement('a');
+            a.href = pageNum === 1 ? '/blog' : `?page=${pageNum}`;
+            a.className = `pagination-btn ${pageNum === page ? 'active' : ''}`;
+            a.textContent = pageNum.toString();
+            a.setAttribute('data-page', pageNum.toString());
+
+            a.addEventListener('click', (e) => {
+              e.preventDefault();
+              if (pageNum !== activePage) {
+                setPage(pageNum, true, true);
+              }
+            });
+
+            numbersContainer.appendChild(a);
+          });
+        }
+      }
+
+      function setPage(page: number, updateUrl = true, shouldScroll = false) {
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+        activePage = page;
+
+        blogCards.forEach((card) => {
+          const cardPage = parseInt(card.getAttribute('data-page') || '1', 10);
+          if (cardPage === page) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        renderButtons(page);
+
+        if (updateUrl) {
+          const url = new URL(window.location.href);
+          if (page === 1) {
+            url.searchParams.delete('page');
+          } else {
+            url.searchParams.set('page', page.toString());
+          }
+          window.history.pushState({ page }, '', url.toString());
+        }
+
+        if (shouldScroll) {
+          const header = document.querySelector('.blog-header');
+          if (header) {
+            const headerOffset = 90;
+            const elementPosition = header.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: Math.max(0, offsetPosition),
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (activePage > 1) {
+            setPage(activePage - 1, true, true);
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (activePage < totalPages) {
+            setPage(activePage + 1, true, true);
+          }
+        });
+      }
+
+      window.addEventListener('popstate', () => {
+        const params = new URLSearchParams(window.location.search);
+        const pageFromUrl = parseInt(params.get('page') || '1', 10);
+        setPage(pageFromUrl, false, false);
+      });
+
+      const currentParams = new URLSearchParams(window.location.search);
+      const initialPage = parseInt(currentParams.get('page') || '1', 10);
+      setPage(initialPage, false, false);
+    }
+
+    initPagination();
+    document.addEventListener('astro:page-load', initPagination);
+  </script>
 
 </BaseLayout>
 
@@ -678,4 +883,130 @@ const displayedPosts = posts.slice((page - 1) * perPage, page * perPage);
 
   }
 
+</style>
+
+<style is:global>
+  /* =========================================
+     PAGINATION (GLOBAL STYLES)
+  ========================================= */
+
+  .pagination-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 60px auto 20px !important;
+    padding-bottom: 20px !important;
+    width: 100% !important;
+    text-align: center !important;
+    user-select: none !important;
+  }
+
+  .pagination-numbers {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .pagination-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #1e293b !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+  }
+
+  .pagination-btn:hover {
+    border-color: #DD5600 !important;
+    color: #DD5600 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(221, 86, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    background: #ffffff !important;
+    text-decoration: none !important;
+  }
+
+  .pagination-btn.active {
+    background: #172018 !important;
+    color: #ffffff !important;
+    border-color: #172018 !important;
+    box-shadow: 0 4px 14px rgba(23, 32, 24, 0.28) !important;
+    font-weight: 700 !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    transform: none !important;
+    text-decoration: none !important;
+  }
+
+  .pagination-nav {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    border-radius: 8px !important;
+    color: #334155 !important;
+    background: transparent !important;
+    border: none !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .pagination-nav:hover:not(.disabled) {
+    color: #DD5600 !important;
+    background: rgba(221, 86, 0, 0.08) !important;
+    transform: translateY(-2px) !important;
+    text-decoration: none !important;
+  }
+
+  .pagination-nav.disabled {
+    opacity: 0.25 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+
+  @media (max-width: 650px) {
+    .pagination-container {
+      gap: 6px !important;
+      margin-top: 45px !important;
+    }
+
+    .pagination-numbers {
+      gap: 6px !important;
+    }
+
+    .pagination-btn {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      font-size: 14px !important;
+      border-radius: 6px !important;
+    }
+
+    .pagination-nav {
+      width: 34px !important;
+      height: 34px !important;
+      min-width: 34px !important;
+    }
+  }
 </style>

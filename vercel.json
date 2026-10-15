@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/top-10-benefits-of-switching-to-solar-energy-for-homes",
+      "destination": "/blog/benefits-of-rooftop-solar/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/top-10-benefits-of-switching-to-solar-energy-for-homes",
+      "destination": "/blog/benefits-of-rooftop-solar/",
+      "permanent": true
+    }
+  ]
+}
+
