@@ -10,7 +10,66 @@
       "source": "/blog/top-10-benefits-of-switching-to-solar-energy-for-homes",
       "destination": "/blog/benefits-of-rooftop-solar/",
       "permanent": true
+    },
+    {
+      "source": "/debunking-7-common-myths-about-solar-energy-in-india",
+      "destination": "/blog/solar-panel-myths-in-india/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/debunking-7-common-myths-about-solar-energy-in-india",
+      "destination": "/blog/solar-panel-myths-in-india/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-choose-a-reliable-solar-installer-in-karnataka",
+      "destination": "/blog/reliable-solar-installer-karnataka/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-choose-a-reliable-solar-installer-in-karnataka",
+      "destination": "/blog/reliable-solar-installer-karnataka/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty",
+      "destination": "/blog/how-to-clean-solar-panels-safely/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty",
+      "destination": "/blog/how-to-clean-solar-panels-safely/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-panel-vs-diesel-generator-which-backup-makes-more-sense",
+      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/solar-panel-vs-diesel-generator-which-backup-makes-more-sense",
+      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours",
+      "destination": "/blog/solar-panels-for-apartments/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours",
+      "destination": "/blog/solar-panels-for-apartments/",
+      "permanent": true
+    },
+    {
+      "source": "/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026",
+      "destination": "/blog/solar-subsidy-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026",
+      "destination": "/blog/solar-subsidy-2026/",
+      "permanent": true
     }
   ]
 }
-
