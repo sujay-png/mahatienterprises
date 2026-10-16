@@ -1,18 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { fetchAllWordPressPosts } from '../../data/wordpress';
+import { getBlogPaginationSeo } from '../../seo/seo';
 
 const posts = await fetchAllWordPressPosts();
 const perPage = 6;
 const totalPages = Math.ceil(posts.length / perPage);
 const url = new URL(Astro.request.url);
 const currentPage = Math.max(1, Math.min(Number(url.searchParams.get('page') ?? '1'), totalPages || 1));
+const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
 ---
 
-<BaseLayout
-  title="Blog | Mahati Enterprises"
-  description="Explore the latest solar energy, UPS, battery and power solution insights from Mahati Enterprises."
->
+<BaseLayout seo={blogSeo}>
 
   <section class="blog-page">
 

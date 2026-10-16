@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { fetchWordPress, fetchAllWordPressPosts } from '../../data/wordpress';
+import { getBlogPostSeo } from '../../seo/seo';
 
 export async function getStaticPaths() {
   const posts = await fetchAllWordPressPosts<{ slug: string }>('slug');
@@ -80,13 +81,11 @@ const formattedDate =
       year: 'numeric',
     }
   );
+const blogSeo = getBlogPostSeo(post, Astro.url.href);
 ---
 
 
-<BaseLayout
-  title={`${post.title} | Mahati Enterprises`}
-  description={post.excerpt?.replace(/<[^>]*>/g, '')}
->
+<BaseLayout seo={blogSeo}>
 
 
   <!-- =====================================
