@@ -113,10 +113,10 @@ export const SITE_CONFIG = {
     'solar energy contractor'
   ],
   defaultImage:
-    'https://mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg',
+    'https://www.mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg',
   defaultImageAlt: 'Mahati Enterprises Solar & Power Solutions',
   defaultLogo:
-    'https://mahatienterprises.com/wp-content/uploads/2026/03/cropped-Mahati-Logo-webp-e1777960062642.webp',
+    'https://www.mahatienterprises.com/wp-content/uploads/2026/03/cropped-Mahati-Logo-webp-e1777960062642.webp',
   author: 'Mahati Enterprises',
   publisher: 'Mahati Enterprises',
   locale: 'en_IN',
@@ -149,6 +149,7 @@ export const SITE_CONFIG = {
 export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/': {
     title: 'Mahati Enterprises | Solar Power, Inverters & UPS Solutions in Karnataka',
+    canonical: 'https://www.mahatienterprises.com/',
     description:
       'Empowering Karnataka with certified solar rooftop installations, on-grid & hybrid solar systems, high-performance UPS, and industrial battery solutions.',
     keywords: [
@@ -378,19 +379,29 @@ export function normalizePath(pathname: string): string {
 }
 
 /**
- * Generates an absolute canonical URL.
+ * Generates an absolute canonical URL guaranteed to point to https://www.mahatienterprises.com/
  */
 export function buildCanonicalUrl(pathnameOrUrl?: string): string {
-  if (!pathnameOrUrl) return `${SITE_CONFIG.siteUrl}/`;
+  const officialDomain = 'https://www.mahatienterprises.com';
 
-  if (pathnameOrUrl.startsWith('http://') || pathnameOrUrl.startsWith('https://')) {
-    const url = new URL(pathnameOrUrl);
-    const cleanPath = url.pathname.replace(/\/+$/, '');
-    return `${SITE_CONFIG.siteUrl}${cleanPath ? `${cleanPath}/` : '/'}`;
+  if (!pathnameOrUrl || pathnameOrUrl === '/' || pathnameOrUrl === '') {
+    return `${officialDomain}/`;
   }
 
-  const clean = pathnameOrUrl.split('?')[0].split('#')[0].replace(/\/+$/, '');
-  return clean ? `${SITE_CONFIG.siteUrl}${clean}/` : `${SITE_CONFIG.siteUrl}/`;
+  // If a full URL was passed, parse it and extract pathname
+  if (pathnameOrUrl.startsWith('http://') || pathnameOrUrl.startsWith('https://')) {
+    try {
+      const url = new URL(pathnameOrUrl);
+      const cleanPath = url.pathname.replace(/^\/+|\/+$/g, '');
+      return cleanPath ? `${officialDomain}/${cleanPath}/` : `${officialDomain}/`;
+    } catch {
+      return `${officialDomain}/`;
+    }
+  }
+
+  // If a pathname or relative string was passed
+  const clean = pathnameOrUrl.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '');
+  return clean ? `${officialDomain}/${clean}/` : `${officialDomain}/`;
 }
 
 /**

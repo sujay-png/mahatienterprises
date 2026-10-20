@@ -15,7 +15,7 @@ export const getHeroData = (location: string) => ({
     link: "#products"
   },
   image: {
-    src: "https://mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg",
+    src: "https://www.mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg",
     alt: `On grid solar system installation in ${location}`
   }
 });

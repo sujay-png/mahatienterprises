@@ -57,7 +57,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         type: 'Commercial Solar Project',
         title: 'AJ institute of technology and Engineering',
         location: 'Kottara, Karnataka',
-        heroImage: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.59-PM-768x576.jpeg",
+        heroImage: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.59-PM-768x576.jpeg",
         specs: {
             customer: 'AJ institute of technology and Engineering',
             location: 'Kottara',
@@ -76,10 +76,10 @@ export const caseStudies: Record<string, CaseStudyData> = {
             { icon: 'corporate_fare', text: 'Commercial Scale' }
         ],
         gallery: {
-            featured: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.59-PM-768x576.jpeg",
-            small1: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.46-PM-768x576.jpeg",
-            small2: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.55-PM-1-768x576.jpeg",
-            technical: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.34-PM-768x576.jpeg"
+            featured: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.59-PM-768x576.jpeg",
+            small1: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.46-PM-768x576.jpeg",
+            small2: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.55-PM-1-768x576.jpeg",
+            technical: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.08.34-PM-768x576.jpeg"
         }
     },
     'chandrakanth': {
@@ -87,7 +87,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
         type: 'Residential Solar Project',
         title: 'Chandrakanth',
         location: 'Kramballi Udupi, Karnataka',
-        heroImage: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.06-PM-768x576.jpeg",
+        heroImage: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.06-PM-768x576.jpeg",
         specs: {
             customer: 'Chandrakanth',
             location: 'Kramballi Udupi',
@@ -106,10 +106,10 @@ export const caseStudies: Record<string, CaseStudyData> = {
             { icon: 'home', text: 'Residential Setup' }
         ],
         gallery: {
-            featured: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.06-PM-768x576.jpeg",
-            small1: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.10-PM-768x576.jpeg",
-            small2: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.08-PM-2-768x576.jpeg",
-            technical: "https://mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.08-PM-768x576.jpeg"
+            featured: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.06-PM-768x576.jpeg",
+            small1: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.10-PM-768x576.jpeg",
+            small2: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.08-PM-2-768x576.jpeg",
+            technical: "https://www.mahatienterprises.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-08-at-1.01.08-PM-768x576.jpeg"
         }
     }
 };

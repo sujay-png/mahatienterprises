@@ -28,7 +28,7 @@ interface Props extends SeoProps {
 const pathname = Astro.url.pathname;
 const seo = getSeoData(pathname, {
   ...Astro.props,
-  canonical: Astro.props.canonical || Astro.url.href
+  canonical: Astro.props.canonical
 });
 ---
 
