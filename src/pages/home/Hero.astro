@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import modiImage from "../../images/mahatimodi.png";
 import solarImage from "../../images/mahatisolar.png";
 ---
@@ -18,9 +19,11 @@ import solarImage from "../../images/mahatisolar.png";
 
       <div class="person-glow"></div>
 
-      <img
-        src={modiImage.src}
+      <Image
+        src={modiImage}
         alt="PM Surya Ghar Muft Bijli Yojana"
+        loading="eager"
+        fetchpriority="high"
       />
 
     </div>
@@ -300,9 +303,11 @@ import solarImage from "../../images/mahatisolar.png";
 
       <!-- Solar image -->
 
-      <img
-        src={solarImage.src}
+      <Image
+        src={solarImage}
         alt="Rooftop Solar Panel"
+        loading="eager"
+        fetchpriority="high"
       />
 
 

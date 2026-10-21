@@ -1,0 +1,426 @@
+---
+import { fetchWordPress } from '../../data/wordpress';
+
+const query = `
+  query GetLatestPosts {
+    posts(first: 3) {
+      nodes {
+        id
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
+
+const data = await fetchWordPress(query);
+const posts = data.posts.nodes;
+---
+
+<section class="latest-blogs-section">
+  <div class="latest-blogs-container">
+    
+    <!-- HEADER -->
+    <div class="section-header">
+      <div class="header-left">
+        <div class="eyebrow">
+          <span></span>
+          LATEST INSIGHTS
+        </div>
+        <h2>From Our <em>Blog</em></h2>
+      </div>
+      <div class="header-right">
+        <a href="/blog" class="view-all-link">
+          View All Blogs <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- BLOG GRID -->
+    <div class="blog-grid">
+      {
+        posts.map((post: any) => (
+          <article class="blog-card">
+            <!-- IMAGE -->
+            <a href={`/blog/${post.slug}`} class="blog-image-link">
+              {
+                post.featuredImage?.node?.sourceUrl ? (
+                  <img
+                    src={post.featuredImage.node.sourceUrl}
+                    alt={post.featuredImage.node.altText || post.title}
+                    class="blog-image"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="image-placeholder">
+                    <span>MAHATI</span>
+                  </div>
+                )
+              }
+              <div class="image-overlay"></div>
+              <span class="image-arrow">↗</span>
+            </a>
+
+            <!-- CONTENT -->
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>
+                  {
+                    new Date(post.date).toLocaleDateString("en-IN", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })
+                  }
+                </span>
+                <span class="meta-dot"></span>
+                <span>Insights</span>
+              </div>
+
+              <h3>
+                <a href={`/blog/${post.slug}`}>
+                  {post.title}
+                </a>
+              </h3>
+
+              <div class="excerpt" set:html={post.excerpt}></div>
+
+              <a href={`/blog/${post.slug}`} class="read-more">
+                <span>Read Article</span>
+                <span class="read-arrow">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* =========================================
+     SECTION BASE
+  ========================================= */
+  .latest-blogs-section {
+    width: 100%;
+    padding: 100px 24px;
+    background-color: #f8fafc;
+  }
+
+  .latest-blogs-container {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+  }
+
+  /* =========================================
+     HEADER
+  ========================================= */
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+
+  .header-left .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: #DD5600;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .header-left .eyebrow span {
+    width: 32px;
+    height: 2px;
+    background: #DD5600;
+  }
+
+  .header-left h2 {
+    color: #0b1727;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .header-left h2 em {
+    color: #DD5600;
+    font-style: normal;
+  }
+
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0b1727;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .view-all-link .arrow {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .view-all-link:hover {
+    color: #DD5600;
+  }
+
+  .view-all-link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* =========================================
+     BLOG GRID
+  ========================================= */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  /* =========================================
+     CARD
+  ========================================= */
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(23, 32, 24, 0.08);
+    border-radius: 22px;
+    box-shadow: 0 5px 20px rgba(20, 30, 20, 0.035);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(20, 30, 20, 0.12);
+  }
+
+  /* =========================================
+     IMAGE
+  ========================================= */
+  .blog-image-link {
+    position: relative;
+    display: block;
+    height: 250px;
+    overflow: hidden;
+    background: #e9ede6;
+  }
+
+  .blog-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .blog-card:hover .blog-image {
+    transform: scale(1.06);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.18));
+    pointer-events: none;
+  }
+
+  .image-arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94);
+    color: #172018;
+    font-size: 20px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .blog-card:hover .image-arrow {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #dce7d2, #f2f5ef);
+    color: #1C2C3F;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 4px;
+  }
+
+  /* =========================================
+     CONTENT
+  ========================================= */
+  .blog-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 28px 28px 30px;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 15px;
+    color: #DD5600;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .meta-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #b8c4b0;
+  }
+
+  .blog-content h3 {
+    margin: 0;
+    color: #172018;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+  }
+
+  .blog-content h3 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .blog-content h3 a:hover {
+    color: #DD5600;
+  }
+
+  .excerpt {
+    margin-top: 16px;
+    color: #667066;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .excerpt :global(p) {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 25px;
+    color: #172018;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .read-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(23, 32, 24, 0.15);
+    border-radius: 50%;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+
+  .read-more:hover .read-arrow {
+    background: #DD5600;
+    color: #ffffff;
+    border-color: #DD5600;
+    transform: translateX(4px);
+  }
+
+  /* =========================================
+     RESPONSIVE
+  ========================================= */
+  @media (max-width: 1000px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .blog-card:nth-child(3) {
+      display: none; /* Only show 2 on tablet */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    
+    .view-all-link {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .latest-blogs-section {
+      padding: 75px 16px;
+    }
+
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-card:nth-child(3) {
+      display: flex; /* Show all 3 on mobile stacked */
+    }
+
+    .blog-image-link {
+      height: 230px;
+    }
+
+    .blog-content {
+      padding: 24px;
+    }
+
+    .image-arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

@@ -6,7 +6,7 @@ export interface ProductItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image: any;
   alt: string;
   linkText: string;
   href: string;
@@ -21,37 +21,37 @@ export interface ProductsData {
 }
 
 export const productsData: ProductsData = {
-  subtitle: "Engineered Excellence",
-  title: "Our Product Ecosystem",
-  catalogText: "View Full Catalog",
+  subtitle: "WHAT WE SUPPLY",
+  title: "Our Products",
+  catalogText: "Products",
   catalogHref: "/products",
   items: [
     {
       id: "solar-modules",
-      title: "Solar Modules",
-      description: "Tier-1 high-efficiency monocrystalline panels designed for maximum energy yield even in low-light conditions.",
-      image: solarPanelImg.src,
-      alt: "High efficiency solar panels",
-      linkText: "Explore Details",
-      href: "/products/solar-modules"
+      title: "Solar Products",
+      description: "Power your home or business with our advanced solar energy solutions designed for efficiency, reliability, and sustainability. Our solar products help reduce electricity costs while promoting clean and renewable energy. We provide high-quality on-grid and off-grid solar panel systems suitable for residential, commercial, and industrial applications.",
+      image: solarPanelImg,
+      alt: "Solar Products",
+      linkText: "Explore Solar Products",
+      href: "/solar-products/"
     },
     {
       id: "inverters-ups",
-      title: "Inverters & UPS",
-      description: "Intelligent power management systems that ensure seamless energy transition and grid stability for sensitive equipment.",
-      image: appliancesImg.src,
-      alt: "Industrial Grade UPS system",
-      linkText: "Explore Details",
-      href: "/products/inverters-ups"
+      title: "UPS Solutions",
+      description: "Ensure uninterrupted power supply for your critical systems with our reliable UPS (Uninterruptible Power Supply) solutions. Our UPS systems protect your equipment from power interruptions, voltage fluctuations, and unexpected outages. These systems are ideal for offices, hospitals, data centers, industries, and commercial facilities",
+      image: appliancesImg,
+      alt: "UPS Solutions",
+      linkText: "Explore UPS Products",
+      href: "/ups-solutions/"
     },
     {
       id: "energy-storage",
-      title: "Energy Storage",
-      description: "Next-generation LiFePO4 battery solutions providing reliable backup and optimized self-consumption rates.",
-      image: inverterBatteryImg.src,
-      alt: "Advanced battery storage unit",
-      linkText: "Explore Details",
-      href: "/products/energy-storage"
+      title: "Batteries",
+      description: "We supply high-performance industrial and backup batteries designed to deliver long-lasting power for various applications. Our batteries are built with advanced technology to ensure durability, efficiency, and consistent performance. These batteries are ideal for solar systems, UPS units, industrial equipment, and backup power systems.",
+      image: inverterBatteryImg,
+      alt: "Batteries",
+      linkText: "Explore Batteries",
+      href: "/batteries/"
     }
   ]
 };
