@@ -91,7 +91,7 @@ export interface ResolvedSeo {
 export const SITE_CONFIG = {
   siteUrl: 'https://www.mahatienterprises.com',
   siteName: 'Mahati Enterprises',
-  defaultTitle: 'Mahati Enterprises | Solar Power, Inverters & UPS Solutions in Karnataka',
+  defaultTitle: 'Solar Suppliers: Reliable Power Solutions | Mahati Enterprises',
   titleTemplate: '%s | Mahati Enterprises',
   defaultDescription:
     'Government-registered solar power systems, rooftop solar installations, UPS batteries, and inverter solutions for residential, commercial & industrial clients across Karnataka.',
@@ -107,10 +107,10 @@ export const SITE_CONFIG = {
     'hybrid solar inverter',
     'UPS batteries',
     'online UPS Karnataka',
-    'tubular inverter batteries',
+    'batteries',
     'industrial battery solutions',
     'solar panel maintenance',
-    'solar energy contractor'
+    'solar products'
   ],
   defaultImage:
     'https://www.mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg',
@@ -148,10 +148,10 @@ export const SITE_CONFIG = {
  */
 export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/': {
-    title: 'Mahati Enterprises | Solar Power, Inverters & UPS Solutions in Karnataka',
+    title: 'Solar Suppliers: Reliable Power Solutions | Mahati Enterprises',
     canonical: 'https://www.mahatienterprises.com/',
     description:
-      'Empowering Karnataka with certified solar rooftop installations, on-grid & hybrid solar systems, high-performance UPS, and industrial battery solutions.',
+      'Empowering Karnataka with certified solar rooftop installations, off grid, on grid & hybrid solar systems, high-performance UPS and battery solutions.',
     keywords: [
       'solar rooftop installation Karnataka',
       'solar panel company Udupi',
@@ -159,6 +159,7 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
       'UPS battery dealers Karnataka',
       'PM Surya Ghar Muft Bijli Yojana',
       'commercial solar installer'
+      'batteries'
     ],
     type: 'website'
   },
@@ -189,16 +190,17 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/products': {
-    title: 'Products | Solar Panels, Inverters, UPS & Industrial Batteries',
+    title: 'Products: Solar Solutions, UPS Systems & Batteries | Mahati Enterprises',
     description:
-      'Explore our full catalog of tier-1 solar panels, on-grid & hybrid inverters, commercial online UPS systems, and deep-cycle inverter batteries.',
+      'Explore high-quality products from Mahati Enterprises, including solar panels, UPS systems, batteries and services.',
     keywords: [
       'solar panels',
       'solar inverters',
       'industrial batteries',
       'online UPS',
       'tubular batteries',
-      'lithium-ion solar batteries'
+      'lithium-ion solar batteries',
+      'solar products'
     ],
     type: 'website'
   },
