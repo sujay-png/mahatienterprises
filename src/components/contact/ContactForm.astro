@@ -5,10 +5,26 @@ import { contactData } from '../../data/contact/contactData';
 <div class="contact-form-card">
   <h2 class="form-title">Send us a message</h2>
 
-  <!-- Status alert box -->
+  <!-- Status notification banner -->
   <div id="formStatus" class="form-status" style="display: none;" role="alert"></div>
 
-  <form class="contact-form" id="contactForm" novalidate>
+  <!-- Hidden iframe target to bypass cross-origin CORS limitations -->
+  <iframe
+    name="gform_submission_frame"
+    id="gform_submission_frame"
+    style="display:none;width:0;height:0;border:0;"
+    title="Form Submission Target"
+  ></iframe>
+
+  <form
+    class="contact-form"
+    id="contactForm"
+    action="https://dashboard.mahatienterprises.com/contact-us/"
+    method="POST"
+    enctype="multipart/form-data"
+    target="gform_submission_frame"
+    novalidate
+  >
 
     <!-- First Name / Last Name -->
     <div class="form-row">
@@ -184,7 +200,7 @@ import { contactData } from '../../data/contact/contactData';
       type="hidden"
       name="state_1"
       id="gform_state_1"
-      value="WyJ7XCI1XCI6W1wiYTcyNWU4MGQ1YmYwOWNiYjI0ZTQwMTIzMjcwYzViMThcIixcIjI5NjBlZTQ5MDk3OWE2ODk4OGU4NmEwYmQzZDY0YWQ2XCIsXCIzN2YyMjJlM2U3YjBmNzVkZDNlYzk3Njk3M2U4NjhmN1wiLFwiYWNhZjIzMWMxMDc5NDllMWE3N2JmODYwN2UxYzJkY2RcIl0sXCI2XCI6W1wiYzU2Y2Y3MmM2Yjg2Yjc2NWY0M2NjNDdkMzlkY2I4YzNcIixcImY3YzI0MjkxMGZiYTUzMzA4Mzk2MmQ4YzJiOWRhMjA3XCIsXCIzMzBkMmExZTNlZjU0YjgxMTAzNTk3ZDU4Nzk3OTkyOVwiLFwiZGY4ZGQ2OTk2ZGU1MTI4NDA5NGZmMjFmNjNhMzQ4YjBcIixcImM3OWIzZGNjMzViYjQxOGQ1YWUxMmQzYjQxZDc3ZmEzXCIsXCJlZTA1Y2FlN2JkZjc2OTAzYzNiYjZiOGUxOWI2MTEzYlwiLFwiZmJkYjZhODljMTdlN2Y1YTViMGQwYjg3YTE1MTJlZDZcIixcIjY1YjViNWRhMmRhNGY3ZjU1NjI4YzRiMjZmYmQzNDRlXCIsXCI0YzA5ZTY0Y2U2YzgxM2U0MTZjYmQxMjE5OTJjZjRhN1wiXSxcIjdcIjpbXCI1MmI3ZmQ5MDM1ODdjYjAxZDA1ZDA1N2NiNGI3MjU1N1wiLFwiYWJhNjIyMDMyZGYxODIyYjc0NmMzNzYxNDA3ODhjNWZcIl0sXCI4XCI6W1wiZDBiY2Q2YTZkZjk1ZDZlOTA2MDIxNThiMjU3NGI0YWJcIixcIjIxNGJhMDc3Y2ZjODU4MTRmZTRiMGRhYWJmYTZkY2U3XCIsXCI1MWNmZWIyNzI0OGEzNGY1ZGI0MDFlZDFiM2ZlM2E1ZlwiLFwiMTAyMTVmNmE0NGJlMTU5MGQzMTYwMmUzZWE0NjA4YzRcIixcIjNlNzEwNzRkODg0MDJjNjExYmJiZjBhZWI4MGM2ZmUwXCJdfSIsImMyNmEzZWY2ZWY5MWJkMDMyNjgxZDRmODRkNDQxNzUzIl0="
+      value="WyJ7XCI1XCI6W1wiYTcyNWU4MGQ1YmYwOWNiYjI0ZTQwMTIzMjcwYzViMThcIixcIjI5NjBlZTQ5MDk3OWE2ODk4OGU4NmEwYmQzZDY0YWQ2XCIsXCIzN2YyMjJlM2U3YjBmNzVkZDNlYzk3Njk3M2U4NjhmN1wiLFwiYWNhZjIzMWMxMDc5NDllMWE3N2JmODYwN2UxYzJkY2RcIl0sXCIxMVwiOltcIjVmOTZiZTdlZWQ1NGUyNGIxOTc5OTRkOWRmOWI5ZmMwXCIsXCIwZDI1NWMyMTg5NmMwZGYxODZkMjliYzBiN2JiYzgyMFwiLFwiOGZkNmJkZWRmYTI1ZTAxMzJlY2I2ODg1NzJjZDg5NjdcIl0sXCI2XCI6W1wiYzU2Y2Y3MmM2Yjg2Yjc2NWY0M2NjNDdkMzlkY2I4YzNcIixcImY3YzI0MjkxMGZiYTUzMzA4Mzk2MmQ4YzJiOWRhMjA3XCIsXCIzMzBkMmExZTNlZjU0YjgxMTAzNTk3ZDU4Nzk3OTkyOVwiLFwiZGY4ZGQ2OTk2ZGU1MTI4NDA5NGZmMjFmNjNhMzQ4YjBcIixcImM3OWIzZGNjMzViYjQxOGQ1YWUxMmQzYjQxZDc3ZmEzXCIsXCJlZTA1Y2FlN2JkZjc2OTAzYzNiYjZiOGUxOWI2MTEzYlwiLFwiZmJkYjZhODljMTdlN2Y1YTViMGQwYjg3YTE1MTJlZDZcIixcIjY1YjViNWRhMmRhNGY3ZjU1NjI4YzRiMjZmYmQzNDRlXCIsXCI0YzA5ZTY0Y2U2YzgxM2U0MTZjYmQxMjE5OTJjZjRhN1wiXSxcIjdcIjpbXCI1MmI3ZmQ5MDM1ODdjYjAxZDA1ZDA1N2NiNGI3MjU1N1wiLFwiYWJhNjIyMDMyZGYxODIyYjc0NmMzNzYxNDA3ODhjNWZcIl0sXCI4XCI6W1wiZDBiY2Q2YTZkZjk1ZDZlOTA2MDIxNThiMjU3NGI0YWJcIixcIjIxNGJhMDc3Y2ZjODU4MTRmZTRiMGRhYWJmYTZkY2U3XCIsXCI1MWNmZWIyNzI0OGEzNGY1ZGI0MDFlZDFiM2ZlM2E1ZlwiLFwiMTAyMTVmNmE0NGJlMTU5MGQzMTYwMmUzZWE0NjA4YzRcIixcIjNlNzEwNzRkODg0MDJjNjExYmJiZjBhZWI4MGM2ZmUwXCJdfSIsIjA2Nzg0ZmUzYTIyODUyY2UwMDYwYWZhZDNmYzZkYWJmIl0="
     />
     <input type="hidden" name="gform_target_page_number_1" value="0" />
     <input type="hidden" name="gform_source_page_number_1" value="1" />
@@ -244,6 +260,12 @@ import { contactData } from '../../data/contact/contactData';
 
   const stateInput =
     document.querySelector('#gform_state_1') as HTMLInputElement | null;
+
+  const submissionFrame =
+    document.querySelector('#gform_submission_frame') as HTMLIFrameElement | null;
+
+  let isSubmitting = false;
+  let submissionTimeout: ReturnType<typeof setTimeout> | null = null;
 
 
   /*
@@ -381,8 +403,6 @@ import { contactData } from '../../data/contact/contactData';
    * ============================================
    * LIVE FETCH OF STATE_1 (SELF-HEALING)
    * ============================================
-   * Fetches latest Gravity Forms state token in the background
-   * so the form stays resilient if WP choices are adjusted.
    */
   async function refreshFormState() {
     try {
@@ -397,7 +417,7 @@ import { contactData } from '../../data/contact/contactData';
         stateInput.value = match[1];
       }
     } catch {
-      // Fallback state_1 already present in markup
+      // Fallback state_1 is already baked into markup
     }
   }
 
@@ -406,19 +426,81 @@ import { contactData } from '../../data/contact/contactData';
 
   /*
    * ============================================
+   * RESET BUTTON STATE HELPER
+   * ============================================
+   */
+  function resetButton() {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.innerHTML = `
+        <span class="btn-text">Get In Touch</span>
+        <span class="material-symbols-outlined icon-small btn-icon">arrow_forward</span>
+      `;
+    }
+  }
+
+
+  /*
+   * ============================================
+   * IFRAME LOAD LISTENER (COMPLETION HANDLER)
+   * ============================================
+   */
+  submissionFrame?.addEventListener('load', () => {
+    if (!isSubmitting) return;
+
+    if (submissionTimeout) {
+      clearTimeout(submissionTimeout);
+      submissionTimeout = null;
+    }
+
+    isSubmitting = false;
+
+    // Show success confirmation
+    if (formStatus) {
+      formStatus.className = 'form-status form-status-success';
+      formStatus.innerHTML = `
+        <strong>Thank you!</strong> Your message has been sent successfully. We will get in touch with you shortly.
+      `;
+      formStatus.style.display = 'block';
+      formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Reset Form
+    form?.reset();
+    if (conditionalProduct) {
+      conditionalProduct.style.display = 'none';
+    }
+    if (productType) {
+      productType.removeAttribute('name');
+    }
+
+    // Reset Google reCAPTCHA
+    // @ts-ignore
+    if (window.grecaptcha) {
+      // @ts-ignore
+      window.grecaptcha.reset();
+    }
+
+    resetButton();
+    refreshFormState();
+  });
+
+
+  /*
+   * ============================================
    * FORM SUBMISSION HANDLER
    * ============================================
    */
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
+  form?.addEventListener('submit', (e) => {
+    // Check standard HTML5 validation
     if (!form.checkValidity()) {
+      e.preventDefault();
       form.reportValidity();
       return;
     }
 
-    // Verify Google reCAPTCHA
+    // Verify Google reCAPTCHA checkbox is checked
     // @ts-ignore
     const recaptchaToken = window.grecaptcha
       // @ts-ignore
@@ -426,6 +508,7 @@ import { contactData } from '../../data/contact/contactData';
       : '';
 
     if (!recaptchaToken) {
+      e.preventDefault();
       if (captchaError) {
         captchaError.style.display = 'block';
         captchaError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -437,130 +520,45 @@ import { contactData } from '../../data/contact/contactData';
       captchaError.style.display = 'none';
     }
 
-    // Hide any previous status
     if (formStatus) {
       formStatus.style.display = 'none';
     }
 
-    // Loading State
+    // Indicate Submitting
+    isSubmitting = true;
+
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.classList.add('loading');
       submitBtn.innerHTML = `
         <span>Sending...</span>
-        <span class="material-symbols-outlined icon-small spinner">progress_activity</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
       `;
     }
 
-    try {
-      const formData = new FormData(form);
+    // Fallback safety timeout (12s)
+    submissionTimeout = setTimeout(() => {
+      if (isSubmitting) {
+        isSubmitting = false;
 
-      // Ensure recaptcha response is explicitly attached
-      if (!formData.get('g-recaptcha-response')) {
-        formData.append('g-recaptcha-response', recaptchaToken);
-      }
-
-      const response = await fetch('https://dashboard.mahatienterprises.com/contact-us/', {
-        method: 'POST',
-        body: formData
-      });
-
-      const responseHtml = await response.text();
-
-      const isSuccess =
-        response.ok &&
-        (responseHtml.includes('gform_confirmation_message') ||
-          responseHtml.includes('Thanks for contacting us') ||
-          (!responseHtml.includes('gform_validation_error') && !responseHtml.includes('gfield_error')));
-
-      if (isSuccess) {
         if (formStatus) {
           formStatus.className = 'form-status form-status-success';
           formStatus.innerHTML = `
-            <strong>Thank you!</strong> Your message has been sent successfully. We will get in touch with you shortly.
+            <strong>Thank you!</strong> Your request has been sent. We will get in touch with you shortly.
           `;
           formStatus.style.display = 'block';
-          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        form.reset();
-        if (conditionalProduct) {
-          conditionalProduct.style.display = 'none';
-        }
-        if (productType) {
-          productType.removeAttribute('name');
-        }
-
-        // Reset reCAPTCHA widget
+        form?.reset();
+        if (conditionalProduct) conditionalProduct.style.display = 'none';
         // @ts-ignore
-        if (window.grecaptcha) {
-          // @ts-ignore
-          window.grecaptcha.reset();
-        }
-
-        // Re-fetch fresh state for subsequent submissions
-        refreshFormState();
-      } else {
-        // Parse validation errors if returned from Gravity Forms
-        let errorMsg =
-          'There was an issue submitting your request. Please check the fields and try again.';
-
-        try {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(responseHtml, 'text/html');
-          const errorNodes = doc.querySelectorAll(
-            '.gfield_validation_message, .validation_message, .gform_validation_errors'
-          );
-          if (errorNodes.length > 0) {
-            const messages = Array.from(errorNodes)
-              .map((node) => node.textContent?.trim())
-              .filter(Boolean);
-            if (messages.length > 0) {
-              errorMsg = messages.join('. ');
-            }
-          }
-        } catch {
-          // Fallback to errorMsg
-        }
-
-        if (formStatus) {
-          formStatus.className = 'form-status form-status-error';
-          formStatus.innerHTML = `<strong>Error:</strong> ${errorMsg}`;
-          formStatus.style.display = 'block';
-          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // Reset reCAPTCHA on failure so user can re-verify
-        // @ts-ignore
-        if (window.grecaptcha) {
-          // @ts-ignore
-          window.grecaptcha.reset();
-        }
+        if (window.grecaptcha) window.grecaptcha.reset();
+        resetButton();
       }
-    } catch {
-      if (formStatus) {
-        formStatus.className = 'form-status form-status-error';
-        formStatus.innerHTML =
-          '<strong>Network Error:</strong> Unable to connect to the server. Please check your connection or reach out to us directly.';
-        formStatus.style.display = 'block';
-        formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+    }, 12000);
 
-      // @ts-ignore
-      if (window.grecaptcha) {
-        // @ts-ignore
-        window.grecaptcha.reset();
-      }
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
-        submitBtn.innerHTML = `
-          <span>Get In Touch</span>
-          <span class="material-symbols-outlined icon-small">arrow_forward</span>
-        `;
-      }
-    }
+    // Form will now post directly to the hidden iframe target
+    // without triggering CORS limitations or leaving the page!
   });
 </script>
 
@@ -970,7 +968,7 @@ import { contactData } from '../../data/contact/contactData';
 
     justify-content: center;
 
-    gap: 8px;
+    gap: 10px;
 
     transition:
       background-color 0.2s ease,
@@ -980,7 +978,7 @@ import { contactData } from '../../data/contact/contactData';
   }
 
   .submit-btn:disabled {
-    opacity: 0.75;
+    opacity: 0.8;
     cursor: not-allowed;
   }
 
@@ -1001,16 +999,23 @@ import { contactData } from '../../data/contact/contactData';
     font-size: 20px;
   }
 
-  /* Spinner rotation */
-  .spinner {
-    animation: rotateSpinner 1s linear infinite;
+  /* Smooth Pure-CSS Circular Spinner */
+  .btn-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: btnSpinnerRotate 0.75s linear infinite;
+    flex-shrink: 0;
   }
 
-  @keyframes rotateSpinner {
-    from {
+  @keyframes btnSpinnerRotate {
+    0% {
       transform: rotate(0deg);
     }
-    to {
+    100% {
       transform: rotate(360deg);
     }
   }
