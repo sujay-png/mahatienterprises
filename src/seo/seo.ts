@@ -158,7 +158,7 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
       'solar suppliers Mangalore',
       'UPS battery dealers Karnataka',
       'PM Surya Ghar Muft Bijli Yojana',
-      'commercial solar installer'
+      'commercial solar installer',
       'batteries'
     ],
     type: 'website'
