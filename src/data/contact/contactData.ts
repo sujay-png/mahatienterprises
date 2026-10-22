@@ -37,9 +37,9 @@ export const contactData = {
     }
   ],
   formOptions: [
-    { value: 'solar', label: 'Solar Solutions' },
-    { value: 'ups', label: 'UPS Solutions' },
-    { value: 'batteries', label: 'Batteries' },
-    { value: 'other', label: 'Other Inquiry' }
+    { value: 'Solar Solutions', label: 'Solar Solutions' },
+    { value: 'UPS Solutions', label: 'UPS Solutions' },
+    { value: 'Batteries', label: 'Batteries' },
+    { value: 'Other Inquiry', label: 'Other Inquiry' }
   ]
 };

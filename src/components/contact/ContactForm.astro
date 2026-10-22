@@ -5,29 +5,36 @@ import { contactData } from '../../data/contact/contactData';
 <div class="contact-form-card">
   <h2 class="form-title">Send us a message</h2>
 
-  <form class="contact-form" onsubmit="event.preventDefault();">
+  <!-- Status alert box -->
+  <div id="formStatus" class="form-status" style="display: none;" role="alert"></div>
+
+  <form class="contact-form" id="contactForm" novalidate>
 
     <!-- First Name / Last Name -->
     <div class="form-row">
 
       <div class="form-group">
-        <label for="firstName">First Name</label>
+        <label for="firstName">First Name <span class="required-star">*</span></label>
 
         <input
           type="text"
           id="firstName"
-          placeholder="Sujay"
+          name="input_1.3"
+          placeholder="First Name"
+          autocomplete="given-name"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="lastName">Last Name</label>
+        <label for="lastName">Last Name <span class="required-star">*</span></label>
 
         <input
           type="text"
           id="lastName"
-          placeholder="Kumar"
+          name="input_1.6"
+          placeholder="Last Name"
+          autocomplete="family-name"
           required
         />
       </div>
@@ -39,23 +46,27 @@ import { contactData } from '../../data/contact/contactData';
     <div class="form-row">
 
       <div class="form-group">
-        <label for="email">Email Address</label>
+        <label for="email">Email Address <span class="required-star">*</span></label>
 
         <input
           type="email"
           id="email"
+          name="input_2"
           placeholder="john@company.com"
+          autocomplete="email"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="phone">Phone Number</label>
+        <label for="phone">Phone Number <span class="required-star">*</span></label>
 
         <input
           type="tel"
           id="phone"
+          name="input_4"
           placeholder="+91 XXXXX XXXXX"
+          autocomplete="tel"
           required
         />
       </div>
@@ -67,12 +78,12 @@ import { contactData } from '../../data/contact/contactData';
     <div class="form-group">
 
       <label for="product">
-        Interested Product
+        Interested Product <span class="required-star">*</span>
       </label>
 
       <div class="select-wrapper">
 
-        <select id="product" required>
+        <select id="product" name="input_5" required>
 
           <option value="" disabled selected>
             Select a solution category
@@ -135,12 +146,14 @@ import { contactData } from '../../data/contact/contactData';
     <div class="form-group">
 
       <label for="comments">
-        Project Details / Comments
+        Project Details / Comments <span class="required-star">*</span>
       </label>
 
       <textarea
         id="comments"
+        name="input_3"
         rows="4"
+        maxlength="600"
         placeholder="Briefly describe your requirements..."
         required
       ></textarea>
@@ -148,25 +161,55 @@ import { contactData } from '../../data/contact/contactData';
     </div>
 
 
+    <!-- ================================= -->
+    <!-- GOOGLE RECAPTCHA V2 -->
+    <!-- ================================= -->
+    <div class="form-group captcha-group">
+      <div
+        class="g-recaptcha"
+        data-sitekey="6LcILUstAAAAALZgeuOKHcc0YUURZrs4zVs6aMTx"
+        data-theme="light"
+      ></div>
+      <div id="captchaError" class="field-error" style="display: none;">
+        Please complete the CAPTCHA verification.
+      </div>
+    </div>
+
+
+    <!-- Gravity Form Hidden Metadata -->
+    <input type="hidden" name="is_submit_1" value="1" />
+    <input type="hidden" name="gform_submit" value="1" />
+    <input type="hidden" name="gform_unique_id" value="" />
+    <input
+      type="hidden"
+      name="state_1"
+      id="gform_state_1"
+      value="WyJ7XCI1XCI6W1wiYTcyNWU4MGQ1YmYwOWNiYjI0ZTQwMTIzMjcwYzViMThcIixcIjI5NjBlZTQ5MDk3OWE2ODk4OGU4NmEwYmQzZDY0YWQ2XCIsXCIzN2YyMjJlM2U3YjBmNzVkZDNlYzk3Njk3M2U4NjhmN1wiLFwiYWNhZjIzMWMxMDc5NDllMWE3N2JmODYwN2UxYzJkY2RcIl0sXCI2XCI6W1wiYzU2Y2Y3MmM2Yjg2Yjc2NWY0M2NjNDdkMzlkY2I4YzNcIixcImY3YzI0MjkxMGZiYTUzMzA4Mzk2MmQ4YzJiOWRhMjA3XCIsXCIzMzBkMmExZTNlZjU0YjgxMTAzNTk3ZDU4Nzk3OTkyOVwiLFwiZGY4ZGQ2OTk2ZGU1MTI4NDA5NGZmMjFmNjNhMzQ4YjBcIixcImM3OWIzZGNjMzViYjQxOGQ1YWUxMmQzYjQxZDc3ZmEzXCIsXCJlZTA1Y2FlN2JkZjc2OTAzYzNiYjZiOGUxOWI2MTEzYlwiLFwiZmJkYjZhODljMTdlN2Y1YTViMGQwYjg3YTE1MTJlZDZcIixcIjY1YjViNWRhMmRhNGY3ZjU1NjI4YzRiMjZmYmQzNDRlXCIsXCI0YzA5ZTY0Y2U2YzgxM2U0MTZjYmQxMjE5OTJjZjRhN1wiXSxcIjdcIjpbXCI1MmI3ZmQ5MDM1ODdjYjAxZDA1ZDA1N2NiNGI3MjU1N1wiLFwiYWJhNjIyMDMyZGYxODIyYjc0NmMzNzYxNDA3ODhjNWZcIl0sXCI4XCI6W1wiZDBiY2Q2YTZkZjk1ZDZlOTA2MDIxNThiMjU3NGI0YWJcIixcIjIxNGJhMDc3Y2ZjODU4MTRmZTRiMGRhYWJmYTZkY2U3XCIsXCI1MWNmZWIyNzI0OGEzNGY1ZGI0MDFlZDFiM2ZlM2E1ZlwiLFwiMTAyMTVmNmE0NGJlMTU5MGQzMTYwMmUzZWE0NjA4YzRcIixcIjNlNzEwNzRkODg0MDJjNjExYmJiZjBhZWI4MGM2ZmUwXCJdfSIsImMyNmEzZWY2ZWY5MWJkMDMyNjgxZDRmODRkNDQxNzUzIl0="
+    />
+    <input type="hidden" name="gform_target_page_number_1" value="0" />
+    <input type="hidden" name="gform_source_page_number_1" value="1" />
+    <input type="hidden" name="gform_field_values" value="" />
+
+
     <!-- Submit Button -->
     <button
       type="submit"
       class="submit-btn"
+      id="submitBtn"
     >
-
-      <span>
+      <span class="btn-text">
         Get In Touch
       </span>
-
-      <span class="material-symbols-outlined icon-small">
+      <span class="material-symbols-outlined icon-small btn-icon">
         arrow_forward
       </span>
-
     </button>
 
   </form>
 </div>
 
+<!-- Load Google reCAPTCHA v2 Script -->
+<script is:inline src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script>
   /*
@@ -174,6 +217,9 @@ import { contactData } from '../../data/contact/contactData';
    * GET FORM ELEMENTS
    * ============================================
    */
+
+  const form =
+    document.querySelector('#contactForm') as HTMLFormElement | null;
 
   const productSelect =
     document.querySelector('#product') as HTMLSelectElement | null;
@@ -187,27 +233,38 @@ import { contactData } from '../../data/contact/contactData';
   const productTypeLabel =
     document.querySelector('#productTypeLabel') as HTMLLabelElement | null;
 
+  const captchaError =
+    document.querySelector('#captchaError') as HTMLDivElement | null;
+
+  const formStatus =
+    document.querySelector('#formStatus') as HTMLDivElement | null;
+
+  const submitBtn =
+    document.querySelector('#submitBtn') as HTMLButtonElement | null;
+
+  const stateInput =
+    document.querySelector('#gform_state_1') as HTMLInputElement | null;
+
 
   /*
    * ============================================
-   * PRODUCT OPTIONS
+   * PRODUCT OPTIONS & CONDITIONAL MAPPINGS
    * ============================================
    */
 
   type ProductOption = {
     label: string;
+    fieldName: string;
     options: string[];
   };
 
-
   const conditionalOptions: Record<string, ProductOption> = {
-
     /*
-     * SOLAR SOLUTIONS
+     * SOLAR SOLUTIONS (WP field: input_6)
      */
     solar: {
-      label: 'Solar Solution Type',
-
+      label: 'Solar Solution',
+      fieldName: 'input_6',
       options: [
         'Off Grid Solar System',
         'On Grid Solar System',
@@ -221,26 +278,24 @@ import { contactData } from '../../data/contact/contactData';
       ]
     },
 
-
     /*
-     * UPS SOLUTION
+     * UPS SOLUTIONS (WP field: input_7)
      */
     ups: {
-      label: 'UPS Solution Type',
-
+      label: 'UPS Solution',
+      fieldName: 'input_7',
       options: [
         'Online UPS solution',
         'Offline UPS solution'
       ]
     },
 
-
     /*
-     * BATTERIES
+     * BATTERIES (WP field: input_8)
      */
     batteries: {
-      label: 'Battery Type',
-
+      label: 'Battery',
+      fieldName: 'input_8',
       options: [
         'Industrial Batteries',
         'Lead Acid Batteries',
@@ -249,7 +304,6 @@ import { contactData } from '../../data/contact/contactData';
         'Lithium-Ion Batteries'
       ]
     }
-
   };
 
 
@@ -260,11 +314,6 @@ import { contactData } from '../../data/contact/contactData';
    */
 
   function updateProductType() {
-
-    /*
-     * Make sure all required elements exist.
-     */
-
     if (
       !productSelect ||
       !conditionalProduct ||
@@ -274,203 +323,245 @@ import { contactData } from '../../data/contact/contactData';
       return;
     }
 
-
-    /*
-     * Get the currently selected option.
-     */
-
     const selectedOption =
-      productSelect.options[
-        productSelect.selectedIndex
-      ];
-
-
-    /*
-     * Get the visible text.
-     *
-     * Example:
-     *
-     * "Solar Solutions"
-     * "UPS Solution"
-     * "Batteries"
-     */
+      productSelect.options[productSelect.selectedIndex];
 
     const selectedText =
-      selectedOption?.textContent
-        ?.trim()
-        .toLowerCase() || '';
-
-
-    /*
-     * Initially there is no selected
-     * conditional option.
-     */
+      selectedOption?.textContent?.trim().toLowerCase() || '';
 
     let selectedData: ProductOption | null = null;
 
-
-    /*
-     * ==========================================
-     * SOLAR
-     * ==========================================
-     */
-
-    if (
-      selectedText.includes('solar')
-    ) {
-
-      selectedData =
-        conditionalOptions.solar;
-
+    if (selectedText.includes('solar')) {
+      selectedData = conditionalOptions.solar;
+    } else if (selectedText.includes('ups')) {
+      selectedData = conditionalOptions.ups;
+    } else if (selectedText.includes('batter')) {
+      selectedData = conditionalOptions.batteries;
     }
 
-
     /*
-     * ==========================================
-     * UPS
-     * ==========================================
+     * If user selects another category (e.g. Other Inquiry), hide conditional field
      */
-
-    else if (
-      selectedText.includes('ups')
-    ) {
-
-      selectedData =
-        conditionalOptions.ups;
-
-    }
-
-
-    /*
-     * ==========================================
-     * BATTERIES
-     * ==========================================
-     */
-
-    else if (
-      selectedText.includes('batter')
-    ) {
-
-      selectedData =
-        conditionalOptions.batteries;
-
-    }
-
-
-    /*
-     * ==========================================
-     * NO CONDITIONAL FIELD
-     * ==========================================
-     *
-     * If the user selects another product,
-     * hide the second dropdown.
-     */
-
     if (!selectedData) {
-
       conditionalProduct.style.display = 'none';
-
       productType.required = false;
-
       productType.value = '';
-
+      productType.removeAttribute('name');
       productType.innerHTML = `
         <option value="" disabled selected>
           Select product type
         </option>
       `;
-
       return;
     }
 
-
-    /*
-     * ==========================================
-     * SHOW CONDITIONAL FIELD
-     * ==========================================
-     */
-
     conditionalProduct.style.display = 'flex';
-
-
-    /*
-     * Make the second field required.
-     */
-
     productType.required = true;
-
-
-    /*
-     * Change the label.
-     *
-     * Solar:
-     * Solar Solution Type
-     *
-     * UPS:
-     * UPS Solution Type
-     *
-     * Batteries:
-     * Battery Type
-     */
-
-    productTypeLabel.textContent =
-      selectedData.label;
-
-
-    /*
-     * ==========================================
-     * CLEAR OLD OPTIONS
-     * ==========================================
-     */
+    productType.name = selectedData.fieldName;
+    productTypeLabel.textContent = `Select ${selectedData.label} Type`;
 
     productType.innerHTML = `
       <option value="" disabled selected>
-        Select ${selectedData.label}
+        Select ${selectedData.label} Type
       </option>
     `;
 
-
-    /*
-     * ==========================================
-     * ADD NEW OPTIONS
-     * ==========================================
-     */
-
-    selectedData.options.forEach(
-      (option) => {
-
-        const newOption =
-          document.createElement('option');
-
-
-        newOption.value =
-          option;
-
-
-        newOption.textContent =
-          option;
-
-
-        productType.appendChild(
-          newOption
-        );
-
-      }
-    );
-
+    selectedData.options.forEach((option) => {
+      const newOption = document.createElement('option');
+      newOption.value = option;
+      newOption.textContent = option;
+      productType.appendChild(newOption);
+    });
   }
+
+  productSelect?.addEventListener('change', updateProductType);
 
 
   /*
    * ============================================
-   * LISTEN FOR PRODUCT CHANGE
+   * LIVE FETCH OF STATE_1 (SELF-HEALING)
+   * ============================================
+   * Fetches latest Gravity Forms state token in the background
+   * so the form stays resilient if WP choices are adjusted.
+   */
+  async function refreshFormState() {
+    try {
+      const res = await fetch(
+        'https://dashboard.mahatienterprises.com/contact-us/?gf_state=' + Date.now(),
+        { cache: 'no-store' }
+      );
+      if (!res.ok) return;
+      const html = await res.text();
+      const match = html.match(/name=['"]state_1['"] value=['"]([^'"]+)['"]/);
+      if (match && match[1] && stateInput) {
+        stateInput.value = match[1];
+      }
+    } catch {
+      // Fallback state_1 already present in markup
+    }
+  }
+
+  refreshFormState();
+
+
+  /*
+   * ============================================
+   * FORM SUBMISSION HANDLER
    * ============================================
    */
 
-  productSelect?.addEventListener(
-    'change',
-    updateProductType
-  );
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Verify Google reCAPTCHA
+    // @ts-ignore
+    const recaptchaToken = window.grecaptcha
+      // @ts-ignore
+      ? window.grecaptcha.getResponse()
+      : '';
+
+    if (!recaptchaToken) {
+      if (captchaError) {
+        captchaError.style.display = 'block';
+        captchaError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      return;
+    }
+
+    if (captchaError) {
+      captchaError.style.display = 'none';
+    }
+
+    // Hide any previous status
+    if (formStatus) {
+      formStatus.style.display = 'none';
+    }
+
+    // Loading State
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+      submitBtn.innerHTML = `
+        <span>Sending...</span>
+        <span class="material-symbols-outlined icon-small spinner">progress_activity</span>
+      `;
+    }
+
+    try {
+      const formData = new FormData(form);
+
+      // Ensure recaptcha response is explicitly attached
+      if (!formData.get('g-recaptcha-response')) {
+        formData.append('g-recaptcha-response', recaptchaToken);
+      }
+
+      const response = await fetch('https://dashboard.mahatienterprises.com/contact-us/', {
+        method: 'POST',
+        body: formData
+      });
+
+      const responseHtml = await response.text();
+
+      const isSuccess =
+        response.ok &&
+        (responseHtml.includes('gform_confirmation_message') ||
+          responseHtml.includes('Thanks for contacting us') ||
+          (!responseHtml.includes('gform_validation_error') && !responseHtml.includes('gfield_error')));
+
+      if (isSuccess) {
+        if (formStatus) {
+          formStatus.className = 'form-status form-status-success';
+          formStatus.innerHTML = `
+            <strong>Thank you!</strong> Your message has been sent successfully. We will get in touch with you shortly.
+          `;
+          formStatus.style.display = 'block';
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        form.reset();
+        if (conditionalProduct) {
+          conditionalProduct.style.display = 'none';
+        }
+        if (productType) {
+          productType.removeAttribute('name');
+        }
+
+        // Reset reCAPTCHA widget
+        // @ts-ignore
+        if (window.grecaptcha) {
+          // @ts-ignore
+          window.grecaptcha.reset();
+        }
+
+        // Re-fetch fresh state for subsequent submissions
+        refreshFormState();
+      } else {
+        // Parse validation errors if returned from Gravity Forms
+        let errorMsg =
+          'There was an issue submitting your request. Please check the fields and try again.';
+
+        try {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(responseHtml, 'text/html');
+          const errorNodes = doc.querySelectorAll(
+            '.gfield_validation_message, .validation_message, .gform_validation_errors'
+          );
+          if (errorNodes.length > 0) {
+            const messages = Array.from(errorNodes)
+              .map((node) => node.textContent?.trim())
+              .filter(Boolean);
+            if (messages.length > 0) {
+              errorMsg = messages.join('. ');
+            }
+          }
+        } catch {
+          // Fallback to errorMsg
+        }
+
+        if (formStatus) {
+          formStatus.className = 'form-status form-status-error';
+          formStatus.innerHTML = `<strong>Error:</strong> ${errorMsg}`;
+          formStatus.style.display = 'block';
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Reset reCAPTCHA on failure so user can re-verify
+        // @ts-ignore
+        if (window.grecaptcha) {
+          // @ts-ignore
+          window.grecaptcha.reset();
+        }
+      }
+    } catch {
+      if (formStatus) {
+        formStatus.className = 'form-status form-status-error';
+        formStatus.innerHTML =
+          '<strong>Network Error:</strong> Unable to connect to the server. Please check your connection or reach out to us directly.';
+        formStatus.style.display = 'block';
+        formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // @ts-ignore
+      if (window.grecaptcha) {
+        // @ts-ignore
+        window.grecaptcha.reset();
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = `
+          <span>Get In Touch</span>
+          <span class="material-symbols-outlined icon-small">arrow_forward</span>
+        `;
+      }
+    }
+  });
 </script>
 
 
@@ -528,7 +619,45 @@ import { contactData } from '../../data/contact/contactData';
 
     color: #0b1c30;
 
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
+  }
+
+
+  /*
+   * ============================================
+   * FORM STATUS NOTIFICATIONS
+   * ============================================
+   */
+
+  .form-status {
+    padding: 16px 20px;
+
+    border-radius: 8px;
+
+    margin-bottom: 24px;
+
+    font-family:
+      var(--font-body, 'Hanken Grotesk', sans-serif);
+
+    font-size: 14px;
+
+    line-height: 20px;
+  }
+
+  .form-status-success {
+    background-color: #ecfdf5;
+
+    color: #065f46;
+
+    border: 1px solid #a7f3d0;
+  }
+
+  .form-status-error {
+    background-color: #fef2f2;
+
+    color: #991b1b;
+
+    border: 1px solid #fecaca;
   }
 
 
@@ -583,13 +712,13 @@ import { contactData } from '../../data/contact/contactData';
 
     flex-direction: column;
 
-    gap: 4px;
+    gap: 6px;
   }
 
 
   /*
    * ============================================
-   * LABEL
+   * LABEL & REQUIRED STAR
    * ============================================
    */
 
@@ -606,6 +735,12 @@ import { contactData } from '../../data/contact/contactData';
     letter-spacing: 0.05em;
 
     color: #45464d;
+  }
+
+  .required-star {
+    color: #dc2626;
+
+    font-weight: 700;
   }
 
 
@@ -758,33 +893,43 @@ import { contactData } from '../../data/contact/contactData';
       0.25s ease;
   }
 
-
-  /*
-   * ============================================
-   * CONDITIONAL FIELD ANIMATION
-   * ============================================
-   */
-
   @keyframes conditionalFadeIn {
 
     from {
-
       opacity: 0;
-
-      transform:
-        translateY(-8px);
-
+      transform: translateY(-8px);
     }
 
     to {
-
       opacity: 1;
-
-      transform:
-        translateY(0);
-
+      transform: translateY(0);
     }
 
+  }
+
+
+  /*
+   * ============================================
+   * CAPTCHA & FIELD ERRORS
+   * ============================================
+   */
+
+  .captcha-group {
+    margin-top: 4px;
+    overflow-x: auto;
+  }
+
+  .field-error {
+    color: #dc2626;
+
+    font-family:
+      var(--font-body, 'Hanken Grotesk', sans-serif);
+
+    font-size: 13px;
+
+    line-height: 16px;
+
+    margin-top: 4px;
   }
 
 
@@ -796,7 +941,7 @@ import { contactData } from '../../data/contact/contactData';
 
   .submit-btn {
 
-    margin-top: 12px;
+    margin-top: 8px;
 
     background-color: #fd761a;
 
@@ -828,46 +973,46 @@ import { contactData } from '../../data/contact/contactData';
     gap: 8px;
 
     transition:
-      background-color 0.2s ease;
+      background-color 0.2s ease,
+      opacity 0.2s ease;
 
     width: 100%;
   }
 
+  .submit-btn:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
 
   @media (min-width: 768px) {
 
     .submit-btn {
-
       width: auto;
-
       align-self: flex-start;
-
     }
 
   }
 
-
-  /*
-   * ============================================
-   * BUTTON HOVER
-   * ============================================
-   */
-
-  .submit-btn:hover {
-
+  .submit-btn:hover:not(:disabled) {
     background-color: #9d4300;
   }
 
-
-  /*
-   * ============================================
-   * BUTTON ICON
-   * ============================================
-   */
-
   .icon-small {
-
     font-size: 20px;
+  }
+
+  /* Spinner rotation */
+  .spinner {
+    animation: rotateSpinner 1s linear infinite;
+  }
+
+  @keyframes rotateSpinner {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
 </style>
