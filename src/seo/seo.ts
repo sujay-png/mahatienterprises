@@ -91,14 +91,15 @@ export interface ResolvedSeo {
 export const SITE_CONFIG = {
   siteUrl: 'https://www.mahatienterprises.com',
   siteName: 'Mahati Enterprises',
-  defaultTitle: 'Solar Suppliers: Reliable Power Solutions | Mahati Enterprises',
+  defaultTitle: 'Top Solar Suppliers in Udupi | Mahati Enterprises',
   titleTemplate: '%s | Mahati Enterprises',
   defaultDescription:
-    'Government-registered solar power systems, rooftop solar installations, UPS batteries, and inverter solutions for residential, commercial & industrial clients across Karnataka.',
+    'Looking for reliable solar suppliers in Udupi? Mahati Enterprises offers top solar products, UPS systems, and batteries for homes and businesses.',
   defaultKeywords: [
     'Mahati Enterprises',
     'solar power Karnataka',
     'solar panels Udupi',
+    'solar suppliers in udupi',
     'solar suppliers Mangalore',
     'rooftop solar installation',
     'PM Surya Ghar subsidy 2026',
@@ -148,13 +149,14 @@ export const SITE_CONFIG = {
  */
 export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/': {
-    title: 'Solar Suppliers: Reliable Power Solutions | Mahati Enterprises',
+    title: 'Top Solar Suppliers in Udupi | Mahati Enterprises',
     canonical: 'https://www.mahatienterprises.com/',
     description:
-      'Empowering Karnataka with certified solar rooftop installations, off grid, on grid & hybrid solar systems, high-performance UPS and battery solutions.',
+      'Looking for reliable solar suppliers in Udupi? Mahati Enterprises offers top solar products, UPS systems, and batteries for homes and businesses.',
     keywords: [
       'solar rooftop installation Karnataka',
       'solar panel company Udupi',
+      'solar suppliers in udupi',
       'solar suppliers Mangalore',
       'UPS battery dealers Karnataka',
       'PM Surya Ghar Muft Bijli Yojana',
