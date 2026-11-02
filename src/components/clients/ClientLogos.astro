@@ -4,12 +4,21 @@ import { Image } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('../../images/*.webp', { eager: true });
 
 // Filter out irrelevant images (like backgrounds, main logo, or hero images)
-const clientLogos = Object.values(images)
-  .filter((module) => {
-    const src = module.default.src;
-    return !src.includes('Logo.webp') && !src.includes('Client-Hero.webp') && !src.includes('solar-bg.png');
+const clientLogos = Object.entries(images)
+  .filter(([path]) => {
+    return (
+      !path.includes('Logo.webp') &&
+      !path.includes('Client-Hero.webp') &&
+      !path.includes('solar-bg.png') &&
+      !path.includes('Our-work') &&
+      !path.includes('Product-Banner') &&
+      !path.includes('raghavendra-') &&
+      !path.includes('msme.webp') &&
+      !path.includes('nsic.webp') &&
+      !path.includes('sathyamev-jayathe.webp')
+    );
   })
-  .map(module => module.default);
+  .map(([_, module]) => module.default);
 ---
 
 <section class="logos-section">
@@ -19,7 +28,7 @@ const clientLogos = Object.values(images)
       <div class="marquee-group">
         {clientLogos.map((logo) => (
           <div class="logo-item">
-            <Image src={logo} alt="Client Logo" class="logo-img" />
+            <Image src={logo} alt="Client Logo" class="logo-img" widths={[180, 360]} sizes="180px" />
           </div>
         ))}
       </div>
@@ -27,7 +36,7 @@ const clientLogos = Object.values(images)
       <div class="marquee-group" aria-hidden="true">
         {clientLogos.map((logo) => (
           <div class="logo-item">
-            <Image src={logo} alt="Client Logo" class="logo-img" />
+            <Image src={logo} alt="Client Logo" class="logo-img" widths={[180, 360]} sizes="180px" />
           </div>
         ))}
       </div>

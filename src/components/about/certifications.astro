@@ -22,7 +22,14 @@ import { certificationsData } from "../../data/about/certifications";
         certificationsData?.items?.map((item) => (
           <div class="certification-item">
             <div class="logo-wrapper">
-              <Image src={item.image} alt={item.alt} loading="lazy" />
+              <Image
+                src={item.image}
+                alt={item.alt}
+                loading="lazy"
+                width={210}
+                widths={[175, 210, 300]}
+                sizes="(max-width: 767px) 175px, 210px"
+              />
             </div>
           </div>
         ))
