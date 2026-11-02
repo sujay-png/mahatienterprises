@@ -10,7 +10,7 @@
   --color-secondary: #9d4300;
   --color-secondary-container: #fd761a;
   --color-on-secondary: #ffffff;
-  --color-on-primary-container: #7c839b;
+  --color-on-primary-container: #475569;
   --color-bg: #f8fafc;
   --color-surface-container: #e5eeff;
   --color-border: #c6c6cd;
@@ -21,7 +21,7 @@
   --color-orange: #fd761a;
   --color-card-bg: #ffffff;
   --color-text-dark: #0b1c30;
-  --color-text-muted: #7c839b;
+  --color-text-muted: #475569;
 }
 
 *,
