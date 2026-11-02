@@ -389,36 +389,28 @@ import logoImg from "../../../images/Logo.webp";
 </style>
 
 <script>
-  // Explicitly force scroll-to-top when clicking footer links
-  // This helps on some mobile browsers and when clicking links to the current page
   function setupFooterScroll() {
     const footerLinks = document.querySelectorAll(".footer a:not(.social-btn)");
     footerLinks.forEach((link) => {
-      // Remove old listeners to prevent duplicates
-      const newLink = link.cloneNode(true) as HTMLAnchorElement;
-      link.replaceWith(newLink);
-
-      newLink.addEventListener("click", (e) => {
-        const href = newLink.getAttribute("href");
-
-        // Only force scroll for internal links (starting with /)
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
         if (href && href.startsWith("/")) {
-          const targetPath = new URL(newLink.href).pathname;
+          const targetPath = new URL((link as HTMLAnchorElement).href).pathname;
           const currentPath = window.location.pathname;
 
           if (targetPath === currentPath) {
-            // Same page navigation, prevent default and just scroll up smoothly
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
-          } else {
-            // Different page, scroll instantly so new page loads at top
-            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
           }
         }
       });
     });
   }
 
-  // Run on initial load and after every view transition swap
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", setupFooterScroll);
+  } else {
+    setupFooterScroll();
+  }
   document.addEventListener("astro:page-load", setupFooterScroll);
 </script>

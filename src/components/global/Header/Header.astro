@@ -96,7 +96,7 @@ const isActive = (href: string) => {
 ---
 
 
-<header class="header" transition:persist>
+<header class="header">
 
   <div class="header-container">
 
@@ -2227,9 +2227,11 @@ const isActive = (href: string) => {
      INITIAL LOAD + ASTRO VIEW TRANSITIONS
   ========================================================== */
 
-  document.addEventListener(
-    'astro:page-load',
-    setupHeader
-  );
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupHeader);
+  } else {
+    setupHeader();
+  }
+  document.addEventListener('astro:page-load', setupHeader);
 
 </script>

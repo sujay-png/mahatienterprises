@@ -257,18 +257,19 @@ import { servicesData } from '../../data/home/services';
     // Recalculate dynamically on click in case of resize
     const getScrollAmount = () => firstCard.offsetWidth + 24; // Card width + gap
 
-    prevBtn.addEventListener('click', () => {
+    (prevBtn as HTMLElement).onclick = () => {
       track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
+    };
 
-    nextBtn.addEventListener('click', () => {
+    (nextBtn as HTMLElement).onclick = () => {
       track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
+    };
   }
 
-  // Setup on initial load
-  setupCarousel();
-  
-  // Setup on Astro page navigation
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCarousel);
+  } else {
+    setupCarousel();
+  }
   document.addEventListener('astro:page-load', setupCarousel);
 </script>

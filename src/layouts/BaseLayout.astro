@@ -3,7 +3,6 @@
 import '../styles/global.css';
 import Header from '../components/global/Header/Header.astro';
 import Footer from '../components/global/Footer/Footer.astro';
-import { ClientRouter } from 'astro:transitions';
 import { getSeoData, type SeoProps, type SeoConfig } from '../seo/seo';
 
 interface Props extends SeoProps {
@@ -82,7 +81,15 @@ const seo = getSeoData(pathname, {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(seo.schema)} />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <ClientRouter />
+    <script is:inline>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          document.dispatchEvent(new Event('astro:page-load'));
+        });
+      } else {
+        document.dispatchEvent(new Event('astro:page-load'));
+      }
+    </script>
     <slot name="head" />
   </head>
   <body>
@@ -90,7 +97,7 @@ const seo = getSeoData(pathname, {
     <Header />
 
     <!-- Main Content Area -->
-    <main transition:animate="fade">
+    <main>
       <slot />
     </main>
 

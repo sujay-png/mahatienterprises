@@ -39,7 +39,7 @@ import { faqData } from '../../data/home/faq';
 </section>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initFaq() {
     // Only select items that haven't been initialized yet
     const accordionItems = document.querySelectorAll('.faq-item:not([data-initialized])');
 
@@ -75,7 +75,14 @@ import { faqData } from '../../data/home/faq';
         }
       });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+  document.addEventListener('astro:page-load', initFaq);
 </script>
 
 <style>
