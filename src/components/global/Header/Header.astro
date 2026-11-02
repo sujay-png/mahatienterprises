@@ -365,6 +365,7 @@ const isActive = (href: string) => {
     class="mobile-sidebar"
     id="mobile-sidebar"
     aria-hidden="true"
+    inert
   >
 
 
@@ -1427,9 +1428,12 @@ const isActive = (href: string) => {
 
   z-index: 999;
 
+  visibility: hidden;
+
   transition:
     right .4s
-    cubic-bezier(.16,1,.3,1);
+    cubic-bezier(.16,1,.3,1),
+    visibility .4s;
 
   display: flex;
 
@@ -1443,6 +1447,8 @@ const isActive = (href: string) => {
 .mobile-sidebar.is-active {
 
   right: 0;
+
+  visibility: visible;
 
 }
 
@@ -2014,6 +2020,8 @@ const isActive = (href: string) => {
         'false'
       );
 
+      sidebar.removeAttribute('inert');
+
       menuBtn?.setAttribute(
         'aria-expanded',
         'true'
@@ -2037,6 +2045,8 @@ const isActive = (href: string) => {
         'aria-hidden',
         'true'
       );
+
+      sidebar.setAttribute('inert', '');
 
       menuBtn?.setAttribute(
         'aria-expanded',
