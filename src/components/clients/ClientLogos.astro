@@ -28,7 +28,7 @@ const clientLogos = Object.entries(images)
       <div class="marquee-group">
         {clientLogos.map((logo) => (
           <div class="logo-item">
-            <Image src={logo} alt="Client Logo" class="logo-img" widths={[180, 360]} sizes="180px" />
+            <Image src={logo} alt="Client Logo" class="logo-img" width={180} widths={[120, 150, 180, 240, 300]} sizes="(max-width: 640px) 150px, 180px" />
           </div>
         ))}
       </div>
@@ -36,7 +36,7 @@ const clientLogos = Object.entries(images)
       <div class="marquee-group" aria-hidden="true">
         {clientLogos.map((logo) => (
           <div class="logo-item">
-            <Image src={logo} alt="Client Logo" class="logo-img" widths={[180, 360]} sizes="180px" />
+            <Image src={logo} alt="Client Logo" class="logo-img" width={180} widths={[120, 150, 180, 240, 300]} sizes="(max-width: 640px) 150px, 180px" />
           </div>
         ))}
       </div>
