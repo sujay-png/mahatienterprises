@@ -8,7 +8,9 @@ export const contactData = {
     {
       title: 'Udupi Office',
       icon: 'location_on',
-      address: 'Ground Floor, Sri Vasudev’ Building, Shop No. 5, 1-27A4, opposite Swagtha Gopura Kinnimulky, Udupi, Karnataka 576101'
+      address: 'Ground Floor, Sri Vasudev’ Building, Shop No. 5, 1-27A4, opposite Swagtha Gopura Kinnimulky, Udupi, Karnataka 576101',
+      phone: '+91 948 392 7870',
+      phoneHref: 'tel:+919483927870'
     },
     {
       title: 'Hubli Office',
@@ -22,12 +24,6 @@ export const contactData = {
       icon: 'call',
       value: '+91 701 935 1344',
       href: 'tel:+917019351344'
-    },
-    {
-      label: 'Secondary Phone',
-      icon: 'call',
-      value: '+91 948 392 7870',
-      href: 'tel:+919483927870'
     },
     {
       label: 'Email Support',

@@ -10,14 +10,22 @@ import { contactData } from '../../data/contact/contactData';
         <div>
           <h3 class="info-title">{office.title}</h3>
           <p class="info-address">{office.address}</p>
+          {office.phone && (
+            <div class="office-phone-row">
+              <span class="material-symbols-outlined icon-small">call</span>
+              <div>
+                <a href={office.phoneHref} class="contact-link">{office.phone}</a>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   ))}
 
   <div class="info-card combined-card">
-    {contactData.contacts.slice(0, 2).map((contact) => (
-      <div class="contact-row">
+    {contactData.contacts.map((contact, index) => (
+      <div class:list={["contact-row", index > 0 && "border-top"]}>
         <span class="material-symbols-outlined icon-small">{contact.icon}</span>
         <div>
           <p class="contact-label">{contact.label}</p>
@@ -25,14 +33,6 @@ import { contactData } from '../../data/contact/contactData';
         </div>
       </div>
     ))}
-    
-    <div class="contact-row border-top">
-      <span class="material-symbols-outlined icon-small">{contactData.contacts[2].icon}</span>
-      <div>
-        <p class="contact-label">{contactData.contacts[2].label}</p>
-        <a href={contactData.contacts[2].href} class="contact-link">{contactData.contacts[2].value}</a>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -78,6 +78,13 @@ import { contactData } from '../../data/contact/contactData';
     font-weight: 600;
     color: #0b1c30;
     margin: 0 0 8px 0;
+  }
+
+  .office-phone-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
   }
 
   .info-address {
