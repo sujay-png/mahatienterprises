@@ -15,16 +15,12 @@ export const contactData = {
     {
       title: 'Hubli Office',
       icon: 'location_city',
-      address: 'G - 53, Eureka Centre Koppikar Road\nHubli - 580 020'
+      address: 'G - 53, Eureka Centre Koppikar Road\nHubli - 580 020',
+      phone: '+91 701 935 1344',
+      phoneHref: 'tel:+917019351344'
     }
   ],
   contacts: [
-    {
-      label: 'Primary Phone',
-      icon: 'call',
-      value: '+91 701 935 1344',
-      href: 'tel:+917019351344'
-    },
     {
       label: 'Email Support',
       icon: 'mail',
