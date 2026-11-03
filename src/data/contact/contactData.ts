@@ -8,7 +8,7 @@ export const contactData = {
     {
       title: 'Udupi Office',
       icon: 'location_on',
-      address: 'Shop No. 5-1-27A4 Ground floor Sri Vasudev\' Building\nopposite Swagtha Gopura Kinnimulky, Udupi - 576101.'
+      address: 'Ground Floor, Sri Vasudev’ Building, Shop No. 5, 1-27A4, opposite Swagtha Gopura Kinnimulky, Udupi, Karnataka 576101'
     },
     {
       title: 'Hubli Office',

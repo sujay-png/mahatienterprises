@@ -129,7 +129,7 @@ export const SITE_CONFIG = {
     supportEmail: 'mahati@support.com',
     address: {
       street:
-        "Shop No. 5-1-27A4 Ground floor, Sri Vasudev' Building, opposite Swagtha Gopura, Kinnimulky",
+        "Ground Floor, Sri Vasudev’ Building, Shop No. 5, 1-27A4, opposite Swagtha Gopura Kinnimulky",
       city: 'Udupi',
       state: 'Karnataka',
       postalCode: '576101',
