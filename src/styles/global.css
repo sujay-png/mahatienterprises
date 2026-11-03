@@ -44,7 +44,7 @@ body {
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .premium-card:hover {
@@ -60,4 +60,18 @@ body {
 /* Native Cross-Document View Transitions */
 @view-transition {
   navigation: auto;
+}
+
+/* Optimize main-thread Style & Layout by deferring offscreen rendering */
+.mission-section,
+.products-section,
+.services-section,
+.our-work-grid-section,
+.testimonials-section,
+.why-choose-section,
+.latest-blogs-section,
+.faq-section,
+.cta-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
