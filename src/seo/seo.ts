@@ -43,6 +43,8 @@ export interface TwitterConfig {
 }
 
 export interface SeoConfig {
+  primaryKeyword?: string;
+  focusKeyphrase?: string;
   title?: string;
   description?: string;
   keywords?: string | string[];
@@ -70,6 +72,8 @@ export interface SeoProps extends SeoConfig {
 }
 
 export interface ResolvedSeo {
+  primaryKeyword?: string;
+  focusKeyphrase?: string;
   title: string;
   description: string;
   keywords: string;
@@ -149,27 +153,32 @@ export const SITE_CONFIG = {
  */
 export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/': {
+    primaryKeyword: 'Batteries',
+    focusKeyphrase: 'Batteries',
     title: 'Top Solar Suppliers in Udupi | Mahati Enterprises',
     canonical: 'https://www.mahatienterprises.com/',
     description:
       'Looking for reliable solar suppliers in Udupi? Mahati Enterprises offers top solar products, UPS systems, and batteries for homes and businesses.',
     keywords: [
+      'Batteries',
       'solar rooftop installation Karnataka',
       'solar panel company Udupi',
       'solar suppliers in udupi',
       'solar suppliers Mangalore',
       'UPS battery dealers Karnataka',
       'PM Surya Ghar Muft Bijli Yojana',
-      'commercial solar installer',
-      'batteries'
+      'commercial solar installer'
     ],
     type: 'website'
   },
   '/about': {
+    primaryKeyword: 'Solar products',
+    focusKeyphrase: 'Solar products',
     title: 'About Us | Certified Solar Energy & Power Experts',
     description:
       'Learn about Mahati Enterprises, an authorized and certified renewable power solutions provider specializing in rooftop solar installations and UPS backup across Karnataka.',
     keywords: [
+      'Solar products',
       'about Mahati Enterprises',
       'solar contractor Karnataka',
       'certified solar installers',
@@ -179,10 +188,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/services': {
+    primaryKeyword: 'Solar Technology',
+    focusKeyphrase: 'Solar Technology',
     title: 'Solar & Power Services | Consultation, Installation & Maintenance',
     description:
       'End-to-end solar power and backup services including site survey, solar design, subsidy assistance, BESCOM/MESCOM grid liaison, installation, and preventative maintenance.',
     keywords: [
+      'Solar Technology',
       'solar installation service',
       'solar subsidy assistance Karnataka',
       'net metering approval Karnataka',
@@ -192,10 +204,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/products': {
+    primaryKeyword: 'Solar solutions',
+    focusKeyphrase: 'Solar solutions',
     title: 'Products: Solar Solutions, UPS Systems & Batteries | Mahati Enterprises',
     description:
       'Explore high-quality products from Mahati Enterprises, including solar panels, UPS systems, batteries and services.',
     keywords: [
+      'Solar solutions',
       'solar panels',
       'solar inverters',
       'industrial batteries',
@@ -206,11 +221,14 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     ],
     type: 'website'
   },
-  '/products/solar': {
+  '/solar-products': {
+    primaryKeyword: 'Solar Solutions',
+    focusKeyphrase: 'Solar Solutions',
     title: 'Solar Energy Solutions | Rooftop, On-Grid & Off-Grid Solar Systems',
     description:
       'High-efficiency monocrystalline solar panels, rooftop systems, and smart inverters tailored for residential, commercial, and agricultural power needs.',
     keywords: [
+      'Solar Solutions',
       'monocrystalline solar panels',
       'on-grid solar system Karnataka',
       'off-grid solar power',
@@ -220,11 +238,31 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     ],
     type: 'website'
   },
-  '/products/batteries': {
+  '/products/solar': {
+    primaryKeyword: 'Solar Solutions',
+    focusKeyphrase: 'Solar Solutions',
+    title: 'Solar Energy Solutions | Rooftop, On-Grid & Off-Grid Solar Systems',
+    description:
+      'High-efficiency monocrystalline solar panels, rooftop systems, and smart inverters tailored for residential, commercial, and agricultural power needs.',
+    keywords: [
+      'Solar Solutions',
+      'monocrystalline solar panels',
+      'on-grid solar system Karnataka',
+      'off-grid solar power',
+      'hybrid solar inverter',
+      'residential solar panels',
+      'industrial rooftop solar'
+    ],
+    type: 'website'
+  },
+  '/batteries': {
+    primaryKeyword: 'Battery',
+    focusKeyphrase: 'Battery',
     title: 'Batteries | Inverter Batteries, Tubular & Industrial Power Backup',
     description:
       'Long-life tubular inverter batteries, lithium-ion energy storage, and industrial VRLA/SLA batteries designed for heavy backup and harsh environments.',
     keywords: [
+      'Battery',
       'inverter batteries Karnataka',
       'tubular battery Udupi',
       'lithium ion solar battery',
@@ -234,11 +272,48 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     ],
     type: 'website'
   },
-  '/products/ups': {
+  '/products/batteries': {
+    primaryKeyword: 'Battery',
+    focusKeyphrase: 'Battery',
+    title: 'Batteries | Inverter Batteries, Tubular & Industrial Power Backup',
+    description:
+      'Long-life tubular inverter batteries, lithium-ion energy storage, and industrial VRLA/SLA batteries designed for heavy backup and harsh environments.',
+    keywords: [
+      'Battery',
+      'inverter batteries Karnataka',
+      'tubular battery Udupi',
+      'lithium ion solar battery',
+      'industrial battery replacement',
+      'VRLA battery suppliers',
+      'SLA battery'
+    ],
+    type: 'website'
+  },
+  '/ups-solutions': {
+    primaryKeyword: 'UPS Systems',
+    focusKeyphrase: 'UPS Systems',
     title: 'UPS Systems | Online UPS & Offline Power Backup for Business & Home',
     description:
       'Industrial-grade online UPS systems, pure sine wave home inverters, and heavy-duty three-phase UPS for hospitals, IT offices, and manufacturing units.',
     keywords: [
+      'UPS Systems',
+      'online UPS Karnataka',
+      'industrial UPS supplier',
+      '3 phase UPS systems',
+      'home inverter UPS',
+      'pure sine wave inverter',
+      'offline UPS'
+    ],
+    type: 'website'
+  },
+  '/products/ups': {
+    primaryKeyword: 'UPS Systems',
+    focusKeyphrase: 'UPS Systems',
+    title: 'UPS Systems | Online UPS & Offline Power Backup for Business & Home',
+    description:
+      'Industrial-grade online UPS systems, pure sine wave home inverters, and heavy-duty three-phase UPS for hospitals, IT offices, and manufacturing units.',
+    keywords: [
+      'UPS Systems',
       'online UPS Karnataka',
       'industrial UPS supplier',
       '3 phase UPS systems',
@@ -249,10 +324,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/our-work': {
+    primaryKeyword: 'Solar projects',
+    focusKeyphrase: 'Solar projects',
     title: 'Our Work | Solar & UPS Projects Portfolio Across Karnataka',
     description:
       'Browse completed solar power installations and commercial UPS deployments across educational institutions, industries, commercial complexes, and residences.',
     keywords: [
+      'Solar projects',
       'solar project portfolio',
       'rooftop solar installations Karnataka',
       'solar case studies',
@@ -308,10 +386,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'article'
   },
   '/clients': {
+    primaryKeyword: 'Clients',
+    focusKeyphrase: 'Clients',
     title: 'Our Clients | Trusted by Businesses, Institutions & Homeowners',
     description:
       'See why leading corporations, government bodies, universities, and thousands of homeowners across Karnataka trust Mahati Enterprises for solar and backup power.',
     keywords: [
+      'Clients',
       'Mahati Enterprises clients',
       'solar clients Karnataka',
       'commercial solar partners',
@@ -320,10 +401,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/blog': {
+    primaryKeyword: 'Solar energy',
+    focusKeyphrase: 'Solar energy',
     title: 'Blog & Solar Guides | Latest Renewable Energy Insights',
     description:
       'Expert insights, government subsidy updates (PM Surya Ghar), solar maintenance tips, battery guides, and renewable technology trends from Mahati Enterprises.',
     keywords: [
+      'Solar energy',
       'solar blog India',
       'solar energy insights',
       'solar subsidy guides 2026',
@@ -333,10 +417,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/contact': {
+    primaryKeyword: 'Contact',
+    focusKeyphrase: 'Contact',
     title: 'Contact Us | Get Free Solar Consultation & Site Quote',
     description:
       'Get in touch with Mahati Enterprises in Udupi & Hubli. Request a free rooftop solar site assessment, quote, or inquire about UPS and battery solutions.',
     keywords: [
+      'Contact',
       'contact Mahati Enterprises',
       'solar quote Karnataka',
       'solar consultation Udupi',
@@ -360,10 +447,13 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     type: 'website'
   },
   '/site-maps': {
+    primaryKeyword: 'solar panel installation in India',
+    focusKeyphrase: 'solar panel installation in India',
     title: 'Site Map & Service Areas | Solar Installation Across Karnataka',
     description:
       'Explore our full site map and service areas including Udupi, Mangalore, Manipal, Moodabidri, Mulki, and throughout coastal Karnataka.',
     keywords: [
+      'solar panel installation in India',
       'solar site map',
       'solar service areas Karnataka',
       'solar installation locations',
@@ -418,16 +508,25 @@ export function formatTitle(title?: string): string {
 }
 
 /**
- * Normalizes keywords array or string into a comma-separated string.
+ * Normalizes keywords array or string into a comma-separated string,
+ * prioritizing the primary keyword/focus keyphrase at the front.
  */
-export function formatKeywords(keywords?: string | string[]): string {
-  if (!keywords) return SITE_CONFIG.defaultKeywords.join(', ');
-
+export function formatKeywords(
+  keywords?: string | string[],
+  primaryKeyword?: string
+): string {
   const list: string[] = [];
+
+  if (primaryKeyword && primaryKeyword.trim()) {
+    list.push(primaryKeyword.trim());
+  }
+
   if (Array.isArray(keywords)) {
     list.push(...keywords);
   } else if (typeof keywords === 'string') {
     list.push(...keywords.split(',').map((k) => k.trim()));
+  } else if (!primaryKeyword) {
+    list.push(...SITE_CONFIG.defaultKeywords);
   }
 
   // Include top brand keywords if not present
@@ -877,6 +976,8 @@ export function getBlogPaginationSeo(
       : 'Expert insights, government subsidy updates (PM Surya Ghar), solar maintenance tips, battery guides, and renewable technology trends from Mahati Enterprises.';
 
   return {
+    primaryKeyword: 'Solar energy',
+    focusKeyphrase: 'Solar energy',
     title: pageTitle,
     description: pageDescription,
     canonical
@@ -902,10 +1003,18 @@ export function getSeoData(
     ...directOverrides
   };
 
+  const finalPrimaryKeyword =
+    merged.primaryKeyword ||
+    baseConfig.primaryKeyword ||
+    merged.focusKeyphrase ||
+    baseConfig.focusKeyphrase;
   const finalTitle = formatTitle(merged.title || baseConfig.title || SITE_CONFIG.defaultTitle);
   const finalDescription =
     merged.description || baseConfig.description || SITE_CONFIG.defaultDescription;
-  const finalKeywords = formatKeywords(merged.keywords || baseConfig.keywords);
+  const finalKeywords = formatKeywords(
+    merged.keywords || baseConfig.keywords,
+    finalPrimaryKeyword
+  );
   const finalCanonical = buildCanonicalUrl(merged.canonical || pathname);
   const finalImage = merged.image || baseConfig.image || SITE_CONFIG.defaultImage;
   const finalImageAlt = merged.imageAlt || baseConfig.imageAlt || finalTitle;
@@ -945,6 +1054,8 @@ export function getSeoData(
   };
 
   return {
+    primaryKeyword: finalPrimaryKeyword,
+    focusKeyphrase: finalPrimaryKeyword,
     title: finalTitle,
     description: finalDescription,
     keywords: finalKeywords,
