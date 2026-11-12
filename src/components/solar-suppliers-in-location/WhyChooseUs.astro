@@ -322,11 +322,23 @@ const { whyChooseUsData } = Astro.props;
     const nextBtn = document.getElementById("whyNext") as HTMLButtonElement;
 
     if (!track || !dotsWrap || !prevBtn || !nextBtn) return;
+    if (track.dataset.initialized === "true") return;
+    track.dataset.initialized = "true";
 
     dotsWrap.innerHTML = "";
 
     const cards = Array.from(track.children) as HTMLElement[];
     const gap = 20;
+
+    let cardOffsets: number[] = [];
+    let cardStep = 340;
+
+    function measureMetrics() {
+      if (!track || cards.length === 0) return;
+      const trackLeft = track.offsetLeft;
+      cardOffsets = cards.map((c) => c.offsetLeft - trackLeft);
+      cardStep = cards[0].offsetWidth + gap;
+    }
 
     cards.forEach((_, i) => {
       const dot = document.createElement("button");
@@ -334,7 +346,7 @@ const { whyChooseUsData } = Astro.props;
       dot.setAttribute("aria-label", "Go to reason " + (i + 1));
       dot.addEventListener("click", () => {
         track.scrollTo({
-          left: cards[i].offsetLeft - track.offsetLeft,
+          left: cardOffsets[i] ?? 0,
           behavior: "smooth",
         });
       });
@@ -343,47 +355,45 @@ const { whyChooseUsData } = Astro.props;
 
     const dots = Array.from(dotsWrap.children) as HTMLElement[];
 
-    function step() {
-      return cards[0].getBoundingClientRect().width + gap;
+    // Use IntersectionObserver so active dot & prev/next states update without reading layout on scroll
+    if ("IntersectionObserver" in window && cards.length > 0) {
+      const ratios = new Array(cards.length).fill(0);
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const idx = cards.indexOf(entry.target as HTMLElement);
+            if (idx !== -1) ratios[idx] = entry.intersectionRatio;
+          }
+          let bestIdx = 0;
+          let bestRatio = -1;
+          for (let i = 0; i < ratios.length; i++) {
+            if (ratios[i] > bestRatio) {
+              bestRatio = ratios[i];
+              bestIdx = i;
+            }
+          }
+          dots.forEach((d, i) => d.classList.toggle("active", i === bestIdx));
+          prevBtn.disabled = ratios[0] >= 0.9;
+          nextBtn.disabled = ratios[cards.length - 1] >= 0.9;
+        },
+        { root: track, threshold: [0, 0.25, 0.5, 0.75, 0.9, 1] },
+      );
+      cards.forEach((c) => io.observe(c));
     }
-
-    function updateUI() {
-      if (!track) return;
-      const trackLeft = track.getBoundingClientRect().left;
-      let closest = 0,
-        minDist = Infinity;
-      cards.forEach((c, i) => {
-        const dist = Math.abs(c.getBoundingClientRect().left - trackLeft);
-        if (dist < minDist) {
-          minDist = dist;
-          closest = i;
-        }
-      });
-      dots.forEach((d, i) => d.classList.toggle("active", i === closest));
-      prevBtn.disabled = track.scrollLeft <= 4;
-      nextBtn.disabled =
-        track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
-    }
-
-    let raf: number | null = null;
-    track.addEventListener("scroll", () => {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(updateUI);
-    });
 
     prevBtn.addEventListener("click", () =>
-      track.scrollBy({ left: -step(), behavior: "smooth" }),
+      track.scrollBy({ left: -cardStep, behavior: "smooth" }),
     );
     nextBtn.addEventListener("click", () =>
-      track.scrollBy({ left: step(), behavior: "smooth" }),
+      track.scrollBy({ left: cardStep, behavior: "smooth" }),
     );
 
     track.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
-        track.scrollBy({ left: step(), behavior: "smooth" });
+        track.scrollBy({ left: cardStep, behavior: "smooth" });
       }
       if (e.key === "ArrowLeft") {
-        track.scrollBy({ left: -step(), behavior: "smooth" });
+        track.scrollBy({ left: -cardStep, behavior: "smooth" });
       }
     });
 
@@ -406,17 +416,25 @@ const { whyChooseUsData } = Astro.props;
       track.scrollLeft = startScroll - (e.pageX - startX);
     });
 
-    updateUI();
-    window.addEventListener("resize", updateUI);
+    // Set initial button state synchronously without forcing layout reads
+    prevBtn.disabled = true;
+    nextBtn.disabled = cards.length <= 1;
+
+    if ("ResizeObserver" in window) {
+      const ro = new ResizeObserver(() => {
+        measureMetrics();
+      });
+      ro.observe(track);
+    } else {
+      requestAnimationFrame(measureMetrics);
+      window.addEventListener("resize", () => {
+        requestAnimationFrame(measureMetrics);
+      });
+    }
   }
 
-  document.addEventListener("astro:page-load", initCarousel);
-  if (
-    document.readyState === "complete" ||
-    document.readyState === "interactive"
-  ) {
+  if (document.readyState === "complete") {
     initCarousel();
-  } else {
-    document.addEventListener("DOMContentLoaded", initCarousel);
   }
+  document.addEventListener("astro:page-load", initCarousel);
 </script>

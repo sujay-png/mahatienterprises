@@ -1972,14 +1972,11 @@ const isActive = (href: string) => {
       }
 
 
-      if (active) {
-
+      const hasActive = link.classList.contains('active');
+      if (active && !hasActive) {
         link.classList.add('active');
-
-      } else {
-
+      } else if (!active && hasActive) {
         link.classList.remove('active');
-
       }
 
     });
@@ -2231,9 +2228,7 @@ const isActive = (href: string) => {
      INITIAL LOAD + ASTRO VIEW TRANSITIONS
   ========================================================== */
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupHeader);
-  } else {
+  if (document.readyState === 'complete') {
     setupHeader();
   }
   document.addEventListener('astro:page-load', setupHeader);

@@ -389,7 +389,11 @@ import logoImg from "../../../images/Logo.webp";
 
 <script>
   function setupFooterScroll() {
-    const footerLinks = document.querySelectorAll(".footer a:not(.social-btn)");
+    const footer = document.querySelector(".footer") as HTMLElement | null;
+    if (!footer || footer.dataset.scrollInitialized === "true") return;
+    footer.dataset.scrollInitialized = "true";
+
+    const footerLinks = footer.querySelectorAll("a:not(.social-btn)");
     footerLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
@@ -406,9 +410,7 @@ import logoImg from "../../../images/Logo.webp";
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener("DOMContentLoaded", setupFooterScroll);
-  } else {
+  if (document.readyState === 'complete') {
     setupFooterScroll();
   }
   document.addEventListener("astro:page-load", setupFooterScroll);

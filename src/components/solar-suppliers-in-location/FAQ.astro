@@ -53,12 +53,10 @@ const { faqData } = Astro.props;
 
 <script>
   function initFAQ() {
-    document.querySelectorAll('.faq-q').forEach(btn => {
-      const newBtn = btn.cloneNode(true) as HTMLElement;
-      if(btn.parentNode) btn.parentNode.replaceChild(newBtn, btn);
-      
-      newBtn.addEventListener('click', () => {
-        const item = newBtn.closest('.faq-item');
+    document.querySelectorAll('.faq-q:not([data-initialized])').forEach(btn => {
+      btn.setAttribute('data-initialized', 'true');
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
         document.querySelectorAll('.faq-item').forEach(i => { 
           if (i !== item) i.classList.remove('open'); 
         });
@@ -67,10 +65,8 @@ const { faqData } = Astro.props;
     });
   }
 
-  document.addEventListener('astro:page-load', initFAQ);
-  if(document.readyState === 'complete' || document.readyState === 'interactive') {
+  if (document.readyState === 'complete') {
     initFAQ();
-  } else {
-    document.addEventListener('DOMContentLoaded', initFAQ);
   }
+  document.addEventListener('astro:page-load', initFAQ);
 </script>

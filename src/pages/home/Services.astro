@@ -249,26 +249,34 @@ import { servicesData } from '../../data/home/services';
     const nextBtn = document.querySelector('.next-btn');
 
     if (!track || !prevBtn || !nextBtn) return;
+    if (track.dataset.initialized === 'true') return;
+    track.dataset.initialized = 'true';
 
-    // Determine card width dynamically
+    // Determine card width dynamically via ResizeObserver to avoid forced reflows on click
     const firstCard = track.querySelector('.service-card') as HTMLElement;
     if (!firstCard) return;
 
-    // Recalculate dynamically on click in case of resize
-    const getScrollAmount = () => firstCard.offsetWidth + 24; // Card width + gap
+    let cachedScrollAmount = 324;
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const width = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
+          if (width > 0) cachedScrollAmount = width + 24;
+        }
+      });
+      ro.observe(firstCard);
+    }
 
     (prevBtn as HTMLElement).onclick = () => {
-      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+      track.scrollBy({ left: -cachedScrollAmount, behavior: 'smooth' });
     };
 
     (nextBtn as HTMLElement).onclick = () => {
-      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+      track.scrollBy({ left: cachedScrollAmount, behavior: 'smooth' });
     };
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupCarousel);
-  } else {
+  if (document.readyState === 'complete') {
     setupCarousel();
   }
   document.addEventListener('astro:page-load', setupCarousel);

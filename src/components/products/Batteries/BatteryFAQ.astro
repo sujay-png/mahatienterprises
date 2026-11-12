@@ -56,6 +56,8 @@ const faqData = [
 
       trigger?.addEventListener('click', () => {
         const isOpen = item.getAttribute('data-state') === 'open';
+        // Read layout metric BEFORE mutating DOM styles/attributes to avoid forced reflow
+        const targetHeight = isOpen ? 0 : wrapper.scrollHeight;
 
         // Close all other open items
         document.querySelectorAll('.faq-item').forEach((otherItem) => {
@@ -75,7 +77,7 @@ const faqData = [
         } else {
           item.setAttribute('data-state', 'open');
           trigger.setAttribute('aria-expanded', 'true');
-          wrapper.style.height = `${wrapper.scrollHeight}px`;
+          wrapper.style.height = `${targetHeight}px`;
         }
       });
     });
