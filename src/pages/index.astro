@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+import solarImage from '../images/mahatisolar.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../pages/home/Hero.astro';
 import Certifications from '../components/about/certifications.astro';
@@ -13,9 +15,24 @@ import WhyChooseClients from '../components/clients/WhyChooseClients.astro';
 import Faq from '../pages/home/Faq.astro';
 import Cta from '../pages/home/Cta.astro';
 import LatestBlogs from '../pages/home/LatestBlogs.astro';
+
+const preloadedSolar = await getImage({
+  src: solarImage,
+  width: 500,
+  widths: [250, 375, 500, 750, 900],
+});
 ---
 
 <BaseLayout title="Solar Suppliers: Reliable Power Solutions | Mahati Enterprises" description="Explore high-quality solar for home, automotive, and industrial use. We offer reliable, long-lasting solar power solutions you can trust">
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={preloadedSolar.src}
+    imagesrcset={preloadedSolar.srcSet.attribute}
+    imagesizes="(max-width: 480px) 250px, (max-width: 768px) 270px, (max-width: 1150px) 330px, (max-width: 1350px) 440px, 500px"
+    fetchpriority="high"
+  />
   <Hero />
   <Certifications />
   <SubsidyBanner />

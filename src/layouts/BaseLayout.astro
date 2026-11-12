@@ -43,6 +43,7 @@ const seo = getSeoData(pathname, {
     <meta name="publisher" content={seo.publisher} />
     <meta name="robots" content={seo.robots} />
     <link rel="canonical" href={seo.canonical} />
+    <slot name="head" />
 
     <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:site_name" content={seo.openGraph.siteName} />
@@ -84,12 +85,7 @@ const seo = getSeoData(pathname, {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Fonts (Non-Render-Blocking) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Work+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    />
+    <!-- Google Fonts (Non-Render-Blocking, deferred below LCP priority) -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Work+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -113,7 +109,6 @@ const seo = getSeoData(pathname, {
         document.dispatchEvent(new Event('astro:page-load'));
       }
     </script>
-    <slot name="head" />
   </head>
   <body>
     <!-- Global Header -->

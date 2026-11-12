@@ -24,7 +24,7 @@ import heroImg from '../../../images/stitch-solar-1.jpeg';
     </div>
     <div class="hero-image-wrapper reveal fade-in" style="transition-delay: 300ms;">
       <div class="hero-image-bg"></div>
-      <img class="hero-image" alt="A modern hybrid solar inverter system with battery modules and solar panels mounted on a clean white background, showcasing high-end renewable energy technology." src={heroImg.src}/>
+      <img class="hero-image" alt="A modern hybrid solar inverter system with battery modules and solar panels mounted on a clean white background, showcasing high-end renewable energy technology." src={heroImg.src} loading="eager" decoding="sync" fetchpriority="high" width={heroImg.width} height={heroImg.height} />
     </div>
   </div>
 </section>
