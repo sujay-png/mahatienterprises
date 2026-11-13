@@ -403,9 +403,9 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/blog': {
     primaryKeyword: 'Solar energy',
     focusKeyphrase: 'Solar energy',
-    title: 'Blog & Solar Guides | Latest Renewable Energy Insights',
+    title: 'Solar Energy: Insights, Guides & Latest Industry Trends',
     description:
-      'Expert insights, government subsidy updates (PM Surya Ghar), solar maintenance tips, battery guides, and renewable technology trends from Mahati Enterprises.',
+      'Solar energy blog with expert tips, guides, and updates. Learn about solar systems, batteries, and sustainable power solutions.',
     keywords: [
       'Solar energy',
       'solar blog India',
@@ -968,12 +968,12 @@ export function getBlogPaginationSeo(
   const pageTitle =
     page > 1
       ? `Blog - Page ${page} of ${totalPages} | Mahati Enterprises`
-      : 'Blog & Solar Guides | Latest Renewable Energy Insights | Mahati Enterprises';
+      : 'Solar Energy: Insights, Guides & Latest Industry Trends';
 
   const pageDescription =
     page > 1
       ? `Browse solar energy guides, subsidy updates, and power backup advice - Page ${page} of ${totalPages}.`
-      : 'Expert insights, government subsidy updates (PM Surya Ghar), solar maintenance tips, battery guides, and renewable technology trends from Mahati Enterprises.';
+      : 'Solar energy blog with expert tips, guides, and updates. Learn about solar systems, batteries, and sustainable power solutions.';
 
   return {
     primaryKeyword: 'Solar energy',

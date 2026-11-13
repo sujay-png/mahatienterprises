@@ -11,7 +11,7 @@ const currentPage = Math.max(1, Math.min(Number(url.searchParams.get('page') ?? 
 const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
 ---
 
-<BaseLayout seo={blogSeo}>
+<BaseLayout title={blogSeo.title} description={blogSeo.description} seo={blogSeo}>
 
   <section class="blog-page">
 
