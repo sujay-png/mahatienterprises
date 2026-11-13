@@ -1929,6 +1929,9 @@ const isActive = (href: string) => {
   ========================================================== */
 
   function setupHeader() {
+    const header = document.querySelector('.header') as HTMLElement | null;
+    if (!header || header.dataset.initialized === 'true') return;
+    header.dataset.initialized = 'true';
 
     /* ========================================================
        1. ACTIVE LINKS

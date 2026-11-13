@@ -85,28 +85,23 @@ const seo = getSeoData(pathname, {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Fonts (Non-Render-Blocking, deferred below LCP priority) -->
+    <!-- Google Fonts -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Work+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      media="print"
-      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Work+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      />
-    </noscript>
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script is:inline>
+      const emitPageLoad = () => {
+        document.dispatchEvent(new Event('astro:page-load'));
+      };
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-          document.dispatchEvent(new Event('astro:page-load'));
+          requestAnimationFrame(emitPageLoad);
         });
       } else {
-        document.dispatchEvent(new Event('astro:page-load'));
+        requestAnimationFrame(emitPageLoad);
       }
     </script>
   </head>

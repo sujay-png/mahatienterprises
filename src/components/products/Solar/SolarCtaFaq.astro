@@ -81,28 +81,29 @@
 </section>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    // Only select items that haven't been initialized yet
-    const accordionItems = document.querySelectorAll('.faq-item:not([data-initialized])');
+  function initFaq() {
+    const container = document.querySelector('.cta-faq-section') as HTMLElement | null;
+    if (!container || container.dataset.initialized === 'true') return;
+    container.dataset.initialized = 'true';
+
+    const accordionItems = container.querySelectorAll('.faq-item');
 
     accordionItems.forEach((item) => {
-      // Mark as initialized
-      item.setAttribute('data-initialized', 'true');
-      
       const trigger = item.querySelector('.faq-trigger');
-      const wrapper = item.querySelector('.faq-content-wrapper') as HTMLElement;
+      const wrapper = item.querySelector('.faq-content-wrapper') as HTMLElement | null;
+      if (!trigger || !wrapper) return;
 
-      trigger?.addEventListener('click', () => {
+      trigger.addEventListener('click', () => {
         const isOpen = item.getAttribute('data-state') === 'open';
         // Read layout metric BEFORE mutating DOM styles/attributes to avoid forced reflow
         const targetHeight = isOpen ? 0 : wrapper.scrollHeight;
 
         // Close all other open items
-        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+        accordionItems.forEach((otherItem) => {
           if (otherItem !== item) {
             otherItem.setAttribute('data-state', 'closed');
             otherItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
-            const otherWrapper = otherItem.querySelector('.faq-content-wrapper') as HTMLElement;
+            const otherWrapper = otherItem.querySelector('.faq-content-wrapper') as HTMLElement | null;
             if (otherWrapper) otherWrapper.style.height = '0px';
           }
         });
@@ -119,7 +120,12 @@
         }
       });
     });
-  });
+  }
+
+  if (document.readyState === 'complete') {
+    initFaq();
+  }
+  document.addEventListener('astro:page-load', initFaq);
 </script>
 
 <style>

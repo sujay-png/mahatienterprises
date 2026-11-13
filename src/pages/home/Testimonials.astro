@@ -277,25 +277,17 @@ import { testimonialsData } from '../../data/home/testimonials';
     if (grid.dataset.initialized === 'true') return;
     grid.dataset.initialized = 'true';
 
-    // Cache card width via ResizeObserver to avoid forced reflows on click
-    let cachedScrollAmount = 324;
-    const card = grid.querySelector('.testimonial-card') as HTMLElement | null;
-    if (card && 'ResizeObserver' in window) {
-      const ro = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          const width = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
-          if (width > 0) cachedScrollAmount = width + 24;
-        }
-      });
-      ro.observe(card);
-    }
+    const getScrollStep = () => {
+      const card = grid.querySelector('.testimonial-card') as HTMLElement | null;
+      return card ? card.offsetWidth + 24 : 344;
+    };
 
     prevBtn.addEventListener('click', () => {
-      grid.scrollBy({ left: -cachedScrollAmount, behavior: 'smooth' });
+      grid.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     });
 
     nextBtn.addEventListener('click', () => {
-      grid.scrollBy({ left: cachedScrollAmount, behavior: 'smooth' });
+      grid.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     });
   }
 

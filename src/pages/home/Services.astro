@@ -252,27 +252,17 @@ import { servicesData } from '../../data/home/services';
     if (track.dataset.initialized === 'true') return;
     track.dataset.initialized = 'true';
 
-    // Determine card width dynamically via ResizeObserver to avoid forced reflows on click
-    const firstCard = track.querySelector('.service-card') as HTMLElement;
-    if (!firstCard) return;
-
-    let cachedScrollAmount = 324;
-    if ('ResizeObserver' in window) {
-      const ro = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          const width = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
-          if (width > 0) cachedScrollAmount = width + 24;
-        }
-      });
-      ro.observe(firstCard);
-    }
+    const getScrollStep = () => {
+      const firstCard = track.querySelector('.service-card') as HTMLElement | null;
+      return firstCard ? firstCard.offsetWidth + 24 : (window.innerWidth <= 640 ? 304 : 344);
+    };
 
     (prevBtn as HTMLElement).onclick = () => {
-      track.scrollBy({ left: -cachedScrollAmount, behavior: 'smooth' });
+      track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     };
 
     (nextBtn as HTMLElement).onclick = () => {
-      track.scrollBy({ left: cachedScrollAmount, behavior: 'smooth' });
+      track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     };
   }
 
