@@ -786,12 +786,13 @@ export function generateArticleSchema(article: {
 export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfig> {
   if (!post) return {};
 
+  const primaryKeyword = post.seo?.focusKeywords?.[0];
   const cleanDescription =
-    post.excerpt ? sanitizeExcerpt(post.excerpt) : SITE_CONFIG.defaultDescription;
-  const title = formatTitle(post.title);
+    post.seo?.description || (post.excerpt ? sanitizeExcerpt(post.excerpt) : SITE_CONFIG.defaultDescription);
+  const title = formatTitle(post.seo?.title || post.title);
   const canonical = currentUrl
     ? buildCanonicalUrl(currentUrl)
-    : `${SITE_CONFIG.siteUrl}/blog/${post.slug}/`;
+    : (post.seo?.canonicalUrl || `${SITE_CONFIG.siteUrl}/blog/${post.slug}/`);
 
   const imageUrl = post.featuredImage?.node?.sourceUrl || SITE_CONFIG.defaultImage;
   const imageAlt = post.featuredImage?.node?.altText || post.title || SITE_CONFIG.defaultImageAlt;
@@ -803,6 +804,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
   const modifiedTime = post.modified ? new Date(post.modified).toISOString() : publishedTime;
 
   const keywords = [
+    ...(post.seo?.focusKeywords || []),
     post.title,
     categoryName,
     'solar energy blog',
@@ -813,7 +815,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
 
   const articleSchema = generateArticleSchema({
     url: canonical,
-    title: post.title,
+    title: post.seo?.title || post.title,
     description: cleanDescription,
     image: imageUrl,
     datePublished: publishedTime,
@@ -823,6 +825,8 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
   });
 
   return {
+    primaryKeyword,
+    focusKeyphrase: primaryKeyword,
     title,
     description: cleanDescription,
     keywords,
