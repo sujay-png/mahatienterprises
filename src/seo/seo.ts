@@ -46,6 +46,7 @@ export interface SeoConfig {
   primaryKeyword?: string;
   focusKeyphrase?: string;
   title?: string;
+  exactTitle?: boolean;
   description?: string;
   keywords?: string | string[];
   canonical?: string;
@@ -339,6 +340,102 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
     ],
     type: 'website'
   },
+  '/our-work/on-grid-solar-system-udupi': {
+    primaryKeyword: 'on grid solar system',
+    focusKeyphrase: 'on grid solar system',
+    title: 'On Grid Solar System in Udupi | Residential Installation',
+    exactTitle: true,
+    description:
+      'See our latest on grid solar system installation in Marpalli, Udupi. Featuring Waaree TOPCon panels for maximum residential energy savings.',
+    keywords: [
+      'on grid solar system',
+      'on grid solar system Udupi',
+      'residential solar installation Marpalli',
+      'Waaree TOPCon solar panels',
+      'rooftop solar Udupi'
+    ],
+    type: 'article'
+  },
+  '/our-work/commercial-solar-system-mangalore': {
+    primaryKeyword: 'commercial solar system',
+    focusKeyphrase: 'commercial solar system',
+    title: 'Commercial Solar System in Mangalore | AJ Institute',
+    exactTitle: true,
+    description:
+      'Discover our commercial solar system installed at AJ Institute in Mangalore. Built with Waaree TOPCon panels for maximum institutional ROI.',
+    keywords: [
+      'commercial solar system',
+      'commercial solar system Mangalore',
+      'AJ Institute solar installation',
+      'institutional rooftop solar',
+      'Waaree TOPCon panels Mangalore'
+    ],
+    type: 'article'
+  },
+  '/our-work/solar-system-for-home-manipal': {
+    primaryKeyword: 'solar system for home',
+    focusKeyphrase: 'solar system for home',
+    title: 'Solar System for Home in Manipal | Fast Expert Setup',
+    exactTitle: true,
+    description:
+      'Explore this high-efficiency solar system for home in Manipal, Udupi. We used premium Waaree panels and a Growatt inverter to drastically cut bills.',
+    keywords: [
+      'solar system for home',
+      'solar system for home Manipal',
+      'home solar installation Udupi',
+      'Growatt inverter solar setup',
+      'Waaree solar panels Manipal'
+    ],
+    type: 'article'
+  },
+  '/our-work/hybrid-solar-system-udupi': {
+    primaryKeyword: 'hybrid solar system',
+    focusKeyphrase: 'hybrid solar system',
+    title: 'Hybrid Solar System in Udupi | 24/7 Home Battery Backup',
+    exactTitle: true,
+    description:
+      'Check out our hybrid solar system installation in Padigar, Udupi. Complete with Premier bifacial panels and a Deye lithium battery for uninterrupted power.',
+    keywords: [
+      'hybrid solar system',
+      'hybrid solar system Udupi',
+      'home battery backup Udupi',
+      'Deye lithium battery solar',
+      'Premier bifacial solar panels'
+    ],
+    type: 'article'
+  },
+  '/our-work/rooftop-solar-installation-udupi': {
+    primaryKeyword: 'rooftop solar installation',
+    focusKeyphrase: 'rooftop solar installation',
+    title: 'Rooftop Solar Installation in Udupi | PM Surya Ghar Subsidy',
+    exactTitle: true,
+    description:
+      'Explore this subsidized rooftop solar installation in Kunjur, Udupi. Built with ReNew bifacial panels under the PM Surya Ghar Muft Bijli Yojana.',
+    keywords: [
+      'rooftop solar installation',
+      'rooftop solar installation Udupi',
+      'PM Surya Ghar subsidy Udupi',
+      'ReNew bifacial solar panels',
+      'subsidized solar installation'
+    ],
+    type: 'article'
+  },
+  '/our-work/solar-battery-storage-udupi': {
+    primaryKeyword: 'solar battery storage',
+    focusKeyphrase: 'solar battery storage',
+    title: 'Home Solar Battery Storage in Udupi | Uninterrupted Power',
+    exactTitle: true,
+    description:
+      'Never face a power cut again! See our home solar battery storage installation in Udupi, featuring Waaree panels and Deye lithium batteries for 24/7 power.',
+    keywords: [
+      'solar battery storage',
+      'home solar battery storage Udupi',
+      'Deye lithium batteries',
+      'Waaree solar battery system',
+      'uninterrupted solar power'
+    ],
+    type: 'article'
+  },
   '/our-work/aj-institute': {
     title: 'AJ Institute of Engineering & Technology Solar Project | Case Study',
     description:
@@ -499,11 +596,11 @@ export function buildCanonicalUrl(pathnameOrUrl?: string): string {
 }
 
 /**
- * Formats page title ensuring brand suffix consistency.
+ * Formats page title ensuring brand suffix consistency, unless exact title is requested.
  */
-export function formatTitle(title?: string): string {
+export function formatTitle(title?: string, exact?: boolean): string {
   if (!title) return SITE_CONFIG.defaultTitle;
-  if (title.includes(SITE_CONFIG.siteName)) return title;
+  if (exact || title.includes(SITE_CONFIG.siteName)) return title;
   return `${title} | ${SITE_CONFIG.siteName}`;
 }
 
@@ -1012,7 +1109,10 @@ export function getSeoData(
     baseConfig.primaryKeyword ||
     merged.focusKeyphrase ||
     baseConfig.focusKeyphrase;
-  const finalTitle = formatTitle(merged.title || baseConfig.title || SITE_CONFIG.defaultTitle);
+  const finalTitle = formatTitle(
+    merged.title || baseConfig.title || SITE_CONFIG.defaultTitle,
+    merged.exactTitle ?? baseConfig.exactTitle
+  );
   const finalDescription =
     merged.description || baseConfig.description || SITE_CONFIG.defaultDescription;
   const finalKeywords = formatKeywords(

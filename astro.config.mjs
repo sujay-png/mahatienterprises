@@ -78,5 +78,12 @@ export default defineConfig({
 
     '/gst-government-incentives-on-solar-panels-what-you-actually-pay': '/blog/how-to-calculate-solar-panel-payback-period-and-roi/',
     '/blog/gst-government-incentives-on-solar-panels-what-you-actually-pay': '/blog/how-to-calculate-solar-panel-payback-period-and-roi/',
+
+    '/our-work/vedavyasa-tantry': '/our-work/on-grid-solar-system-udupi/',
+    '/our-work/aj-institute': '/our-work/commercial-solar-system-mangalore/',
+    '/our-work/chandrakanth': '/our-work/solar-system-for-home-manipal/',
+    '/our-work/raghavendra': '/our-work/hybrid-solar-system-udupi/',
+    '/our-work/harikrishna-udupa': '/our-work/rooftop-solar-installation-udupi/',
+    '/our-work/dr-shrikiran-hebbar': '/our-work/solar-battery-storage-udupi/',
   },
 });

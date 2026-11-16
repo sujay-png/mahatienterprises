@@ -258,6 +258,36 @@
       "source": "/blog/gst-government-incentives-on-solar-panels-what-you-actually-pay",
       "destination": "/blog/how-to-calculate-solar-panel-payback-period-and-roi/",
       "permanent": true
+    },
+    {
+      "source": "/our-work/vedavyasa-tantry",
+      "destination": "/our-work/on-grid-solar-system-udupi/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work/aj-institute",
+      "destination": "/our-work/commercial-solar-system-mangalore/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work/chandrakanth",
+      "destination": "/our-work/solar-system-for-home-manipal/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work/raghavendra",
+      "destination": "/our-work/hybrid-solar-system-udupi/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work/harikrishna-udupa",
+      "destination": "/our-work/rooftop-solar-installation-udupi/",
+      "permanent": true
+    },
+    {
+      "source": "/our-work/dr-shrikiran-hebbar",
+      "destination": "/our-work/solar-battery-storage-udupi/",
+      "permanent": true
     }
   ]
 }
