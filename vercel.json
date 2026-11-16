@@ -1,12 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';"
+          "value": "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob:; font-src 'self' https: data:; style-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https:; frame-ancestors 'self';"
         },
         {
           "key": "X-Content-Type-Options",
@@ -26,267 +28,267 @@
   "redirects": [
     {
       "source": "/top-10-benefits-of-switching-to-solar-energy-for-homes",
-      "destination": "/blog/benefits-of-rooftop-solar/",
+      "destination": "/blog/benefits-of-rooftop-solar",
       "permanent": true
     },
     {
       "source": "/blog/top-10-benefits-of-switching-to-solar-energy-for-homes",
-      "destination": "/blog/benefits-of-rooftop-solar/",
+      "destination": "/blog/benefits-of-rooftop-solar",
       "permanent": true
     },
     {
       "source": "/debunking-7-common-myths-about-solar-energy-in-india",
-      "destination": "/blog/solar-panel-myths-in-india/",
+      "destination": "/blog/solar-panel-myths-in-india",
       "permanent": true
     },
     {
       "source": "/blog/debunking-7-common-myths-about-solar-energy-in-india",
-      "destination": "/blog/solar-panel-myths-in-india/",
+      "destination": "/blog/solar-panel-myths-in-india",
       "permanent": true
     },
     {
       "source": "/how-to-choose-a-reliable-solar-installer-in-karnataka",
-      "destination": "/blog/reliable-solar-installer-karnataka/",
+      "destination": "/blog/reliable-solar-installer-karnataka",
       "permanent": true
     },
     {
       "source": "/blog/how-to-choose-a-reliable-solar-installer-in-karnataka",
-      "destination": "/blog/reliable-solar-installer-karnataka/",
+      "destination": "/blog/reliable-solar-installer-karnataka",
       "permanent": true
     },
     {
       "source": "/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty",
-      "destination": "/blog/how-to-clean-solar-panels-safely/",
+      "destination": "/blog/how-to-clean-solar-panels-safely",
       "permanent": true
     },
     {
       "source": "/blog/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty",
-      "destination": "/blog/how-to-clean-solar-panels-safely/",
+      "destination": "/blog/how-to-clean-solar-panels-safely",
       "permanent": true
     },
     {
       "source": "/solar-panel-vs-diesel-generator-which-backup-makes-more-sense",
-      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison/",
+      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison",
       "permanent": true
     },
     {
       "source": "/blog/solar-panel-vs-diesel-generator-which-backup-makes-more-sense",
-      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison/",
+      "destination": "/blog/solar-generator-backup-vs-diesel-generator-comparison",
       "permanent": true
     },
     {
       "source": "/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours",
-      "destination": "/blog/solar-panels-for-apartments/",
+      "destination": "/blog/solar-panels-for-apartments",
       "permanent": true
     },
     {
       "source": "/blog/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours",
-      "destination": "/blog/solar-panels-for-apartments/",
+      "destination": "/blog/solar-panels-for-apartments",
       "permanent": true
     },
     {
       "source": "/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026",
-      "destination": "/blog/solar-subsidy-2026/",
+      "destination": "/blog/solar-subsidy-2026",
       "permanent": true
     },
     {
       "source": "/blog/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026",
-      "destination": "/blog/solar-subsidy-2026/",
+      "destination": "/blog/solar-subsidy-2026",
       "permanent": true
     },
     {
       "source": "/privacy-policy-2",
-      "destination": "/privacy-policy/",
+      "destination": "/privacy-policy",
       "permanent": true
     },
     {
       "source": "/on-grid-vs-off-grid-vs-hybrid-solar-system",
-      "destination": "/blog/on-grid-vs-off-grid-vs-hybrid/",
+      "destination": "/blog/on-grid-vs-off-grid-vs-hybrid",
       "permanent": true
     },
     {
       "source": "/blog/on-grid-vs-off-grid-vs-hybrid-solar-system",
-      "destination": "/blog/on-grid-vs-off-grid-vs-hybrid/",
+      "destination": "/blog/on-grid-vs-off-grid-vs-hybrid",
       "permanent": true
     },
     {
       "source": "/solar-batteries-lead-acid-vs-lithium-ion",
-      "destination": "/blog/solar-batteries-lithium-ion/",
+      "destination": "/blog/solar-batteries-lithium-ion",
       "permanent": true
     },
     {
       "source": "/blog/solar-batteries-lead-acid-vs-lithium-ion",
-      "destination": "/blog/solar-batteries-lithium-ion/",
+      "destination": "/blog/solar-batteries-lithium-ion",
       "permanent": true
     },
     {
       "source": "/5-signs-your-industrial-battery-needs-replacement-before-it-fails",
-      "destination": "/blog/battery-replacement-signs/",
+      "destination": "/blog/battery-replacement-signs",
       "permanent": true
     },
     {
       "source": "/blog/5-signs-your-industrial-battery-needs-replacement-before-it-fails",
-      "destination": "/blog/battery-replacement-signs/",
+      "destination": "/blog/battery-replacement-signs",
       "permanent": true
     },
     {
       "source": "/why-hybrid-solar-systems-offer-the-best-value-for-homeowners",
-      "destination": "/blog/hybrid-solar-systems-worth/",
+      "destination": "/blog/hybrid-solar-systems-worth",
       "permanent": true
     },
     {
       "source": "/blog/why-hybrid-solar-systems-offer-the-best-value-for-homeowners",
-      "destination": "/blog/hybrid-solar-systems-worth/",
+      "destination": "/blog/hybrid-solar-systems-worth",
       "permanent": true
     },
     {
       "source": "/best-solar-panel-systems-for-industrial-and-commercial-use",
-      "destination": "/blog/commercial-solar-panel-system/",
+      "destination": "/blog/commercial-solar-panel-system",
       "permanent": true
     },
     {
       "source": "/blog/best-solar-panel-systems-for-industrial-and-commercial-use",
-      "destination": "/blog/commercial-solar-panel-system/",
+      "destination": "/blog/commercial-solar-panel-system",
       "permanent": true
     },
     {
       "source": "/compare-top-solar-battery-brands-for-home-energy-storage",
-      "destination": "/blog/best-solar-battery-for-homes/",
+      "destination": "/blog/best-solar-battery-for-homes",
       "permanent": true
     },
     {
       "source": "/blog/compare-top-solar-battery-brands-for-home-energy-storage",
-      "destination": "/blog/best-solar-battery-for-homes/",
+      "destination": "/blog/best-solar-battery-for-homes",
       "permanent": true
     },
     {
       "source": "/the-science-behind-solar-panel-efficiency-improvements-in-2026",
-      "destination": "/blog/solar-panel-efficiency-guide/",
+      "destination": "/blog/solar-panel-efficiency-guide",
       "permanent": true
     },
     {
       "source": "/blog/the-science-behind-solar-panel-efficiency-improvements-in-2026",
-      "destination": "/blog/solar-panel-efficiency-guide/",
+      "destination": "/blog/solar-panel-efficiency-guide",
       "permanent": true
     },
     {
       "source": "/maximizing-energy-efficiency-with-hybrid-solar-power-solutions",
-      "destination": "/blog/hybrid-solar-power-energy/",
+      "destination": "/blog/hybrid-solar-power-energy",
       "permanent": true
     },
     {
       "source": "/blog/maximizing-energy-efficiency-with-hybrid-solar-power-solutions",
-      "destination": "/blog/hybrid-solar-power-energy/",
+      "destination": "/blog/hybrid-solar-power-energy",
       "permanent": true
     },
     {
       "source": "/on-grid-vs-off-grid-solar-systems-which-one-should-you-choose-for-your-home",
-      "destination": "/blog/on-grid-vs-off-grid-solar-systems/",
+      "destination": "/blog/on-grid-vs-off-grid-solar-systems",
       "permanent": true
     },
     {
       "source": "/blog/on-grid-vs-off-grid-solar-systems-which-one-should-you-choose-for-your-home",
-      "destination": "/blog/on-grid-vs-off-grid-solar-systems/",
+      "destination": "/blog/on-grid-vs-off-grid-solar-systems",
       "permanent": true
     },
     {
       "source": "/step-by-step-installing-solar-panels-at-your-residential-property",
-      "destination": "/blog/solar-panel-installation/",
+      "destination": "/blog/solar-panel-installation",
       "permanent": true
     },
     {
       "source": "/blog/step-by-step-installing-solar-panels-at-your-residential-property",
-      "destination": "/blog/solar-panel-installation/",
+      "destination": "/blog/solar-panel-installation",
       "permanent": true
     },
     {
       "source": "/the-future-of-renewable-energy-trends-to-watch-in-2026",
-      "destination": "/blog/renewable-energy-trends-2026/",
+      "destination": "/blog/renewable-energy-trends-2026",
       "permanent": true
     },
     {
       "source": "/blog/the-future-of-renewable-energy-trends-to-watch-in-2026",
-      "destination": "/blog/renewable-energy-trends-2026/",
+      "destination": "/blog/renewable-energy-trends-2026",
       "permanent": true
     },
     {
       "source": "/how-to-choose-the-right-battery-backup-system-for-your-business",
-      "destination": "/blog/right-battery-backup-system/",
+      "destination": "/blog/right-battery-backup-system",
       "permanent": true
     },
     {
       "source": "/blog/how-to-choose-the-right-battery-backup-system-for-your-business",
-      "destination": "/blog/right-battery-backup-system/",
+      "destination": "/blog/right-battery-backup-system",
       "permanent": true
     },
     {
       "source": "/net-metering-in-karnataka-how-it-works-and-how-to-apply",
-      "destination": "/blog/net-metering-in-karnataka/",
+      "destination": "/blog/net-metering-in-karnataka",
       "permanent": true
     },
     {
       "source": "/blog/net-metering-in-karnataka-how-it-works-and-how-to-apply",
-      "destination": "/blog/net-metering-in-karnataka/",
+      "destination": "/blog/net-metering-in-karnataka",
       "permanent": true
     },
     {
       "source": "/solar-panel-warranty-explained-whats-actually-covered",
-      "destination": "/blog/solar-panel-warranty/",
+      "destination": "/blog/solar-panel-warranty",
       "permanent": true
     },
     {
       "source": "/blog/solar-panel-warranty-explained-whats-actually-covered",
-      "destination": "/blog/solar-panel-warranty/",
+      "destination": "/blog/solar-panel-warranty",
       "permanent": true
     },
     {
       "source": "/solar-panel-sizing-guide-how-many-panels-does-your-home-actually-need",
-      "destination": "/blog/solar-panel-sizing-guide/",
+      "destination": "/blog/solar-panel-sizing-guide",
       "permanent": true
     },
     {
       "source": "/blog/solar-panel-sizing-guide-how-many-panels-does-your-home-actually-need",
-      "destination": "/blog/solar-panel-sizing-guide/",
+      "destination": "/blog/solar-panel-sizing-guide",
       "permanent": true
     },
     {
       "source": "/gst-government-incentives-on-solar-panels-what-you-actually-pay",
-      "destination": "/blog/how-to-calculate-solar-panel-payback-period-and-roi/",
+      "destination": "/blog/how-to-calculate-solar-panel-payback-period-and-roi",
       "permanent": true
     },
     {
       "source": "/blog/gst-government-incentives-on-solar-panels-what-you-actually-pay",
-      "destination": "/blog/how-to-calculate-solar-panel-payback-period-and-roi/",
+      "destination": "/blog/how-to-calculate-solar-panel-payback-period-and-roi",
       "permanent": true
     },
     {
       "source": "/our-work/vedavyasa-tantry",
-      "destination": "/our-work/on-grid-solar-system-udupi/",
+      "destination": "/our-work/on-grid-solar-system-udupi",
       "permanent": true
     },
     {
       "source": "/our-work/aj-institute",
-      "destination": "/our-work/commercial-solar-system-mangalore/",
+      "destination": "/our-work/commercial-solar-system-mangalore",
       "permanent": true
     },
     {
       "source": "/our-work/chandrakanth",
-      "destination": "/our-work/solar-system-for-home-manipal/",
+      "destination": "/our-work/solar-system-for-home-manipal",
       "permanent": true
     },
     {
       "source": "/our-work/raghavendra",
-      "destination": "/our-work/hybrid-solar-system-udupi/",
+      "destination": "/our-work/hybrid-solar-system-udupi",
       "permanent": true
     },
     {
       "source": "/our-work/harikrishna-udupa",
-      "destination": "/our-work/rooftop-solar-installation-udupi/",
+      "destination": "/our-work/rooftop-solar-installation-udupi",
       "permanent": true
     },
     {
       "source": "/our-work/dr-shrikiran-hebbar",
-      "destination": "/our-work/solar-battery-storage-udupi/",
+      "destination": "/our-work/solar-battery-storage-udupi",
       "permanent": true
     }
   ]

@@ -584,7 +584,7 @@ export function buildCanonicalUrl(pathnameOrUrl?: string): string {
     try {
       const url = new URL(pathnameOrUrl);
       const cleanPath = url.pathname.replace(/^\/+|\/+$/g, '');
-      return cleanPath ? `${officialDomain}/${cleanPath}/` : `${officialDomain}/`;
+      return cleanPath ? `${officialDomain}/${cleanPath}` : `${officialDomain}/`;
     } catch {
       return `${officialDomain}/`;
     }
@@ -592,7 +592,7 @@ export function buildCanonicalUrl(pathnameOrUrl?: string): string {
 
   // If a pathname or relative string was passed
   const clean = pathnameOrUrl.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '');
-  return clean ? `${officialDomain}/${clean}/` : `${officialDomain}/`;
+  return clean ? `${officialDomain}/${clean}` : `${officialDomain}/`;
 }
 
 /**
@@ -689,7 +689,7 @@ export function generateBreadcrumbs(pathname: string, customTitle?: string): Bre
 
     items.push({
       name: label,
-      url: `${SITE_CONFIG.siteUrl}${accumulatedPath}/`
+      url: `${SITE_CONFIG.siteUrl}${accumulatedPath}`
     });
   });
 
@@ -889,7 +889,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
   const title = formatTitle(post.seo?.title || post.title);
   const canonical = currentUrl
     ? buildCanonicalUrl(currentUrl)
-    : (post.seo?.canonicalUrl || `${SITE_CONFIG.siteUrl}/blog/${post.slug}/`);
+    : (post.seo?.canonicalUrl ? buildCanonicalUrl(post.seo.canonicalUrl) : `${SITE_CONFIG.siteUrl}/blog/${post.slug}`);
 
   const imageUrl = post.featuredImage?.node?.sourceUrl || SITE_CONFIG.defaultImage;
   const imageAlt = post.featuredImage?.node?.altText || post.title || SITE_CONFIG.defaultImageAlt;
@@ -938,7 +938,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
     schema: articleSchema,
     breadcrumbs: [
       { name: 'Home', url: `${SITE_CONFIG.siteUrl}/` },
-      { name: 'Blog', url: `${SITE_CONFIG.siteUrl}/blog/` },
+      { name: 'Blog', url: `${SITE_CONFIG.siteUrl}/blog` },
       { name: post.title, url: canonical }
     ]
   };
@@ -958,7 +958,7 @@ export function getLocationSeo(
 
   const canonical = currentUrl
     ? buildCanonicalUrl(currentUrl)
-    : `${SITE_CONFIG.siteUrl}/solar-suppliers-in-${location.toLowerCase()}/`;
+    : `${SITE_CONFIG.siteUrl}/solar-suppliers-in-${location.toLowerCase()}`;
 
   const title = `Solar Suppliers in ${formatted} | Solar Panels, UPS & Batteries`;
   const description = `Looking for solar suppliers in ${formatted}? Certified solar panel installations, rooftop solar systems, inverters, and UPS battery backup solutions with government subsidy assistance.`;
@@ -1063,7 +1063,7 @@ export function getBlogPaginationSeo(
   totalPages: number = 1,
   currentUrl?: string
 ): Partial<SeoConfig> {
-  const baseCanonical = `${SITE_CONFIG.siteUrl}/blog/`;
+  const baseCanonical = `${SITE_CONFIG.siteUrl}/blog`;
   const canonical = page > 1 ? `${baseCanonical}?page=${page}` : baseCanonical;
 
   const pageTitle =
