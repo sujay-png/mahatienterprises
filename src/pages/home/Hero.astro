@@ -1,7 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import modiImage from "../../images/mahatimodi.png";
 import solarImage from "../../images/mahatisolar.png";
+
+const solarMobile = await getImage({ src: solarImage, width: 250, format: 'webp' });
+const solarTablet = await getImage({ src: solarImage, width: 375, format: 'webp' });
+const solarDesktop = await getImage({ src: solarImage, width: 500, format: 'webp' });
+const solarDesktop2x = await getImage({ src: solarImage, width: 900, format: 'webp' });
 ---
 
 <section class="surya-slider">
@@ -306,16 +311,20 @@ import solarImage from "../../images/mahatisolar.png";
 
       <!-- Solar image -->
 
-      <Image
-        src={solarImage}
-        alt="Rooftop Solar Panel"
-        loading="eager"
-        decoding="sync"
-        fetchpriority="high"
-        width={500}
-        widths={[250, 375, 500, 750, 900]}
-        sizes="(max-width: 480px) 250px, (max-width: 768px) 270px, (max-width: 1150px) 330px, (max-width: 1350px) 440px, 500px"
-      />
+      <picture class="surya-solar-pic">
+        <source media="(max-width: 480px)" srcset={solarMobile.src} width="250" height="250" />
+        <source media="(max-width: 768px)" srcset={solarTablet.src} width="375" height="375" />
+        <source srcset={`${solarDesktop.src} 1x, ${solarDesktop2x.src} 2x`} width="500" height="500" />
+        <img
+          src={solarDesktop.src}
+          alt="Rooftop Solar Panel"
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
+          width="500"
+          height="500"
+        />
+      </picture>
 
 
       <!-- =================================================
@@ -1154,6 +1163,10 @@ import solarImage from "../../images/mahatisolar.png";
 
 
 /* Solar image */
+
+.surya-solar-pic {
+  display: contents;
+}
 
 .surya-solar img {
 

@@ -16,10 +16,15 @@ import Faq from '../pages/home/Faq.astro';
 import Cta from '../pages/home/Cta.astro';
 import LatestBlogs from '../pages/home/LatestBlogs.astro';
 
-const preloadedSolar = await getImage({
+const solarMobile = await getImage({
+  src: solarImage,
+  width: 250,
+  format: 'webp',
+});
+const solarDesktop = await getImage({
   src: solarImage,
   width: 500,
-  widths: [250, 375, 500, 750, 900],
+  format: 'webp',
 });
 ---
 
@@ -28,9 +33,16 @@ const preloadedSolar = await getImage({
     slot="head"
     rel="preload"
     as="image"
-    href={preloadedSolar.src}
-    imagesrcset={preloadedSolar.srcSet.attribute}
-    imagesizes="(max-width: 480px) 250px, (max-width: 768px) 270px, (max-width: 1150px) 330px, (max-width: 1350px) 440px, 500px"
+    href={solarMobile.src}
+    media="(max-width: 480px)"
+    fetchpriority="high"
+  />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={solarDesktop.src}
+    media="(min-width: 481px)"
     fetchpriority="high"
   />
   <Hero />

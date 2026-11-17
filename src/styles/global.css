@@ -61,3 +61,18 @@ body {
 @view-transition {
   navigation: auto;
 }
+
+/* Optimize main-thread Style & Layout by deferring offscreen rendering */
+.mission-section,
+.products-section,
+.services-section,
+.our-work-grid-section,
+.testimonials-section,
+.why-choose-section,
+.latest-blogs-section,
+.faq-section,
+.cta-section,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

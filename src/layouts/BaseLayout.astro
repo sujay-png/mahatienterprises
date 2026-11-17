@@ -1,5 +1,6 @@
 ---
 // src/layouts/BaseLayout.astro
+import '../styles/fonts.css';
 import '../styles/global.css';
 import Header from '../components/global/Header/Header.astro';
 import Footer from '../components/global/Footer/Footer.astro';
@@ -82,27 +83,25 @@ const seo = getSeoData(pathname, {
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(seo.schema)} />
 
-    <!-- Google Fonts Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Google Fonts Preconnect (for font files) -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script is:inline>
       const emitPageLoad = () => {
         document.dispatchEvent(new Event('astro:page-load'));
       };
+      const schedulePageLoad = () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(emitPageLoad, { timeout: 150 });
+        } else {
+          setTimeout(emitPageLoad, 50);
+        }
+      };
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          requestAnimationFrame(emitPageLoad);
-        });
+        document.addEventListener('DOMContentLoaded', schedulePageLoad);
       } else {
-        requestAnimationFrame(emitPageLoad);
+        schedulePageLoad();
       }
     </script>
   </head>
