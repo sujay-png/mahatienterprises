@@ -172,16 +172,17 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
           aria-label="Blog pagination"
           data-total-pages={totalPages}
         >
-          <a
-            href={currentPage > 1 ? (currentPage - 1 === 1 ? '/blog' : `?page=${currentPage - 1}`) : '#'}
+          <button
+            type="button"
             class={`pagination-nav prev ${currentPage <= 1 ? 'disabled' : ''}`}
             id="prevBtn"
             aria-label="Previous page"
+            disabled={currentPage <= 1}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-          </a>
+          </button>
 
           <div class="pagination-numbers" id="paginationNumbers">
             {(() => {
@@ -195,28 +196,30 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
               return Array.from({ length: count }, (_, i) => {
                 const pageNum = start + i;
                 return (
-                  <a
-                    href={pageNum === 1 ? '/blog' : `?page=${pageNum}`}
+                  <button
+                    type="button"
                     class={`pagination-btn ${pageNum === currentPage ? 'active' : ''}`}
                     data-page={pageNum}
+                    aria-label={`Page ${pageNum}`}
                   >
                     {pageNum}
-                  </a>
+                  </button>
                 );
               });
             })()}
           </div>
 
-          <a
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
+          <button
+            type="button"
             class={`pagination-nav next ${currentPage >= totalPages ? 'disabled' : ''}`}
             id="nextBtn"
             aria-label="Next page"
+            disabled={currentPage >= totalPages}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-          </a>
+          </button>
         </nav>
       )}
 
@@ -232,8 +235,8 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
 
       const totalPages = parseInt(paginationEl.getAttribute('data-total-pages') || '1', 10);
       const blogCards = Array.from(document.querySelectorAll('.blog-card[data-page]')) as HTMLElement[];
-      const prevBtn = document.getElementById('prevBtn') as HTMLAnchorElement | null;
-      const nextBtn = document.getElementById('nextBtn') as HTMLAnchorElement | null;
+      const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement | null;
+      const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement | null;
       const numbersContainer = document.getElementById('paginationNumbers');
 
       let activePage = 1;
@@ -259,11 +262,11 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
           if (page <= 1) {
             prevBtn.classList.add('disabled');
             prevBtn.setAttribute('aria-disabled', 'true');
-            prevBtn.removeAttribute('href');
+            prevBtn.disabled = true;
           } else {
             prevBtn.classList.remove('disabled');
             prevBtn.removeAttribute('aria-disabled');
-            prevBtn.href = page - 1 === 1 ? '/blog' : `?page=${page - 1}`;
+            prevBtn.disabled = false;
           }
         }
 
@@ -271,11 +274,11 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
           if (page >= totalPages) {
             nextBtn.classList.add('disabled');
             nextBtn.setAttribute('aria-disabled', 'true');
-            nextBtn.removeAttribute('href');
+            nextBtn.disabled = true;
           } else {
             nextBtn.classList.remove('disabled');
             nextBtn.removeAttribute('aria-disabled');
-            nextBtn.href = `?page=${page + 1}`;
+            nextBtn.disabled = false;
           }
         }
 
@@ -283,20 +286,21 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
           numbersContainer.innerHTML = '';
           const visiblePages = getVisiblePages(page, totalPages);
           visiblePages.forEach((pageNum) => {
-            const a = document.createElement('a');
-            a.href = pageNum === 1 ? '/blog' : `?page=${pageNum}`;
-            a.className = `pagination-btn ${pageNum === page ? 'active' : ''}`;
-            a.textContent = pageNum.toString();
-            a.setAttribute('data-page', pageNum.toString());
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `pagination-btn ${pageNum === page ? 'active' : ''}`;
+            btn.textContent = pageNum.toString();
+            btn.setAttribute('data-page', pageNum.toString());
+            btn.setAttribute('aria-label', `Page ${pageNum}`);
 
-            a.addEventListener('click', (e) => {
+            btn.addEventListener('click', (e) => {
               e.preventDefault();
               if (pageNum !== activePage) {
                 setPage(pageNum, true, true);
               }
             });
 
-            numbersContainer.appendChild(a);
+            numbersContainer.appendChild(btn);
           });
         }
       }
@@ -336,6 +340,12 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
             url.searchParams.set('page', page.toString());
           }
           window.history.pushState({ page }, '', url.toString());
+
+          const canonicalEl = document.querySelector('link[rel="canonical"]');
+          if (canonicalEl) {
+            const base = `${window.location.origin}/blog`;
+            canonicalEl.setAttribute('href', page > 1 ? `${base}?page=${page}` : base);
+          }
         }
 
         if (targetScrollTop !== null) {
@@ -375,6 +385,12 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
       const currentParams = new URLSearchParams(window.location.search);
       const initialPage = parseInt(currentParams.get('page') || '1', 10);
       setPage(initialPage, false, false);
+      if (initialPage > 1) {
+        const canonicalEl = document.querySelector('link[rel="canonical"]');
+        if (canonicalEl) {
+          canonicalEl.setAttribute('href', `${window.location.origin}/blog?page=${initialPage}`);
+        }
+      }
     }
 
     initPagination();
@@ -929,6 +945,7 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
     color: #1e293b !important;
+    font-family: inherit !important;
     font-size: 15px !important;
     font-weight: 600 !important;
     text-decoration: none !important;
@@ -938,6 +955,7 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
     padding: 0 !important;
     box-sizing: border-box !important;
     line-height: 1 !important;
+    outline: none !important;
   }
 
   .pagination-btn:hover {
@@ -972,21 +990,25 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
     color: #334155 !important;
     background: transparent !important;
     border: none !important;
+    font-family: inherit !important;
     text-decoration: none !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    outline: none !important;
   }
 
-  .pagination-nav:hover:not(.disabled) {
+  .pagination-nav:hover:not(.disabled):not(:disabled) {
     color: #c2410c !important;
     background: rgba(194, 65, 12, 0.08) !important;
     transform: translateY(-2px) !important;
     text-decoration: none !important;
   }
 
-  .pagination-nav.disabled {
+  .pagination-nav.disabled,
+  .pagination-nav:disabled,
+  .pagination-btn:disabled {
     opacity: 0.25 !important;
     cursor: not-allowed !important;
     pointer-events: none !important;

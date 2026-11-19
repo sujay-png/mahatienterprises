@@ -89,6 +89,44 @@ const formattedDate =
     }
   );
 const blogSeo = getBlogPostSeo(post, Astro.url.href);
+
+function sanitizePostContent(html: string): string {
+  if (!html) return '';
+
+  // 1. Fix deprecated AJAX crawling scheme hashbang link (#! -> #1)
+  let sanitized = html.replace(/href=["']#!["']/g, 'href="#1"');
+
+  // 2. Strip 'nofollow' from internal links to preserve internal PageRank distribution
+  sanitized = sanitized.replace(/<a\b([^>]*)>/gi, (match, attrs) => {
+    const hrefMatch = attrs.match(/href=["']([^"']*)["']/i);
+    if (!hrefMatch) return match;
+
+    const href = hrefMatch[1].trim();
+    const isInternal =
+      href.startsWith('/') ||
+      href.startsWith('#') ||
+      href.startsWith('./') ||
+      href.startsWith('../') ||
+      /^https?:\/\/(www\.)?mahatienterprises\.com(\/|$)/i.test(href);
+
+    if (isInternal && /rel=["'][^"']*nofollow[^"']*["']/i.test(attrs)) {
+      const updatedAttrs = attrs.replace(/\s*\brel=(["'])(.*?)\1/i, (_relMatch, quote, relVal) => {
+        const tokens = relVal.split(/\s+/).filter((t: string) => t.toLowerCase() !== 'nofollow' && t.trim() !== '');
+        if (tokens.length === 0) {
+          return '';
+        }
+        return ` rel=${quote}${tokens.join(' ')}${quote}`;
+      });
+      return `<a${updatedAttrs}>`;
+    }
+
+    return match;
+  });
+
+  return sanitized;
+}
+
+const cleanContent = sanitizePostContent(post.content || '');
 ---
 
 
@@ -199,7 +237,7 @@ const blogSeo = getBlogPostSeo(post, Astro.url.href);
 
         <div
           class="wordpress-content"
-          set:html={post.content}
+          set:html={cleanContent}
         ></div>
 
 

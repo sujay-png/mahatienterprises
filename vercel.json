@@ -27,6 +27,17 @@
   ],
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "_escaped_fragment_"
+        }
+      ],
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
       "source": "/top-10-benefits-of-switching-to-solar-energy-for-homes",
       "destination": "/blog/benefits-of-rooftop-solar",
       "permanent": true
@@ -289,6 +300,106 @@
     {
       "source": "/our-work/dr-shrikiran-hebbar",
       "destination": "/our-work/solar-battery-storage-udupi",
+      "permanent": true
+    },
+    {
+      "source": "/travel",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg",
+      "destination": "/images/on-grid-solar-system.jpeg",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/a-complete-guide-to-solar-panel-maintenance-and-longevity",
+      "destination": "/blog/solar-panel-maintenance-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a-complete-guide-to-solar-panel-maintenance-and-longevity",
+      "destination": "/blog/solar-panel-maintenance-guide",
+      "permanent": true
+    },
+    {
+      "source": "/solar-technology-services-2",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/ups-systems-online-vs-offline-ups-which-one-does-your-business-actually-need",
+      "destination": "/blog/online-vs-offline-ups",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ups-systems-online-vs-offline-ups-which-one-does-your-business-actually-need",
+      "destination": "/blog/online-vs-offline-ups",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/ups",
+      "destination": "/ups-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/on-grid-vs-off-grid-systems",
+      "destination": "/blog/on-grid-vs-off-grid-solar-systems",
+      "permanent": true
+    },
+    {
+      "source": "/blog/on-grid-vs-off-grid-systems",
+      "destination": "/blog/on-grid-vs-off-grid-solar-systems",
+      "permanent": true
+    },
+    {
+      "source": "/aj-institute-of-technology-and-engineering-kottara",
+      "destination": "/our-work/commercial-solar-system-mangalore",
+      "permanent": true
+    },
+    {
+      "source": "/a-homeowners-guide-to-choosing-and-maintaining-ups-batteries",
+      "destination": "/blog/ups-battery-maintenance-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/a-homeowners-guide-to-choosing-and-maintaining-ups-batteries",
+      "destination": "/blog/ups-battery-maintenance-guide",
+      "permanent": true
+    },
+    {
+      "source": "/right-battery-backup-system-for-business",
+      "destination": "/blog/right-battery-backup-system",
+      "permanent": true
+    },
+    {
+      "source": "/blog/right-battery-backup-system-for-business",
+      "destination": "/blog/right-battery-backup-system",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-claim-solar-subsidies-in-karnataka",
+      "destination": "/blog/solar-subsidy-in-karnataka",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-claim-solar-subsidies-in-karnataka",
+      "destination": "/blog/solar-subsidy-in-karnataka",
+      "permanent": true
+    },
+    {
+      "source": "/ups-products",
+      "destination": "/ups-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/ups-solar-products",
+      "destination": "/products",
       "permanent": true
     }
   ]

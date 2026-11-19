@@ -119,10 +119,10 @@ export const SITE_CONFIG = {
     'solar products'
   ],
   defaultImage:
-    'https://www.mahatienterprises.com/wp-content/uploads/elementor/thumbs/On-grid-solar-system-1-ro2fz67auo23d8s71gbrj6wq9tvr1whxwh2s1obvlk.jpeg',
+    'https://www.mahatienterprises.com/images/on-grid-solar-system.jpeg',
   defaultImageAlt: 'Mahati Enterprises Solar & Power Solutions',
   defaultLogo:
-    'https://www.mahatienterprises.com/wp-content/uploads/2026/03/cropped-Mahati-Logo-webp-e1777960062642.webp',
+    'https://www.mahatienterprises.com/images/mahati-logo.webp',
   author: 'Mahati Enterprises',
   publisher: 'Mahati Enterprises',
   locale: 'en_IN',
