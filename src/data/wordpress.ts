@@ -1,6 +1,22 @@
 const WORDPRESS_GRAPHQL_URL =
   "https://dashboard.mahatienterprises.com/graphql";
 
+function normalizeMediaUrls(data: any): any {
+  if (!data || typeof data !== "object") return data;
+  if (Array.isArray(data)) {
+    return data.map(normalizeMediaUrls);
+  }
+  const normalized: any = {};
+  for (const key of Object.keys(data)) {
+    if (key === "sourceUrl" && typeof data[key] === "string") {
+      normalized[key] = data[key].replace(/…/g, "%E2%80%A6");
+    } else {
+      normalized[key] = normalizeMediaUrls(data[key]);
+    }
+  }
+  return normalized;
+}
+
 export async function fetchWordPress(
   query: string,
   variables: Record<string, any> = {}
@@ -32,7 +48,7 @@ export async function fetchWordPress(
     );
   }
 
-  return result.data;
+  return normalizeMediaUrls(result.data);
 }
 
 export async function fetchAllWordPressPosts<T = any>(
@@ -80,5 +96,5 @@ export async function fetchAllWordPressPosts<T = any>(
     after = posts.pageInfo.endCursor;
   }
 
-  return allNodes;
+  return normalizeMediaUrls(allNodes);
 }

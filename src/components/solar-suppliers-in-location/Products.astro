@@ -5,6 +5,8 @@ interface Props {
     title: string;
     items: {
       image: string;
+      width?: number;
+      height?: number;
       alt: string;
       title: string;
       desc: string;
@@ -26,7 +28,7 @@ const { productsData } = Astro.props;
     <div class="product-grid">
       {productsData.items.map(product => (
         <div class="premium-card product-card">
-          <img src={product.image} alt={product.alt} loading="lazy" />
+          <img src={product.image} alt={product.alt} width={product.width || 512} height={product.height || 286} loading="lazy" />
           <div class="product-body">
             <h3>{product.title}</h3>
             <p class="desc">{product.desc}</p>

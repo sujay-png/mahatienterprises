@@ -3,6 +3,6 @@ export const getCtaData = (location: string) => ({
   description: "Join our satisfied customers who have already made the smart switch with us.",
   button: {
     label: "Enquire Now",
-    link: "/contact/"
+    link: "/contact"
   }
 });

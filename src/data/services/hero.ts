@@ -8,6 +8,8 @@ export interface ServicesHeroData {
   ctaLink: string;
   imageSrc: string;
   imageAlt: string;
+  imageWidth?: number;
+  imageHeight?: number;
   badgeTitle: string;
   badgeSubtitle: string;
 }
@@ -23,6 +25,8 @@ export const servicesHeroData: ServicesHeroData = {
   ctaLink: "/contact",
   imageSrc: imgHero.src,
   imageAlt: "Solar Panel Installation",
+  imageWidth: imgHero.width,
+  imageHeight: imgHero.height,
   badgeTitle: "End-to-End Solutions",
   badgeSubtitle: "Clean, dependable, and cost-effective power."
 };

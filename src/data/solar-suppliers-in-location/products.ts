@@ -14,6 +14,8 @@ export const getProductsData = (location: string) => ({
   items: [
     {
       image: onGridImg.src,
+      width: onGridImg.width,
+      height: onGridImg.height,
       alt: `On grid solar system ${location}`,
       title: "On-Grid Solar Systems",
       desc: `Perfect for homes and businesses in ${location} looking to slash electricity bills through net metering. These systems feed excess power back to the grid and require minimal maintenance.`,
@@ -24,10 +26,12 @@ export const getProductsData = (location: string) => ({
         "High-efficiency panels for maximum output",
         `Ideal for ${location}'s urban rooftops`
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: offGridImg.src,
+      width: offGridImg.width,
+      height: offGridImg.height,
       alt: `Off grid solar system ${location}`,
       title: "Off-Grid Solar Systems",
       desc: `Designed for complete energy independence — perfect for areas with frequent power cuts or remote locations around ${location}.`,
@@ -38,10 +42,12 @@ export const getProductsData = (location: string) => ({
         "Robust performance even during monsoons",
         "Great for farmhouses and rural homes"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: hybridImg.src,
+      width: hybridImg.width,
+      height: hybridImg.height,
       alt: `Hybrid solar system ${location}`,
       title: "Hybrid Solar Systems",
       desc: "Get the best of both worlds with seamless grid connection and smart battery backup. Never worry about power outages again.",
@@ -52,10 +58,12 @@ export const getProductsData = (location: string) => ({
         "Smart monitoring and optimization",
         "Perfect for villas, offices & hospitals"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: waterHeaterImg.src,
+      width: waterHeaterImg.width,
+      height: waterHeaterImg.height,
       alt: `Solar water heater ${location}`,
       title: "Solar Water Heaters",
       desc: "Enjoy abundant hot water throughout the year at zero electricity cost. Available in pressurized and non-pressurized models.",
@@ -66,10 +74,12 @@ export const getProductsData = (location: string) => ({
         "Long-lasting stainless steel tanks",
         "Huge savings on water heating bills"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: heatPumpImg.src,
+      width: heatPumpImg.width,
+      height: heatPumpImg.height,
       alt: `Solar heat pumps ${location}`,
       title: "Solar Heat Pumps",
       desc: "Advanced, highly efficient water heating technology that combines solar power with heat pump efficiency — far superior to conventional geysers.",
@@ -80,10 +90,12 @@ export const getProductsData = (location: string) => ({
         "Ideal for large residential complexes, hotels, hospitals & industries",
         "Consistent hot water supply 24/7"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: waterPumpImg.src,
+      width: waterPumpImg.width,
+      height: waterPumpImg.height,
       alt: `Solar water pumps ${location}`,
       title: "Solar Water Pumps",
       desc: `Reliable solar-powered pumping solutions for agriculture, irrigation, and drinking water needs in and around ${location}.`,
@@ -94,10 +106,12 @@ export const getProductsData = (location: string) => ({
         "Low maintenance and long service life",
         "Supports sustainable farming practices"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: streetLightImg.src,
+      width: streetLightImg.width,
+      height: streetLightImg.height,
       alt: `Solar street lights ${location}`,
       title: "Solar Street Lights",
       desc: `Bright and durable solar-powered street lights ideal for roads, residential layouts, parks, and public spaces in ${location}.`,
@@ -108,10 +122,12 @@ export const getProductsData = (location: string) => ({
         "Zero electricity bills",
         "Enhances safety and visibility at night"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: highMastImg.src,
+      width: highMastImg.width,
+      height: highMastImg.height,
       alt: `Solar high mast lights ${location}`,
       title: "Solar High Mast Lights",
       desc: "Powerful lighting solutions for large open areas like industrial yards, stadiums, playgrounds, and warehouses.",
@@ -122,10 +138,12 @@ export const getProductsData = (location: string) => ({
         "Sturdy design for harsh conditions",
         "Reduces operational costs significantly"
       ],
-      link: "/contact/"
+      link: "/contact"
     },
     {
       image: floodLightImg.src,
+      width: floodLightImg.width,
+      height: floodLightImg.height,
       alt: `Solar flood lights ${location}`,
       title: "Solar Flood Lights",
       desc: "High-intensity solar flood lights are perfect for security, compound walls, construction sites, and outdoor events.",
@@ -136,7 +154,7 @@ export const getProductsData = (location: string) => ({
         "Easy installation with no wiring",
         "Ideal for commercial and industrial security"
       ],
-      link: "/contact/"
+      link: "/contact"
     }
   ]
 });

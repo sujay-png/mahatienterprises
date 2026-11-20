@@ -6,7 +6,7 @@ interface Props {
     paragraphs: string[];
     primaryButton: { label: string; link: string; };
     secondaryButton: { label: string; link: string; };
-    image: { src: string; alt: string; };
+    image: { src: string; alt: string; width?: number; height?: number; };
   };
 }
 const { heroData } = Astro.props;
@@ -30,7 +30,7 @@ const { heroData } = Astro.props;
       </div>
     </div>
     <div class="hero-image">
-      <img src={heroData.image.src} alt={heroData.image.alt} />
+      <img src={heroData.image.src} alt={heroData.image.alt} width={heroData.image.width || 500} height={heroData.image.height || 300} loading="eager" />
     </div>
   </div>
 </section>

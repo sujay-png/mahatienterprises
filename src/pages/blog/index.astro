@@ -63,6 +63,7 @@ const blogSeo = getBlogPaginationSeo(currentPage, totalPages, Astro.url.href);
               <a
                 href={`/blog/${post.slug}`}
                 class="blog-image-link"
+                aria-label={post.title}
               >
 
                 {

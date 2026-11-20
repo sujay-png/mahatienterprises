@@ -16,6 +16,8 @@ export interface ServiceCard {
   points: string[];
   imageUrl: string;
   imageAlt: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 export interface ExecutionSectionData {
@@ -43,7 +45,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Cost-efficient bulk procurement for larger projects"
       ],
       imageUrl: imgAj2.src,
-      imageAlt: "Professional construction site for a commercial solar installation."
+      imageAlt: "Professional construction site for a commercial solar installation.",
+      imageWidth: imgAj2.width,
+      imageHeight: imgAj2.height
     },
     {
       id: "service-06",
@@ -58,7 +62,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Laying foundational trenching for electrical lines"
       ],
       imageUrl: imgChandra3.src,
-      imageAlt: "Site preparation and clearing for solar array."
+      imageAlt: "Site preparation and clearing for solar array.",
+      imageWidth: imgChandra3.width,
+      imageHeight: imgChandra3.height
     },
     {
       id: "service-07",
@@ -73,7 +79,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Ensuring structural compliance with local wind loads"
       ],
       imageUrl: imgAj2.src,
-      imageAlt: "Construction of solar panel mounting structures."
+      imageAlt: "Construction of solar panel mounting structures.",
+      imageWidth: imgAj2.width,
+      imageHeight: imgAj2.height
     },
     {
       id: "service-08",
@@ -88,7 +96,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Pre-commissioning quality checks"
       ],
       imageUrl: imgChandra3.src,
-      imageAlt: "Workers in safety gear installing solar panels onto mounting structure."
+      imageAlt: "Workers in safety gear installing solar panels onto mounting structure.",
+      imageWidth: imgChandra3.width,
+      imageHeight: imgChandra3.height
     },
     {
       id: "service-09",
@@ -103,7 +113,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Handover with system documentation"
       ],
       imageUrl: imgAj4.src,
-      imageAlt: "Engineer configuring and testing solar inverters."
+      imageAlt: "Engineer configuring and testing solar inverters.",
+      imageWidth: imgAj4.width,
+      imageHeight: imgAj4.height
     },
     {
       id: "service-10",
@@ -117,7 +129,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Both on-grid and off-grid configurations"
       ],
       imageUrl: imgVedvyas3.src,
-      imageAlt: "Finished rooftop solar array installation."
+      imageAlt: "Finished rooftop solar array installation.",
+      imageWidth: imgVedvyas3.width,
+      imageHeight: imgVedvyas3.height
     },
     {
       id: "service-11",
@@ -131,7 +145,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Sites where rooftop space is limited or unsuitable"
       ],
       imageUrl: imgSolarBg.src,
-      imageAlt: "Large scale ground mounted solar farm."
+      imageAlt: "Large scale ground mounted solar farm.",
+      imageWidth: imgSolarBg.width,
+      imageHeight: imgSolarBg.height
     },
     {
       id: "service-12",
@@ -145,7 +161,9 @@ export const executionSectionData: ExecutionSectionData = {
         "Both on-grid and off-grid configurations"
       ],
       imageUrl: imgChandra5.src,
-      imageAlt: "Technician performing routine maintenance on solar panels."
+      imageAlt: "Technician performing routine maintenance on solar panels.",
+      imageWidth: imgChandra5.width,
+      imageHeight: imgChandra5.height
     }
   ]
 };

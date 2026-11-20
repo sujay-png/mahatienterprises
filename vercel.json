@@ -401,6 +401,21 @@
       "source": "/ups-solar-products",
       "destination": "/products",
       "permanent": true
+    },
+    {
+      "source": "/hybrid-solar-systems",
+      "destination": "/solar-products",
+      "permanent": true
+    },
+    {
+      "source": "/off-grid-solar-systems",
+      "destination": "/solar-products",
+      "permanent": true
+    },
+    {
+      "source": "/solar-panel-maintenance-repairs",
+      "destination": "/services",
+      "permanent": true
     }
   ]
 }

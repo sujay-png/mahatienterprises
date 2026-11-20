@@ -106,5 +106,8 @@ export default defineConfig({
     '/blog/how-to-claim-solar-subsidies-in-karnataka': '/blog/solar-subsidy-in-karnataka',
     '/ups-products': '/ups-solutions',
     '/ups-solar-products': '/products',
+    '/hybrid-solar-systems': '/solar-products',
+    '/off-grid-solar-systems': '/solar-products',
+    '/solar-panel-maintenance-repairs': '/services',
   },
 });

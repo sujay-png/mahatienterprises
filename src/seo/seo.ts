@@ -891,7 +891,8 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
     ? buildCanonicalUrl(currentUrl)
     : (post.seo?.canonicalUrl ? buildCanonicalUrl(post.seo.canonicalUrl) : `${SITE_CONFIG.siteUrl}/blog/${post.slug}`);
 
-  const imageUrl = post.featuredImage?.node?.sourceUrl || SITE_CONFIG.defaultImage;
+  const rawImageUrl = post.featuredImage?.node?.sourceUrl || SITE_CONFIG.defaultImage;
+  const imageUrl = rawImageUrl.replace(/…/g, '%E2%80%A6');
   const imageAlt = post.featuredImage?.node?.altText || post.title || SITE_CONFIG.defaultImageAlt;
 
   const categoryName = post.categories?.nodes?.[0]?.name || 'Solar Energy';
@@ -961,7 +962,7 @@ export function getLocationSeo(
     : `${SITE_CONFIG.siteUrl}/solar-suppliers-in-${location.toLowerCase()}`;
 
   const title = `Solar Suppliers in ${formatted} | Solar Panels, UPS & Batteries`;
-  const description = `Looking for solar suppliers in ${formatted}? Certified solar panel installations, rooftop solar systems, inverters, and UPS battery backup solutions with government subsidy assistance.`;
+  const description = `Looking for solar suppliers in ${formatted}? Certified solar installations, rooftop solar, inverters and UPS solutions with government subsidy assistance.`;
 
   const keywords = [
     `solar suppliers in ${formatted}`,

@@ -20,6 +20,8 @@ const projects = [
     location: "Marpalli, Udupi",
     link: "/our-work/on-grid-solar-system-udupi",
     img: imgVedvyasa.src,
+    width: imgVedvyasa.width,
+    height: imgVedvyasa.height,
   },
   {
     title: "AJ Institute",
@@ -27,6 +29,8 @@ const projects = [
     location: "Kottara, Mangalore",
     link: "/our-work/commercial-solar-system-mangalore",
     img: imgAJ.src,
+    width: imgAJ.width,
+    height: imgAJ.height,
   },
   {
     title: "Chandrakanth",
@@ -34,6 +38,8 @@ const projects = [
     location: "Kramballi, Udupi",
     link: "/our-work/solar-system-for-home-manipal",
     img: imgChandra.src,
+    width: imgChandra.width,
+    height: imgChandra.height,
   },
   {
     title: "Raghavendra KG",
@@ -41,6 +47,8 @@ const projects = [
     location: "Padigar, Udupi",
     link: "/our-work/hybrid-solar-system-udupi",
     img: imgRaghavendra.src,
+    width: imgRaghavendra.width,
+    height: imgRaghavendra.height,
   },
   {
     title: "Harikrishna Udupa",
@@ -48,6 +56,8 @@ const projects = [
     location: "Kunjur, Udupi",
     link: "/our-work/rooftop-solar-installation-udupi",
     img: imgHarikrishna.src,
+    width: imgHarikrishna.width,
+    height: imgHarikrishna.height,
   },
   {
     title: "Dr Shrikiran & Dr Arathi Hebbar",
@@ -55,6 +65,8 @@ const projects = [
     location: "Hayagreeva Nagara, Udupi",
     link: "/our-work/solar-battery-storage-udupi",
     img: imgShrikiran.src,
+    width: imgShrikiran.width,
+    height: imgShrikiran.height,
   },
 ];
 ---
@@ -79,6 +91,8 @@ const projects = [
               <img
                 src={project.img}
                 alt={project.title}
+                width={project.width}
+                height={project.height}
                 class="project-img"
                 loading="lazy"
               />

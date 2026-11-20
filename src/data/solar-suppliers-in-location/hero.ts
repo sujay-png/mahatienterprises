@@ -8,7 +8,7 @@ export const getHeroData = (location: string) => ({
   ],
   primaryButton: {
     label: "Enquire Now",
-    link: "/contact/"
+    link: "/contact"
   },
   secondaryButton: {
     label: "See Solar Products",
@@ -16,6 +16,8 @@ export const getHeroData = (location: string) => ({
   },
   image: {
     src: "/images/on-grid-solar-system.jpeg",
-    alt: `On grid solar system installation in ${location}`
+    alt: `On grid solar system installation in ${location}`,
+    width: 500,
+    height: 300
   }
 });

@@ -90,43 +90,210 @@ const formattedDate =
   );
 const blogSeo = getBlogPostSeo(post, Astro.url.href);
 
-function sanitizePostContent(html: string): string {
+function sanitizePostContent(html: string, postTitle: string = ''): string {
   if (!html) return '';
 
   // 1. Fix deprecated AJAX crawling scheme hashbang link (#! -> #1)
   let sanitized = html.replace(/href=["']#!["']/g, 'href="#1"');
 
-  // 2. Strip 'nofollow' from internal links to preserve internal PageRank distribution
+  // 2. Normalize internal links (resolve redirects, strip trailing slashes, remove non-www/dashboard prefixes) & strip 'nofollow'
+  const linkRedirectMap: Record<string, string> = {
+    '/contact-us': '/contact',
+    '/solar-technology-services-2': '/services',
+    '/product-category/ups': '/ups-solutions',
+    '/products': '/solar-products',
+    '/ups-products': '/ups-solutions',
+    '/ups-solar-products': '/solar-products',
+    '/travel': '/services',
+    '/top-10-benefits-of-switching-to-solar-energy-for-homes': '/blog/benefits-of-rooftop-solar',
+    '/blog/top-10-benefits-of-switching-to-solar-energy-for-homes': '/blog/benefits-of-rooftop-solar',
+    '/debunking-7-common-myths-about-solar-energy-in-india': '/blog/solar-panel-myths-in-india',
+    '/blog/debunking-7-common-myths-about-solar-energy-in-india': '/blog/solar-panel-myths-in-india',
+    '/how-to-choose-a-reliable-solar-installer-in-karnataka': '/blog/reliable-solar-installer-karnataka',
+    '/blog/how-to-choose-a-reliable-solar-installer-in-karnataka': '/blog/reliable-solar-installer-karnataka',
+    '/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty': '/blog/how-to-clean-solar-panels-safely',
+    '/blog/how-to-clean-solar-panels-safely-at-home-without-voiding-your-warranty': '/blog/how-to-clean-solar-panels-safely',
+    '/solar-panel-vs-diesel-generator-which-backup-makes-more-sense': '/blog/solar-generator-backup-vs-diesel-generator-comparison',
+    '/blog/solar-panel-vs-diesel-generator-which-backup-makes-more-sense': '/blog/solar-generator-backup-vs-diesel-generator-comparison',
+    '/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours': '/blog/solar-panels-for-apartments',
+    '/blog/solar-for-housing-societies-how-to-split-the-cost-with-your-neighbours': '/blog/solar-panels-for-apartments',
+    '/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026': '/blog/solar-subsidy-2026',
+    '/blog/pm-surya-ghar-muft-bijli-yojana-complete-subsidy-guide-for-2026': '/blog/solar-subsidy-2026',
+    '/privacy-policy-2': '/privacy-policy',
+    '/on-grid-vs-off-grid-vs-hybrid-solar-system': '/blog/on-grid-vs-off-grid-vs-hybrid',
+    '/blog/on-grid-vs-off-grid-vs-hybrid-solar-system': '/blog/on-grid-vs-off-grid-vs-hybrid',
+    '/solar-batteries-lead-acid-vs-lithium-ion': '/blog/solar-batteries-lead-acid-vs-lithium-ion',
+    '/blog/solar-batteries-lead-acid-vs-lithium-ion': '/blog/solar-batteries-lead-acid-vs-lithium-ion',
+    '/5-signs-your-industrial-battery-needs-replacement-before-it-fails': '/blog/battery-replacement-signs',
+    '/blog/5-signs-your-industrial-battery-needs-replacement-before-it-fails': '/blog/battery-replacement-signs',
+    '/a-complete-guide-to-solar-panel-maintenance-and-longevity': '/blog/solar-panel-maintenance-guide',
+    '/blog/a-complete-guide-to-solar-panel-maintenance-and-longevity': '/blog/solar-panel-maintenance-guide',
+    '/a-homeowners-guide-to-choosing-and-maintaining-ups-batteries': '/blog/ups-battery-maintenance-guide',
+    '/blog/a-homeowners-guide-to-choosing-and-maintaining-ups-batteries': '/blog/ups-battery-maintenance-guide',
+    '/best-solar-panel-systems-for-industrial-and-commercial-use': '/blog/commercial-solar-panel-system',
+    '/blog/best-solar-panel-systems-for-industrial-and-commercial-use': '/blog/commercial-solar-panel-system',
+    '/compare-top-solar-battery-brands-for-home-energy-storage': '/blog/best-solar-battery-for-homes',
+    '/blog/compare-top-solar-battery-brands-for-home-energy-storage': '/blog/best-solar-battery-for-homes',
+    '/gst-government-incentives-on-solar-panels-what-you-actually-pay': '/blog/solar-subsidy-in-karnataka',
+    '/blog/gst-government-incentives-on-solar-panels-what-you-actually-pay': '/blog/solar-subsidy-in-karnataka',
+    '/how-to-choose-the-right-battery-backup-system-for-your-business': '/blog/right-battery-backup-system',
+    '/blog/how-to-choose-the-right-battery-backup-system-for-your-business': '/blog/right-battery-backup-system',
+    '/how-to-claim-solar-subsidies-in-karnataka': '/blog/solar-subsidy-in-karnataka',
+    '/blog/how-to-claim-solar-subsidies-in-karnataka': '/blog/solar-subsidy-in-karnataka',
+    '/maximizing-energy-efficiency-with-hybrid-solar-power-solutions': '/blog/hybrid-solar-power-energy',
+    '/blog/maximizing-energy-efficiency-with-hybrid-solar-power-solutions': '/blog/hybrid-solar-power-energy',
+    '/net-metering-in-karnataka-how-it-works-and-how-to-apply': '/blog/net-metering-in-karnataka',
+    '/blog/net-metering-in-karnataka-how-it-works-and-how-to-apply': '/blog/net-metering-in-karnataka',
+    '/on-grid-vs-off-grid-solar-systems-which-one-should-you-choose-for-your-home': '/blog/on-grid-vs-off-grid-solar-systems',
+    '/blog/on-grid-vs-off-grid-solar-systems-which-one-should-you-choose-for-your-home': '/blog/on-grid-vs-off-grid-solar-systems',
+    '/right-battery-backup-system-for-business': '/blog/right-battery-backup-system',
+    '/blog/right-battery-backup-system-for-business': '/blog/right-battery-backup-system',
+    '/solar-panel-sizing-guide-how-many-panels-does-your-home-actually-need': '/blog/solar-panel-sizing-guide',
+    '/blog/solar-panel-sizing-guide-how-many-panels-does-your-home-actually-need': '/blog/solar-panel-sizing-guide',
+    '/solar-panel-warranty-explained-whats-actually-covered': '/blog/solar-panel-warranty',
+    '/blog/solar-panel-warranty-explained-whats-actually-covered': '/blog/solar-panel-warranty',
+    '/step-by-step-installing-solar-panels-at-your-residential-property': '/blog/solar-panel-installation',
+    '/blog/step-by-step-installing-solar-panels-at-your-residential-property': '/blog/solar-panel-installation',
+    '/the-future-of-renewable-energy-trends-to-watch-in-2026': '/blog/renewable-energy-trends-2026',
+    '/blog/the-future-of-renewable-energy-trends-to-watch-in-2026': '/blog/renewable-energy-trends-2026',
+    '/the-science-behind-solar-panel-efficiency-improvements-in-2026': '/blog/solar-panel-efficiency-guide',
+    '/blog/the-science-behind-solar-panel-efficiency-improvements-in-2026': '/blog/solar-panel-efficiency-guide',
+    '/ups-systems-online-vs-offline-ups-which-one-does-your-business-actually-need': '/blog/online-vs-offline-ups',
+    '/blog/ups-systems-online-vs-offline-ups-which-one-does-your-business-actually-need': '/blog/online-vs-offline-ups',
+    '/why-hybrid-solar-systems-offer-the-best-value-for-homeowners': '/blog/hybrid-solar-systems-worth',
+    '/blog/why-hybrid-solar-systems-offer-the-best-value-for-homeowners': '/blog/hybrid-solar-systems-worth',
+    '/blog/how-solar-inverter-batteries-can-reduce-your-electricity-bills': '/blog/solar-inverter-batteries',
+    '/blog/on-grid-vs-off-grid-systems': '/blog/on-grid-vs-off-grid-solar-systems',
+    '/hybrid-solar-systems': '/solar-products',
+    '/off-grid-solar-systems': '/solar-products',
+    '/solar-panel-maintenance-repairs': '/services',
+  };
+
   sanitized = sanitized.replace(/<a\b([^>]*)>/gi, (match, attrs) => {
-    const hrefMatch = attrs.match(/href=["']([^"']*)["']/i);
+    const hrefMatch = attrs.match(/href=(["'])(.*?)\1/i);
     if (!hrefMatch) return match;
 
-    const href = hrefMatch[1].trim();
-    const isInternal =
-      href.startsWith('/') ||
-      href.startsWith('#') ||
-      href.startsWith('./') ||
-      href.startsWith('../') ||
-      /^https?:\/\/(www\.)?mahatienterprises\.com(\/|$)/i.test(href);
+    const rawHref = hrefMatch[2].trim();
+    const isMahati = /^https?:\/\/(www\.|dashboard\.)?mahatienterprises\.com(\/|$)/i.test(rawHref);
+    const isRelative = rawHref.startsWith('/') || rawHref.startsWith('./') || rawHref.startsWith('../');
 
-    if (isInternal && /rel=["'][^"']*nofollow[^"']*["']/i.test(attrs)) {
-      const updatedAttrs = attrs.replace(/\s*\brel=(["'])(.*?)\1/i, (_relMatch, quote, relVal) => {
+    if (!isMahati && !isRelative) {
+      return match;
+    }
+
+    // Preserve WordPress media uploads / admin
+    if (/^https?:\/\/dashboard\.mahatienterprises\.com\/wp-(content|admin|includes)/i.test(rawHref)) {
+      return match;
+    }
+
+    let pathname = '';
+    let hash = '';
+    let search = '';
+
+    try {
+      const u = isMahati ? new URL(rawHref) : new URL(rawHref, 'https://www.mahatienterprises.com');
+      pathname = u.pathname;
+      hash = u.hash;
+      search = u.search;
+    } catch {
+      return match;
+    }
+
+    // Strip trailing slashes except for root '/'
+    if (pathname.length > 1 && pathname.endsWith('/')) {
+      pathname = pathname.slice(0, -1);
+    }
+
+    // Resolve old redirected URLs to their direct canonical destination
+    const lowerPath = pathname.toLowerCase();
+    if (linkRedirectMap[lowerPath]) {
+      pathname = linkRedirectMap[lowerPath];
+    }
+
+    const canonicalHref = `${pathname}${search}${hash}`;
+    let updatedAttrs = attrs.replace(/href=(["'])(.*?)\1/i, `href="${canonicalHref}"`);
+
+    // Strip 'nofollow' from internal links
+    if (/rel=["'][^"']*nofollow[^"']*["']/i.test(updatedAttrs)) {
+      updatedAttrs = updatedAttrs.replace(/\s*\brel=(["'])(.*?)\1/i, (_relMatch, quote, relVal) => {
         const tokens = relVal.split(/\s+/).filter((t: string) => t.toLowerCase() !== 'nofollow' && t.trim() !== '');
         if (tokens.length === 0) {
           return '';
         }
         return ` rel=${quote}${tokens.join(' ')}${quote}`;
       });
-      return `<a${updatedAttrs}>`;
     }
 
+    return `<a${updatedAttrs}>`;
+  });
+
+  // 3. Ensure all embedded post images have descriptive, keyword-rich alt text
+  sanitized = sanitized.replace(/<img\b([^>]*)>/gi, (match, attrs) => {
+    const altMatch = attrs.match(/\balt=(["'])(.*?)\1/i);
+    const hasAlt = altMatch && altMatch[2].trim().length > 0;
+
+    if (!hasAlt) {
+      let altText = '';
+      if (/Solar-panel-payback-roi/i.test(attrs)) {
+        altText = 'Solar panel payback period and ROI calculation guide for rooftop solar systems';
+      } else if (/Solar_panel_inverter_UPS_mainten/i.test(attrs)) {
+        altText = 'Solar panel, inverter, and UPS maintenance and longevity guide';
+      } else if (postTitle) {
+        altText = `${postTitle} - Mahati Enterprises`;
+      } else {
+        altText = 'Mahati Enterprises Solar and Energy Solutions';
+      }
+
+      if (altMatch) {
+        const updatedAttrs = attrs.replace(/\balt=(["'])(.*?)\1/i, `alt="${altText}"`);
+        return `<img${updatedAttrs}>`;
+      } else {
+        return `<img alt="${altText}"${attrs}>`;
+      }
+    }
+
+    return match;
+  });
+
+  // 4. Shorten H2 headings over 70 characters (and synchronize matching TOC anchors)
+  sanitized = sanitized.replace(
+    /Why Incorrect Cleaning Damages Photovoltaic Modules and Voids Warranties/g,
+    'Why Incorrect Cleaning Damages Solar Panels & Voids Warranties'
+  );
+  sanitized = sanitized.replace(
+    /Why Solar Inverter Batteries Are a Game Changer for Your Electricity Bills/g,
+    'Why Solar Inverter Batteries Cut Your Electricity Bills'
+  );
+
+  // 5. Ensure sequential heading hierarchy for Table of Contents (convert <h3>TABLE OF CONTENT</h3> to <h2>)
+  sanitized = sanitized.replace(/<h3(\b[^>]*)>\s*(TABLE OF CONTENT[S]?)\s*<\/h3>/gi, '<h2$1>$2</h2>');
+
+  // 6. Fix accidental Google search query links created during WordPress drafting
+  sanitized = sanitized.replace(/href=(["'])https:\/\/www\.google\.com\/search\?q=([^"']+)\1/gi, (match, quote, query) => {
+    let target = decodeURIComponent(query).trim();
+    if (target.startsWith('/')) {
+      if (target === '/') return 'href="/"';
+      if (target.endsWith('/')) target = target.slice(0, -1);
+      if (linkRedirectMap[target.toLowerCase()]) {
+        target = linkRedirectMap[target.toLowerCase()];
+      }
+      return `href="${target}"`;
+    }
+    return match;
+  });
+
+  // 7. Percent-encode non-ASCII ellipsis in media URLs to prevent "URL: Non ASCII Characters"
+  sanitized = sanitized.replace(/(src|href|srcset)=(["'])([\s\S]*?)\2/gi, (match, attr, quote, val) => {
+    if (val.includes('…')) {
+      return `${attr}=${quote}${val.replace(/…/g, '%E2%80%A6')}${quote}`;
+    }
     return match;
   });
 
   return sanitized;
 }
 
-const cleanContent = sanitizePostContent(post.content || '');
+const cleanContent = sanitizePostContent(post.content || '', post.title || '');
 ---
 
 

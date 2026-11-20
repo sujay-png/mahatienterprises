@@ -24,7 +24,7 @@ export const productsData: ProductsData = {
   subtitle: "WHAT WE SUPPLY",
   title: "Our Products",
   catalogText: "Products",
-  catalogHref: "/products",
+  catalogHref: "/solar-products",
   items: [
     {
       id: "solar-modules",
@@ -33,7 +33,7 @@ export const productsData: ProductsData = {
       image: solarPanelImg,
       alt: "Solar Products",
       linkText: "Explore Solar Products",
-      href: "/solar-products/"
+      href: "/solar-products"
     },
     {
       id: "inverters-ups",
@@ -42,7 +42,7 @@ export const productsData: ProductsData = {
       image: appliancesImg,
       alt: "UPS Solutions",
       linkText: "Explore UPS Products",
-      href: "/ups-solutions/"
+      href: "/ups-solutions"
     },
     {
       id: "energy-storage",
@@ -51,7 +51,7 @@ export const productsData: ProductsData = {
       image: inverterBatteryImg,
       alt: "Batteries",
       linkText: "Explore Batteries",
-      href: "/batteries/"
+      href: "/batteries"
     }
   ]
 };
