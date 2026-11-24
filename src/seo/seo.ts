@@ -225,7 +225,8 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/solar-products': {
     primaryKeyword: 'Solar Solutions',
     focusKeyphrase: 'Solar Solutions',
-    title: 'Solar Energy Solutions | Rooftop, On-Grid & Off-Grid Solar Systems',
+    title: 'Solar Solutions | Off-Grid, On-Grid & Hybrid Solar Products & More',
+    exactTitle: true,
     description:
       'High-efficiency monocrystalline solar panels, rooftop systems, and smart inverters tailored for residential, commercial, and agricultural power needs.',
     keywords: [
@@ -242,7 +243,8 @@ export const PAGE_SEO_CONFIGS: Record<string, SeoConfig> = {
   '/products/solar': {
     primaryKeyword: 'Solar Solutions',
     focusKeyphrase: 'Solar Solutions',
-    title: 'Solar Energy Solutions | Rooftop, On-Grid & Off-Grid Solar Systems',
+    title: 'Solar Solutions | Off-Grid, On-Grid & Hybrid Solar Products & More',
+    exactTitle: true,
     description:
       'High-efficiency monocrystalline solar panels, rooftop systems, and smart inverters tailored for residential, commercial, and agricultural power needs.',
     keywords: [
@@ -886,7 +888,18 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
   const primaryKeyword = post.seo?.focusKeywords?.[0];
   const cleanDescription =
     post.seo?.description || (post.excerpt ? sanitizeExcerpt(post.excerpt) : SITE_CONFIG.defaultDescription);
-  const title = formatTitle(post.seo?.title || post.title);
+
+  const rawTitle =
+    post.slug === 'how-do-solar-panels-work'
+      ? 'Solar Panels: How They Work & Generate Electricity Explained'
+      : (post.seo?.title || post.title);
+
+  const exactTitle =
+    post.slug === 'how-do-solar-panels-work' ||
+    Boolean(post.seo?.title) ||
+    rawTitle.length >= 50;
+
+  const title = formatTitle(rawTitle, exactTitle);
   const canonical = currentUrl
     ? buildCanonicalUrl(currentUrl)
     : (post.seo?.canonicalUrl ? buildCanonicalUrl(post.seo.canonicalUrl) : `${SITE_CONFIG.siteUrl}/blog/${post.slug}`);
@@ -913,7 +926,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
 
   const articleSchema = generateArticleSchema({
     url: canonical,
-    title: post.seo?.title || post.title,
+    title: rawTitle,
     description: cleanDescription,
     image: imageUrl,
     datePublished: publishedTime,
@@ -926,6 +939,7 @@ export function getBlogPostSeo(post: any, currentUrl?: string): Partial<SeoConfi
     primaryKeyword,
     focusKeyphrase: primaryKeyword,
     title,
+    exactTitle,
     description: cleanDescription,
     keywords,
     canonical,

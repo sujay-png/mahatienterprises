@@ -109,5 +109,26 @@ export default defineConfig({
     '/hybrid-solar-systems': '/solar-products',
     '/off-grid-solar-systems': '/solar-products',
     '/solar-panel-maintenance-repairs': '/services',
+
+    '/blog/tips-for-maintaining-efficiency-of-solar-panels-in-coastal-areas': '/blog/solar-panel-efficiency',
+    '/tips-for-maintaining-efficiency-of-solar-panels-in-coastal-areas': '/blog/solar-panel-efficiency',
+
+    '/blog/how-to-get-the-most-out-of-your-solar-panel-investment': '/blog/solar-panel-investment',
+    '/how-to-get-the-most-out-of-your-solar-panel-investment': '/blog/solar-panel-investment',
+
+    '/blog/how-solar-inverter-batteries-can-reduce-your-electricity-bills': '/blog/solar-inverter-batteries',
+    '/how-solar-inverter-batteries-can-reduce-your-electricity-bills': '/blog/solar-inverter-batteries',
+
+    '/blog/affordable-solar-solutions-for-small-businesses-in-2026': '/blog/affordable-solar-solutions',
+    '/affordable-solar-solutions-for-small-businesses-in-2026': '/blog/affordable-solar-solutions',
+
+    '/blog/recent-innovations-in-solar-technology-and-energy-storage': '/blog/solar-technology-and-storage',
+    '/recent-innovations-in-solar-technology-and-energy-storage': '/blog/solar-technology-and-storage',
+
+    '/blog/5-common-solar-power-mistakes-and-how-to-avoid-them': '/blog/solar-power-mistakes-to-avoid',
+    '/5-common-solar-power-mistakes-and-how-to-avoid-them': '/blog/solar-power-mistakes-to-avoid',
+
+    '/blog/top-features-to-look-for-in-residential-solar-inverter-batteries': '/blog/home-solar-inverter-batteries',
+    '/top-features-to-look-for-in-residential-solar-inverter-batteries': '/blog/home-solar-inverter-batteries',
   },
 });

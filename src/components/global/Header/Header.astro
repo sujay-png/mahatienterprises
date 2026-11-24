@@ -221,6 +221,8 @@ const isActive = (href: string) => {
                               "dropdown-item",
                               hasSubmenu && "dropdown-item-parent"
                             ]}
+                            role={subItem.href === '#' ? "button" : undefined}
+                            onclick={subItem.href === '#' ? "event.preventDefault()" : undefined}
                           >
 
                             <span>
@@ -535,6 +537,8 @@ const isActive = (href: string) => {
                           <a
                             href={subItem.href}
                             class="mobile-dropdown-item"
+                            role={subItem.href === '#' ? "button" : undefined}
+                            onclick={subItem.href === '#' ? "event.preventDefault()" : undefined}
                           >
 
                             {subItem.label}
@@ -2204,7 +2208,24 @@ const isActive = (href: string) => {
 
 
     /* ========================================================
-       5. CLOSE MOBILE MENU WHEN CLICKING A LINK
+       5. PREVENT HASH NAVIGATION FOR PLACEHOLDER LINKS
+    ========================================================= */
+
+    document.querySelectorAll('a[href="#"]').forEach((link) => {
+      (link as HTMLAnchorElement).addEventListener('click', (event) => {
+        event.preventDefault();
+        const parent = link.closest('.mobile-has-submenu');
+        if (parent) {
+          const toggleBtn = parent.querySelector('.mobile-submenu-toggle') as HTMLButtonElement | null;
+          toggleBtn?.click();
+        }
+      });
+    });
+
+
+
+    /* ========================================================
+       6. CLOSE MOBILE MENU WHEN CLICKING A LINK
     ========================================================= */
 
     const mobileNavLinks =
@@ -2216,7 +2237,13 @@ const isActive = (href: string) => {
     mobileNavLinks.forEach((link) => {
 
       (link as HTMLAnchorElement).onclick =
-        () => {
+        (event) => {
+
+          const href = link.getAttribute('href');
+          if (href === '#' || href === 'javascript:void(0)') {
+            event.preventDefault();
+            return;
+          }
 
           closeMenu();
 
