@@ -130,5 +130,14 @@ export default defineConfig({
 
     '/blog/top-features-to-look-for-in-residential-solar-inverter-batteries': '/blog/home-solar-inverter-batteries',
     '/top-features-to-look-for-in-residential-solar-inverter-batteries': '/blog/home-solar-inverter-batteries',
+
+    '/blog/advantages-of-choosing-lithium-ion-batteries-for-solar-storage': '/blog/batteries-solar-storage',
+    '/advantages-of-choosing-lithium-ion-batteries-for-solar-storage': '/blog/batteries-solar-storage',
+
+    '/blog/why-your-business-needs-a-reliable-ups-with-solar-backup': '/blog/reliable-ups-solar-backup',
+    '/why-your-business-needs-a-reliable-ups-with-solar-backup': '/blog/reliable-ups-solar-backup',
+
+    '/blog/indias-most-popular-places-that-have-embraced-green-energy': '/blog/green-energy-places-in-india',
+    '/indias-most-popular-places-that-have-embraced-green-energy': '/blog/green-energy-places-in-india',
   },
 });

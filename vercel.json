@@ -486,6 +486,36 @@
       "source": "/blog/top-features-to-look-for-in-residential-solar-inverter-batteries",
       "destination": "/blog/home-solar-inverter-batteries",
       "permanent": true
+    },
+    {
+      "source": "/advantages-of-choosing-lithium-ion-batteries-for-solar-storage",
+      "destination": "/blog/batteries-solar-storage",
+      "permanent": true
+    },
+    {
+      "source": "/blog/advantages-of-choosing-lithium-ion-batteries-for-solar-storage",
+      "destination": "/blog/batteries-solar-storage",
+      "permanent": true
+    },
+    {
+      "source": "/why-your-business-needs-a-reliable-ups-with-solar-backup",
+      "destination": "/blog/reliable-ups-solar-backup",
+      "permanent": true
+    },
+    {
+      "source": "/blog/why-your-business-needs-a-reliable-ups-with-solar-backup",
+      "destination": "/blog/reliable-ups-solar-backup",
+      "permanent": true
+    },
+    {
+      "source": "/indias-most-popular-places-that-have-embraced-green-energy",
+      "destination": "/blog/green-energy-places-in-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/indias-most-popular-places-that-have-embraced-green-energy",
+      "destination": "/blog/green-energy-places-in-india",
+      "permanent": true
     }
   ]
 }
